@@ -1,0 +1,6 @@
+ipykernel
+numpy 
+scipy
+mujoco
+mediapy
+pinocchio
