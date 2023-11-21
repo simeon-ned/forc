@@ -1,3 +1,27 @@
+PRESENTATIONS:
+    ☐ HTML presentations
+    ☐ HTML notes 
+    ☐ Jupyter notebooks 
+    ☐ Colab notebooks
+
+
+CODE:
+    ☐ Visualizer
+    ☐ Simulator class
+        ☐ Wrapper around Mujoco
+        ☐ Visualizer
+    ☐ Model class 
+    ☐ Library of robots
+    ☐ Plotter
+    ☐ CONDA ENV
+
+
+
+
+
+
+
+
 https://www.youtube.com/watch?v=y5cK69vOnuA&list=PLjoIYgWzjQHK8G2O56jsu56dmjWiipguv&index=1
 
 FEEDBACK LINEARIZATION:

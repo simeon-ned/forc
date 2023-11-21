@@ -1,4 +1,8 @@
 _site/
 _draft/
+_material/
 draft/
 .jekyll-cache/
+code/
+hw/
+TODO
