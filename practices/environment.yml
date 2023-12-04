@@ -1,13 +1,20 @@
-name: forc
+name: base
 channels:
   - conda-forge
 dependencies:
   - python=3.10
   - pip
-  - numpy #=1.23.*
-  - pinocchio
   - ipykernel
+  - libgfortran5
+  - matplotlib
+  - mesalib
   - scipy
+  - pinocchio
   - pip:
-    - mujoco
-    - mediapy
+      - darli
+      - robot_descriptions
+      - mujoco
+      - mediapy
+      
+      # - cvxpy 
+      # - cvxpygen
