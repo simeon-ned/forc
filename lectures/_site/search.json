@@ -1,0 +1,79 @@
+[
+  {
+    "objectID": "00_intro/00_introduction.html#instructor",
+    "href": "00_intro/00_introduction.html#instructor",
+    "title": "Fundamentals of Robot Control",
+    "section": "Instructor",
+    "text": "Instructor\n\nName: Simeon Nedelchev\nBackground:\n\nMSTU STANKIN (Bachelor/Master in Robotics 2018)\nKorea University of Technology And Education (KoreaTech) (Master ME 2019), Research fellow ‘BioRobotics’ lab\nInnopolis University (PhD), Senior Instructor, Research fellow of robotics lab\nSenior Control Engineer at Sber Robotics Lab (2023-Now)"
+  },
+  {
+    "objectID": "00_intro/00_introduction.html#research-interests",
+    "href": "00_intro/00_introduction.html#research-interests",
+    "title": "Fundamentals of Robot Control",
+    "section": "Research Interests",
+    "text": "Research Interests\n\nControl: Nonlinear, Robust, Adaptive, Energy based, Noncolocated and Underactuated, with focus on discrete-time and physically inspired numerical methods.\nOnline Identification and Estimation: Moving Horizon Estimators, Sliding Mode Observers.\nAnalytical Mechanics and Dynamical Systems: Dynamical Modeling, Limit Cycles, Constrained Dynamics (UK), Computational mechanics.\nApplied Optimization: Linear, Quadratic, and Nonlinear programming, Dynamical programming, Optimal Control, Optimal Mechanical Design.\n\n\nFeel free to contact me via telegram and mail if you face any problems with the course or would like to do research and work on hardware"
+  },
+  {
+    "objectID": "00_intro/00_introduction.html#what-this-course-is-about",
+    "href": "00_intro/00_introduction.html#what-this-course-is-about",
+    "title": "Fundamentals of Robot Control",
+    "section": "What this course is about?",
+    "text": "What this course is about?\nThis is an introductory course dedicated to control over robotic systems (mainly fully actuated). You will learn:\n\nRecall of modeling techniques, simulators (MuJoCo)\nAnalysis of linear and nonlinear systems\nLinear control (PD, PID, pole placement, etc.)\nBasics of nonlinear control (Feedback linearization, gravity compensation etc.)\nIntro to advanced control techniques (optimal and adaptive control, model predictive, etc.)"
+  },
+  {
+    "objectID": "00_intro/00_introduction.html#course-organization",
+    "href": "00_intro/00_introduction.html#course-organization",
+    "title": "Fundamentals of Robot Control",
+    "section": "Course Organization",
+    "text": "Course Organization\n\nOnline lectures\nPractice/lab sessions\n\nImplementing concepts in Python\nInteractive sessions in Google Colab\n\nHand-written notes encouraged\nMidterm and final exams"
+  },
+  {
+    "objectID": "00_intro/00_introduction.html#grading-policy",
+    "href": "00_intro/00_introduction.html#grading-policy",
+    "title": "Fundamentals of Robot Control",
+    "section": "Grading Policy",
+    "text": "Grading Policy\n\n\n\nComponent\nWeight\n\n\n\n\nMidterm\n30%\n\n\nFinal Exam\n30%\n\n\nAssignments\n20%\n\n\nAttendance*\n20%\n\n\n\n\n\nPlagiarism results in zero score\nContact instructor or TA for questions\nAttendance includes presence and active participation\nGrade thresholds: &gt;55% = C; &gt;70% = B; &gt;85% = A"
+  },
+  {
+    "objectID": "00_intro/00_introduction.html#course-structure",
+    "href": "00_intro/00_introduction.html#course-structure",
+    "title": "Fundamentals of Robot Control",
+    "section": "Course Structure",
+    "text": "Course Structure\n\nIntroduction and Modeling (week 1)\nAnalysis and Control of Linear Systems (weeks 2-3)\nMid-term exam (week 4)\nAnalysis and Control over Nonlinear Systems (weeks 5-7)\nOther topics (week 8)\nFinal exam"
+  },
+  {
+    "objectID": "00_intro/00_introduction.html#prerequisites",
+    "href": "00_intro/00_introduction.html#prerequisites",
+    "title": "Fundamentals of Robot Control",
+    "section": "Prerequisites",
+    "text": "Prerequisites\nRequired:\n\nLinear algebra\nDifferential Equations\n\nHelpful:\n\nIntroduction to Robotics (or similar)\nControl Theory (Linear Control)\n\n\nSolid knowledge of vector and matrix operations is required, as well as that of mechanics (kinematics, dynamics, concept of mechanical energy)."
+  },
+  {
+    "objectID": "00_intro/00_introduction.html#references",
+    "href": "00_intro/00_introduction.html#references",
+    "title": "Fundamentals of Robot Control",
+    "section": "References",
+    "text": "References"
+  },
+  {
+    "objectID": "00_intro/00_introduction.html#online-materials",
+    "href": "00_intro/00_introduction.html#online-materials",
+    "title": "Fundamentals of Robot Control",
+    "section": "Online Materials",
+    "text": "Online Materials\n\nControl Bootcamp - YouTube playlist on linear and nonlinear control concepts\nSlotine control course - Favorite course on nonlinear control\nUnderactuated Robotics - MIT course on numerical methods in control"
+  },
+  {
+    "objectID": "00_intro/00_introduction.html#course-outcomes",
+    "href": "00_intro/00_introduction.html#course-outcomes",
+    "title": "Fundamentals of Robot Control",
+    "section": "Course Outcomes",
+    "text": "Course Outcomes\nBy the end of the course, you will know:\n\nThe structure of models (differential equations) that are used to describe robotic systems\nThe main sources of nonlinearities in robotic systems\nThe purpose and main blocks of feedback control systems\nHow to perform stability analysis of your robots and controllers\nDifferent control algorithms for motion control of various robots (mainly rigid-body manipulators)"
+  },
+  {
+    "objectID": "00_intro/00_introduction.html#thank-you",
+    "href": "00_intro/00_introduction.html#thank-you",
+    "title": "Fundamentals of Robot Control",
+    "section": "Thank You!",
+    "text": "Thank You!\nAny questions?"
+  }
+]

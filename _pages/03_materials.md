@@ -26,10 +26,10 @@ The course material is organized in the form of **interactive lectures** with mi
 ---- 
 
 ### **Lecture 1**: Introduction, History of Dynamics, Models of Robotic Systems
-[1_slides_online]: https://simeon-ned.github.io/mcp/lectures/01_modeling/01_modeling.slides.html
-[1_slides_jupyter]: https://simeon-ned.github.io/mcp/lectures/01_modeling/01_modeling.ipynb
+[1_slides_online]: https://simeon-ned.github.io/forc/lectures/_site/00_intro/00_introduction.html
+<!-- [1_slides_jupyter]: https://simeon-ned.github.io/mcp/lectures/01_modeling/01_modeling.ipynb
 [1_notes_pdf]: https://simeon-ned.github.io/mcp/lectures/01_modeling/01_modeling.pdf
-[1_notes_online]: https://simeon-ned.github.io/mcp/lectures/01_modeling/01_modeling.html
+[1_notes_online]: https://simeon-ned.github.io/mcp/lectures/01_modeling/01_modeling.html -->
 
 **Description:** The introduciory lecture on history of classical mechanics and purpose of models
 
@@ -58,7 +58,7 @@ python code, jupyter notebook and google colab on different aspects of simulatio
 [2_notes_online]: https://simeon-ned.github.io/mcp/lectures/02_linear_analysis_and_fb/02_linear_analysis_and_fb.html
 <!-- [2_notes_colab]: https://simeon-ned.github.io/mcp/lectures/02_analysis_and_feedback/02_analysis_and_feedback.slides.html -->
 
-
+<!-- 
 **Description:** The basics of differential equations and numerical integration  
 
 
@@ -78,7 +78,7 @@ python code, jupyter notebook and google colab on different aspects of simulatio
 
 ---- 
 
-### **Lecture 3**: Kinematics and Attitude Representations
+<!-- ### **Lecture 3**: Kinematics and Attitude Representations -->
 <!-- [4_slides_online]: https://simeon-ned.github.io/mcp/lectures/04_lqr/04_lqr.slides.html
 [4_slides_jupyter]: https://simeon-ned.github.io/mcp/lectures/04_lqr/04_lqr.ipynb
 [4_notes_pdf]: https://simeon-ned.github.io/mcp/lectures/04_lqr/04_lqr.pdf
@@ -86,7 +86,7 @@ python code, jupyter notebook and google colab on different aspects of simulatio
 <!-- [2_notes_colab]: https://simeon-ned.github.io/mcp/lectures/02_analysis_and_feedback/02_analysis_and_feedback.slides.html -->
 
 
-**Description:** Kinematics of rigid bodies, reference Frames, rotation matrices, SO(3), Quaternions
+<!-- **Description:** Kinematics of rigid bodies, reference Frames, rotation matrices, SO(3), Quaternions -->
 
 
 <!-- <div class="table-wrapper" markdown="block">
@@ -97,7 +97,7 @@ python code, jupyter notebook and google colab on different aspects of simulatio
 </div> -->
 
 > The content of this lecture is in progress
-{: .block-danger }
+<!-- {: .block-danger }
 
 ---- 
 
@@ -105,7 +105,7 @@ python code, jupyter notebook and google colab on different aspects of simulatio
  
 ---- 
 
-### **Lecture 4**: Dynamics of Rigid Body
+### **Lecture 4**: Dynamics of Rigid Body -->
 <!-- [4_slides_online]: https://simeon-ned.github.io/mcp/lectures/04_lqr/04_lqr.slides.html
 [4_slides_jupyter]: https://simeon-ned.github.io/mcp/lectures/04_lqr/04_lqr.ipynb
 [4_notes_pdf]: https://simeon-ned.github.io/mcp/lectures/04_lqr/04_lqr.pdf
@@ -113,7 +113,7 @@ python code, jupyter notebook and google colab on different aspects of simulatio
 <!-- [2_notes_colab]: https://simeon-ned.github.io/mcp/lectures/02_analysis_and_feedback/02_analysis_and_feedback.slides.html -->
 
 
-**Description:** Dynamics of Rigid Body, Euler Equations, Angular Momentum, Middle Axis Theorem, Drones, Underwater Vehicles, Centroidal Dynamics
+<!-- **Description:** Dynamics of Rigid Body, Euler Equations, Angular Momentum, Middle Axis Theorem, Drones, Underwater Vehicles, Centroidal Dynamics -->
 
 <!-- <div class="table-wrapper" markdown="block">
 
@@ -123,12 +123,12 @@ python code, jupyter notebook and google colab on different aspects of simulatio
 </div> -->
 
 > The content of this lecture is in progress
-{: .block-danger }
+<!-- {: .block-danger }
 
 
----- 
+----  -->
 
 <!-- > ##### NOTE -->
 >
 > The content of the lectures is constantly adapted and supplemented, and furthermore some additional material will appear on this site over time, which was not presented in class (mainly due to time constraints).
-{: .block-warning }
+<!-- {: .block-warning } --> -->
