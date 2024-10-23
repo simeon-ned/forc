@@ -131,4 +131,4 @@ python code, jupyter notebook and google colab on different aspects of simulatio
 <!-- > ##### NOTE -->
 >
 > The content of the lectures is constantly adapted and supplemented, and furthermore some additional material will appear on this site over time, which was not presented in class (mainly due to time constraints).
-<!-- {: .block-warning } --> -->
+<!-- {: .block-warning } --> 
