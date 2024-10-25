@@ -29,6 +29,71 @@
       margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
       vertical-align: middle;
     }
+    /* CSS for syntax highlighting */
+    pre > code.sourceCode { white-space: pre; position: relative; }
+    pre > code.sourceCode > span { line-height: 1.25; }
+    pre > code.sourceCode > span:empty { height: 1.2em; }
+    .sourceCode { overflow: visible; }
+    code.sourceCode > span { color: inherit; text-decoration: inherit; }
+    div.sourceCode { margin: 1em 0; }
+    pre.sourceCode { margin: 0; }
+    @media screen {
+    div.sourceCode { overflow: auto; }
+    }
+    @media print {
+    pre > code.sourceCode { white-space: pre-wrap; }
+    pre > code.sourceCode > span { display: inline-block; text-indent: -5em; padding-left: 5em; }
+    }
+    pre.numberSource code
+      { counter-reset: source-line 0; }
+    pre.numberSource code > span
+      { position: relative; left: -4em; counter-increment: source-line; }
+    pre.numberSource code > span > a:first-child::before
+      { content: counter(source-line);
+        position: relative; left: -1em; text-align: right; vertical-align: baseline;
+        border: none; display: inline-block;
+        -webkit-touch-callout: none; -webkit-user-select: none;
+        -khtml-user-select: none; -moz-user-select: none;
+        -ms-user-select: none; user-select: none;
+        padding: 0 4px; width: 4em;
+      }
+    pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+    div.sourceCode
+      { color: #3c3836;  }
+    @media screen {
+    pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+    }
+    code span { color: #3c3836; } /* Normal */
+    code span.al { color: #282828; background-color: #cc241d; font-weight: bold; } /* Alert */
+    code span.an { color: #98971a; } /* Annotation */
+    code span.at { color: #d79921; } /* Attribute */
+    code span.bn { color: #f67400; } /* BaseN */
+    code span.bu { color: #d65d0e; } /* BuiltIn */
+    code span.cf { color: #cc241d; font-weight: bold; } /* ControlFlow */
+    code span.ch { color: #b16286; } /* Char */
+    code span.cn { color: #b16286; font-weight: bold; } /* Constant */
+    code span.co { color: #928374; } /* Comment */
+    code span.cv { color: #928374; } /* CommentVar */
+    code span.do { color: #98971a; } /* Documentation */
+    code span.dt { color: #d79921; } /* DataType */
+    code span.dv { color: #f67400; } /* DecVal */
+    code span.er { color: #cc241d; text-decoration: underline; } /* Error */
+    code span.ex { color: #689d6a; font-weight: bold; } /* Extension */
+    code span.fl { color: #f67400; } /* Float */
+    code span.fu { color: #689d6a; } /* Function */
+    code span.im { color: #689d6a; } /* Import */
+    code span.in { color: #282828; background-color: #83a598; } /* Information */
+    code span.kw { color: #3c3836; font-weight: bold; } /* Keyword */
+    code span.op { color: #3c3836; } /* Operator */
+    code span.ot { color: #689d6a; } /* Other */
+    code span.pp { color: #d65d0e; } /* Preprocessor */
+    code span.re { color: #928374; background-color: #f9f5d7; } /* RegionMarker */
+    code span.sc { color: #b16286; } /* SpecialChar */
+    code span.ss { color: #98971a; } /* SpecialString */
+    code span.st { color: #98971a; } /* String */
+    code span.va { color: #458588; } /* Variable */
+    code span.vs { color: #98971a; } /* VerbatimString */
+    code span.wa { color: #282828; background-color: #fabd2f; } /* Warning */
   </style>
   <link rel="stylesheet" href="../site_libs/revealjs/dist/theme/quarto.css">
   <link href="../site_libs/revealjs/plugin/quarto-line-highlight/line-highlight.css" rel="stylesheet">
@@ -329,7 +394,7 @@
 
 <section id="title-slide" class="quarto-title-block center">
   <h1 class="title">Fundamentals of Robot Control</h1>
-  <p class="subtitle">Introduction and Course Outline</p>
+  <p class="subtitle">Lecture 1: Robotic System, Models, Dynamical Systems and State Space</p>
 
 <div class="quarto-title-authors">
 <div class="quarto-title-author">
@@ -349,180 +414,217 @@ Simeon Nedelchev
 
   <p class="date">Oct 25, 2024</p>
 </section>
-<section id="instructor" class="slide level2">
-<h2>Instructor</h2>
-<!-- ::: {.columns}
-::: {.column width="60%"} -->
-<p><strong>Name:</strong> Simeon Nedelchev</p>
-<p><strong>Background:</strong></p>
+<section id="introduction" class="slide level2">
+<h2>Introduction</h2>
 <ul>
-<li>MSTU STANKIN (Bachelor/Master in Robotics 2018)</li>
-<li>Korea University of Technology And Education (KoreaTech) (Master ME 2019), Research fellow ‘BioRobotics’ lab</li>
-<li>Innopolis University (PhD), Senior Instructor, Research fellow of robotics lab</li>
-<li>Senior Control Engineer at Sber Robotics Lab (2023-Now) <!-- :::
+<li>This course focuses on <strong>control methods for robots</strong></li>
+<li>Our task: <strong>design control algorithms</strong> for desired robot behavior</li>
+<li>We’ll consider behavior even in the <strong>presence of disturbances</strong></li>
+<li>Today’s focus: structure of robotic control systems and mathematical modeling</li>
+</ul>
+</section>
+<section id="robotic-control-system-structure" class="slide level2">
+<h2>Robotic Control System Structure</h2>
 
-::: {.column width="40%"}
-![](..//_template/images/instructor_photo.jpg)[
-:::
-::: --></li>
-</ul>
-</section>
-<section id="research-interests" class="slide level2">
-<h2>Research Interests</h2>
+<!-- Main components:
+- Operator/User
+- Plant (or Simulator)
+- Controller
+- Environment -->
+<!-- ::: {.notes}
+Explain each component briefly:
+- Operator provides desired commands
+- Plant includes actuators, dynamical system, and sensors
+- Controller processes outputs and produces inputs based on user commands
+- Environment interacts with the system, potentially causing disturbances
+::: -->
+<img data-src="../../images/schemes/forc_robot_scheme.png" class="quarto-figure quarto-figure-center r-stretch" style="width:70.0%"></section>
+<section id="dynamical-systems" class="slide level2">
+<h2>Dynamical Systems</h2>
+<p>A dynamical system:</p>
 <ul>
-<li><strong>Control</strong>: Nonlinear, Robust, Adaptive, Energy based, Noncolocated and Underactuated, with focus on discrete-time and physically inspired numerical methods.</li>
-<li><strong>Online Identification and Estimation</strong>: Moving Horizon Estimators, Sliding Mode Observers.</li>
-<li><strong>Analytical Mechanics and Dynamical Systems</strong>: Dynamical Modeling, Limit Cycles, Constrained Dynamics (UK), Computational mechanics.</li>
-<li><strong>Applied Optimization</strong>: Linear, Quadratic, and Nonlinear programming, Dynamical programming, Optimal Control, Optimal Mechanical Design.</li>
+<li>Behavior evolves over time</li>
+<li>May be influenced by external inputs</li>
+<li>Can be SISO or MIMO, continuous-time or discrete-time, causal or non-causal, time-invariant or time-varying, linear or nonlinear</li>
 </ul>
-<aside class="notes">
-<p>Feel free to contact me via <a href="https://t.me/simkasimka">telegram</a> and <a href="s.nedelchev@innopolis.university">mail</a> if you face any problems with the course or would like to do research and work on hardware</p>
-<style type="text/css">
-        span.MJX_Assistive_MathML {
-          position:absolute!important;
-          clip: rect(1px, 1px, 1px, 1px);
-          padding: 1px 0 0 0!important;
-          border: 0!important;
-          height: 1px!important;
-          width: 1px!important;
-          overflow: hidden!important;
-          display:block!important;
-      }</style></aside>
+<p>Examples: Electrical circuits, mechanical systems, biological systems, stock market</p>
 </section>
-<section id="what-this-course-is-about" class="slide level2">
-<h2>What this course is about?</h2>
-<p>This is an introductory course dedicated to control over robotic systems (mainly fully actuated). You will learn:</p>
+<section id="mathematical-models" class="slide level2">
+<h2>Mathematical Models</h2>
 <ul>
-<li>Recall of modeling techniques, simulators (MuJoCo)</li>
-<li>Analysis of linear and nonlinear systems</li>
-<li>Linear control (PD, PID, pole placement, etc.)</li>
-<li>Basics of nonlinear control (Feedback linearization, gravity compensation etc.)</li>
-<li>Intro to advanced control techniques (optimal and adaptive control, model predictive, etc.)</li>
+<li>Abstraction of the real world</li>
+<li>Based on physical laws (mechanics, electricity, thermodynamics)</li>
+<li>Result in differential equations</li>
+<li>Should be as simple as possible, but no simpler</li>
 </ul>
-</section>
-<section id="course-organization" class="slide level2">
-<h2>Course Organization</h2>
-<ul>
-<li>Online lectures</li>
-<li>Practice/lab sessions
-<ul>
-<li>Implementing concepts in Python</li>
-<li>Interactive sessions in Google Colab</li>
-</ul></li>
-<li><strong>Hand-written notes encouraged</strong></li>
-<li>Midterm and final exams</li>
-</ul>
-</section>
-<section id="grading-policy" class="slide level2">
-<h2>Grading Policy</h2>
-<table>
-<thead>
-<tr class="header">
-<th>Component</th>
-<th>Weight</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td>Midterm</td>
-<td>30%</td>
-</tr>
-<tr class="even">
-<td>Final Exam</td>
-<td>30%</td>
-</tr>
-<tr class="odd">
-<td>Assignments</td>
-<td>20%</td>
-</tr>
-<tr class="even">
-<td>Attendance*</td>
-<td>20%</td>
-</tr>
-</tbody>
-</table>
-<aside class="notes">
-<ul>
-<li>Plagiarism results in zero score</li>
-<li>Contact instructor or TA for questions</li>
-<li>Attendance includes presence and active participation</li>
-<li>Grade thresholds: &gt;55% = C; &gt;70% = B; &gt;85% = A</li>
-</ul>
-<style type="text/css">
-        span.MJX_Assistive_MathML {
-          position:absolute!important;
-          clip: rect(1px, 1px, 1px, 1px);
-          padding: 1px 0 0 0!important;
-          border: 0!important;
-          height: 1px!important;
-          width: 1px!important;
-          overflow: hidden!important;
-          display:block!important;
-      }</style></aside>
-</section>
-<section id="course-structure" class="slide level2">
-<h2>Course Structure</h2>
-<ol type="1">
-<li><strong>Introduction and Modeling</strong> (week 1)</li>
-<li><strong>Analysis and Control of Linear Systems</strong> (weeks 2-3)</li>
-<li><strong>Mid-term exam</strong> (week 4)</li>
-<li><strong>Analysis and Control over Nonlinear Systems</strong> (weeks 5-7)</li>
-<li><strong>Other topics</strong> (week 8)</li>
-<li><strong>Final exam</strong></li>
-</ol>
-</section>
-<section id="prerequisites" class="slide level2">
-<h2>Prerequisites</h2>
-<p><strong>Required:</strong></p>
-<ul>
-<li>Linear algebra</li>
-<li>Differential Equations</li>
-</ul>
-<p><strong>Helpful:</strong></p>
-<ul>
-<li>Introduction to Robotics (or similar)</li>
-<li>Control Theory (Linear Control)</li>
-</ul>
-<aside class="notes">
-<p>Solid knowledge of vector and matrix operations is required, as well as that of mechanics (kinematics, dynamics, concept of mechanical energy).</p>
-<style type="text/css">
-        span.MJX_Assistive_MathML {
-          position:absolute!important;
-          clip: rect(1px, 1px, 1px, 1px);
-          padding: 1px 0 0 0!important;
-          border: 0!important;
-          height: 1px!important;
-          width: 1px!important;
-          overflow: hidden!important;
-          display:block!important;
-      }</style></aside>
-</section>
-<section id="references" class="slide level2">
-<h2>References</h2>
 
-<img data-src="../../images/books/references.png" class="quarto-figure quarto-figure-center r-stretch" style="width:80.0%"></section>
-<section id="online-materials" class="slide level2">
-<h2>Online Materials</h2>
+<img data-src="../../images/systems/robot_to_model_blank.png" class="quarto-figure quarto-figure-center r-stretch" style="width:70.0%"></section>
+<section id="differential-equations" class="slide level2">
+<h2>Differential Equations</h2>
 <ul>
-<li><a href="https://www.youtube.com/playlist?list=PLMrJAkhIeNNR20Mz-VpzgfQs5zrYi085m">Control Bootcamp</a> - YouTube playlist on linear and nonlinear control concepts</li>
-<li><a href="https://www.bilibili.com/video/BV1yb411e7t5/">Slotine control course</a> - Favorite course on nonlinear control</li>
-<li><a href="https://underactuated.mit.edu/">Underactuated Robotics</a> - MIT course on numerical methods in control</li>
+<li>Relate unknown functions and their derivatives</li>
+<li>Describe rates of change of physical quantities</li>
+<li>Ordinary Differential Equations (ODE) used in this course</li>
+<li>General form: <span class="math inline">\(\mathbf{F}(x,z,z',\ldots ,z^{(n-1)},z^{(n)})=0\)</span></li>
 </ul>
 </section>
-<section id="course-outcomes" class="slide level2">
-<h2>Course Outcomes</h2>
-<p>By the end of the course, you will know:</p>
+<section id="state-space-models" class="slide level2">
+<h2>State-Space Models</h2>
+<p>Based on the concept of system <strong>state</strong>: - Smallest set of variables that determine system behavior - State-space: n-dimensional space of state variables - Represented as system of first-order differential equations</p>
+</section>
+<section id="linear-systems" class="slide level2">
+<h2>Linear Systems</h2>
+<p>General form:</p>
+<p><span class="math display">\[
+\begin{matrix}
+    \dot{\mathbf{x}} = \mathbf{A}(t) \mathbf{x} + \mathbf{B}(t) \mathbf{u}\\
+    \mathbf{y}=\mathbf{C}(t)\mathbf{x} + \mathbf{D}(t)\mathbf{u}
+\end{matrix}
+\]</span></p>
+<p>Where <span class="math inline">\(\mathbf{x}\)</span>, <span class="math inline">\(\mathbf{y}\)</span>, <span class="math inline">\(\mathbf{u}\)</span> are state, output, and input vectors respectively.</p>
+<div>
 <ul>
-<li>The structure of models (differential equations) that are used to describe robotic systems</li>
-<li>The main sources of nonlinearities in robotic systems</li>
-<li>The purpose and main blocks of feedback control systems</li>
-<li>How to perform stability analysis of your robots and controllers</li>
-<li>Different control algorithms for motion control of various robots (mainly rigid-body manipulators)</li>
+<li class="fragment">Unique equilibrium point if <span class="math inline">\(\mathbf{A}\)</span> is full rank</li>
+<li class="fragment">Stability determined by eigenvalues of <span class="math inline">\(\mathbf{A}\)</span></li>
+<li class="fragment">Analytical solution possible</li>
+<li class="fragment">Satisfies principle of superposition</li>
+<li class="fragment">Sinusoidal input leads to sinusoidal output of same frequency</li>
+</ul>
+</div>
+</section>
+<section id="example-mass-spring-damper" class="slide level2">
+<h2>Example: Mass-Spring-Damper</h2>
+
+<img data-src="../../images/systems/mbk_eq.png" class="quarto-figure quarto-figure-center r-stretch" style="width:60.0%"><div class="fragment">
+<p>State-space form: <span class="math display">\[
+\dot{\mathbf{x}} = \mathbf{A}\mathbf{x} =
+\begin{bmatrix}
+0 &amp; 1\\
+-\frac{k}{m} &amp; -\frac{b}{m}
+\end{bmatrix}
+\begin{bmatrix}
+y\\
+\dot{y}
+\end{bmatrix}
+\]</span></p>
+</div>
+</section>
+<section id="nonlinear-systems" class="slide level2">
+<h2>Nonlinear Systems</h2>
+<p>General form:</p>
+<p><span class="math display">\[
+\begin{matrix}
+    \dot{\mathbf{x}} = \mathbf{f}(\mathbf{x},\mathbf{u},\mathbf{d}, t) \\
+    \mathbf{y}=\mathbf{h}(\mathbf{x},\mathbf{u},\mathbf{d}, t)
+\end{matrix}
+\]</span></p>
+<p>Properties:</p>
+<div>
+<ul>
+<li class="fragment">Multiple equilibrium points possible</li>
+<li class="fragment">Stability analysis more complex</li>
+<li class="fragment">Analytical solution generally not possible</li>
+<li class="fragment">Doesn’t satisfy principle of superposition</li>
+</ul>
+</div>
+</section>
+<section id="example-nonlinear-pendulum" class="slide level2">
+<h2>Example: Nonlinear Pendulum</h2>
+
+<img data-src="../../images/systems/pend_eq.png" class="quarto-figure quarto-figure-center r-stretch" style="width:60.0%"><div class="fragment">
+<p>State-space form:</p>
+<p><span class="math display">\[
+\dot{\mathbf{x}} =
+\begin{bmatrix}
+x_2 \\
+\frac{1}{m L^2 + I}(u - mgL \sin x_1-b x_2)
+\end{bmatrix}
+\]</span></p>
+</div>
+</section>
+<section id="generalized-mechanical-system" class="slide level2">
+<h2>Generalized Mechanical System</h2>
+<p>General form:</p>
+<p><span class="math display">\[
+\mathbf{M}(\mathbf{q})\ddot{\mathbf{q}} + \mathbf{h}(\mathbf{q},\dot{\mathbf{q}}) + \mathbf{d}(\mathbf{q},\dot{\mathbf{q}},t) = \mathbf{Q} = \mathbf{B}(\mathbf{q})\mathbf{u}
+\]</span></p>
+<div class="fragment">
+<p>State-space form:</p>
+<p><span class="math display">\[
+\dot{\mathbf{x}}=
+\begin{bmatrix}
+\mathbf{x}_2 \\
+\mathbf{M}^{-1}(\mathbf{x}_1) \big(\mathbf{B}(\mathbf{x}_1)\mathbf{u} - \mathbf{d}(\mathbf{x}_1, \mathbf{x}_2,t) -  \mathbf{h}(\mathbf{x}_1, \mathbf{x}_2) \big)
+\end{bmatrix}
+\]</span></p>
+</div>
+</section>
+<section id="example-floating-rigid-body" class="slide level2">
+<h2>Example: Floating Rigid Body</h2>
+
+<img data-src="../../images/systems/srb_eq.png" class="quarto-figure quarto-figure-center r-stretch" style="width:60.0%"><div class="fragment">
+<p><span class="math display">\[
+\mathbf{M}(\mathbf{q}) =
+\begin{bmatrix}
+mI &amp; 0 \\
+0 &amp; \mathcal{I}\\
+\end{bmatrix}, \quad
+\mathbf{h}(\mathbf{q},\dot{\mathbf{q}}) =
+\begin{bmatrix}
+mg \\
+\boldsymbol{\omega} \times  \mathcal{I}\boldsymbol{\omega}\\
+\end{bmatrix}, \quad \mathbf{B} = \mathbf{I}
+\]</span></p>
+</div>
+</section>
+<section id="simulation-of-ode" class="slide level2">
+<h2>Simulation of ODE</h2>
+<ul>
+<li>Goal: Find solution <span class="math inline">\(\mathbf{x}(t)\)</span> to <span class="math inline">\(\dot{\mathbf{x}} = \boldsymbol{f}(\mathbf{x}, \mathbf{u}, t)\)</span></li>
+<li>Analytical solution often not possible</li>
+<li>Use numerical integration: <span class="math inline">\(\mathbf{x}_{k+1} = \mathbf{f}_d(\mathbf{x}_k,\mathbf{u}_k,\mathbf{d}_k, k)\)</span></li>
+<li>Simulation is iteration over discrete dynamics</li>
 </ul>
 </section>
-<section id="thank-you" class="slide level2">
-<h2>Thank You!</h2>
-<p>Any questions?</p>
+<section id="simulation-example-nonlinear-pendulum" class="slide level2">
+<h2>Simulation Example: Nonlinear Pendulum</h2>
+<div class="sourceCode" id="cb1"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
+<span id="cb1-2"><a></a><span class="im">from</span> scipy.integrate <span class="im">import</span> odeint</span>
+<span id="cb1-3"><a></a></span>
+<span id="cb1-4"><a></a><span class="kw">def</span> f(state, t, control):</span>
+<span id="cb1-5"><a></a>    u <span class="op">=</span> control </span>
+<span id="cb1-6"><a></a>    x1, x2 <span class="op">=</span> state </span>
+<span id="cb1-7"><a></a>    dx1 <span class="op">=</span> x2 </span>
+<span id="cb1-8"><a></a>    dx2 <span class="op">=</span> u <span class="op">-</span> np.sin(x1) <span class="op">-</span> <span class="dv">0</span><span class="op">*</span>x2</span>
+<span id="cb1-9"><a></a>    <span class="cf">return</span> np.array([dx1, dx2])</span>
+<span id="cb1-10"><a></a></span>
+<span id="cb1-11"><a></a><span class="co"># Simulation parameters</span></span>
+<span id="cb1-12"><a></a>x_0 <span class="op">=</span> np.array([<span class="dv">1</span>,<span class="dv">0</span>])</span>
+<span id="cb1-13"><a></a>T <span class="op">=</span> <span class="fl">2E-2</span></span>
+<span id="cb1-14"><a></a>tf <span class="op">=</span> <span class="dv">10</span></span>
+<span id="cb1-15"><a></a>N <span class="op">=</span> <span class="bu">int</span>(tf<span class="op">/</span>T)</span>
+<span id="cb1-16"><a></a></span>
+<span id="cb1-17"><a></a><span class="co"># Simulation loop</span></span>
+<span id="cb1-18"><a></a>X <span class="op">=</span> []</span>
+<span id="cb1-19"><a></a>x_prev <span class="op">=</span> x_0</span>
+<span id="cb1-20"><a></a><span class="cf">for</span> k <span class="kw">in</span> <span class="bu">range</span>(N):</span>
+<span id="cb1-21"><a></a>    X.append(x_prev)</span>
+<span id="cb1-22"><a></a>    t_k <span class="op">=</span> np.linspace(k<span class="op">*</span>T, (k<span class="op">+</span><span class="dv">1</span>)<span class="op">*</span>T, <span class="dv">5</span>)</span>
+<span id="cb1-23"><a></a>    u_k <span class="op">=</span> <span class="dv">0</span></span>
+<span id="cb1-24"><a></a>    x_new <span class="op">=</span> odeint(f, x_prev, t_k, args<span class="op">=</span>(u_k,))</span>
+<span id="cb1-25"><a></a>    x_prev <span class="op">=</span> x_new[<span class="op">-</span><span class="dv">1</span>,:] </span>
+<span id="cb1-26"><a></a></span>
+<span id="cb1-27"><a></a>x_sol <span class="op">=</span> np.array(X)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</section>
+<section id="conclusion" class="slide level2">
+<h2>Conclusion</h2>
+<ul>
+<li>Introduced dynamical systems and mathematical modeling</li>
+<li>Covered linear and nonlinear systems</li>
+<li>Presented state-space representation</li>
+<li>Demonstrated simulation of ODEs</li>
+</ul>
+<p>Next: We’ll dive deeper into analysis and control of linear systems</p>
 
 <div class="quarto-auto-generated-content">
 <div class="footer footer-default">

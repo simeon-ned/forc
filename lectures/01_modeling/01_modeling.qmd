@@ -26,7 +26,7 @@ format:
 
 ## Robotic Control System Structure
 
-![](images/schemes/forc_robot_scheme.png){width=70% fig-align="center"}
+![](../../images/schemes/forc_robot_scheme.png){width=70% fig-align="center"}
 
 <!-- Main components:
 - Operator/User
@@ -59,7 +59,7 @@ Examples: Electrical circuits, mechanical systems, biological systems, stock mar
 - Result in differential equations
 - Should be as simple as possible, but no simpler
 
-![](images/systems/robot_to_model_blank.png){width=70% fig-align="center"}
+![](../../images/systems/robot_to_model_blank.png){width=70% fig-align="center"}
 
 ## Differential Equations
 
@@ -98,7 +98,7 @@ Where $\mathbf{x}$, $\mathbf{y}$, $\mathbf{u}$ are state, output, and input vect
 
 ## Example: Mass-Spring-Damper
 
-![](images/systems/mbk_eq.png){fig-align="center" width=60%}
+![](../../images/systems/mbk_eq.png){fig-align="center" width=60%}
 
 
 ::: {.fragment}
@@ -138,7 +138,7 @@ Properties:
 
 ## Example: Nonlinear Pendulum
 
-![](images/systems/pend_eq.png){fig-align="center" width=60%}
+![](../../images/systems/pend_eq.png){fig-align="center" width=60%}
 
 ::: {.fragment}
 State-space form:
@@ -174,7 +174,7 @@ $$
 
 ## Example: Floating Rigid Body
 
-![](images/systems/srb_eq.png){fig-align="center" width=60%}
+![](../../images/systems/srb_eq.png){fig-align="center" width=60%}
 
 ::: {.fragment}
 $$

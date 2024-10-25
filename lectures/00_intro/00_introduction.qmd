@@ -108,7 +108,7 @@ Solid knowledge of vector and matrix operations is required, as well as that of 
 
 ## References
 
-![](images/books/references.png){width=80% fig-align="center"}
+![](../../images/books/references.png){width=80% fig-align="center"}
 
 ## Online Materials
 
