@@ -16,7 +16,7 @@ permalink: /info/materials.html
 ---- 
 
 ### **Lecture 1**: Introduction, History of Dynamics, Models of Robotic Systems
-[1_slides_online]: https://simeon-ned.github.io/forc/lectures/_site/00_intro/00_introduction.html
+[1_slides_online]: https://simeon-ned.github.io/forc/lectures/00_intro/00_introduction.html
 [1_slides_jupyter]: https://simeon-ned.github.io/mcp/lectures/01_modeling/01_modeling.ipynb
 [1_notes_pdf]: https://simeon-ned.github.io/mcp/lectures/01_modeling/01_modeling.pdf
 [1_notes_online]: https://simeon-ned.github.io/mcp/lectures/01_modeling/01_modeling.html
