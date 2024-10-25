@@ -1,6 +1,6 @@
 ---
 title: "Fundamentals of Robot Control"
-subtitle: "Lecture 1: Robotic System, Models, Dynamical Systems and State Space"
+subtitle: "Lecture 1: Robotic Systems, Models, Dynamical Systems, and State Space"
 author:
   - name: Simeon Nedelchev
     id: SN
@@ -16,7 +16,6 @@ format:
     theme: default
 ---
 
-
 ## Introduction
 
 - This course focuses on **control methods for robots**
@@ -28,25 +27,11 @@ format:
 
 ![](../../images/schemes/forc_robot_scheme.png){width=70% fig-align="center"}
 
-<!-- Main components:
-- Operator/User
-- Plant (or Simulator)
-- Controller
-- Environment -->
-
-<!-- ::: {.notes}
-Explain each component briefly:
-- Operator provides desired commands
-- Plant includes actuators, dynamical system, and sensors
-- Controller processes outputs and produces inputs based on user commands
-- Environment interacts with the system, potentially causing disturbances
-::: -->
-
 ## Dynamical Systems
 
 A dynamical system:
 
-- Behavior evolves over time
+- Has behavior that evolves over time
 - May be influenced by external inputs
 - Can be SISO or MIMO, continuous-time or discrete-time, causal or non-causal, time-invariant or time-varying, linear or nonlinear
 
@@ -65,15 +50,14 @@ Examples: Electrical circuits, mechanical systems, biological systems, stock mar
 
 - Relate unknown functions and their derivatives
 - Describe rates of change of physical quantities
-- Ordinary Differential Equations (ODE) used in this course
+- Ordinary Differential Equations (ODEs) used in this course
 - General form: $\mathbf{F}(x,z,z',\ldots ,z^{(n-1)},z^{(n)})=0$
 
 ## State-Space Models
 
-Based on the concept of system **state**:
-- Smallest set of variables that determine system behavior
+- Based on the concept of system **state**: smallest set of variables that determine system behavior
 - State-space: n-dimensional space of state variables
-- Represented as system of first-order differential equations
+- Represented as a system of first-order differential equations
 
 ## Linear Systems
 
@@ -86,20 +70,19 @@ $$
 \end{matrix}
 $$
 
-Where $\mathbf{x}$, $\mathbf{y}$, $\mathbf{u}$ are state, output, and input vectors respectively.
+Where $\mathbf{x}$, $\mathbf{y}$, and $\mathbf{u}$ are state, output, and input vectors respectively.
 
 ::: {.incremental}
 - Unique equilibrium point if $\mathbf{A}$ is full rank
 - Stability determined by eigenvalues of $\mathbf{A}$
 - Analytical solution possible
 - Satisfies principle of superposition
-- Sinusoidal input leads to sinusoidal output of same frequency
+- Sinusoidal input leads to sinusoidal output of the same frequency
 :::
 
 ## Example: Mass-Spring-Damper
 
 ![](../../images/systems/mbk_eq.png){fig-align="center" width=60%}
-
 
 ::: {.fragment}
 State-space form:
@@ -237,5 +220,4 @@ x_sol = np.array(X)
 - Presented state-space representation
 - Demonstrated simulation of ODEs
 
-Next: We'll dive deeper into analysis and control of linear systems
-
+Next: We'll dive deeper into the analysis and control of linear systems

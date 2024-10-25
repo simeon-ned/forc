@@ -4,21 +4,21 @@
     "href": "00_intro/00_introduction.html#instructor",
     "title": "Fundamentals of Robot Control",
     "section": "Instructor",
-    "text": "Instructor\n\nName: Simeon Nedelchev\nBackground:\n\nMSTU STANKIN (Bachelor/Master in Robotics 2018)\nKorea University of Technology And Education (KoreaTech) (Master ME 2019), Research fellow ‘BioRobotics’ lab\nInnopolis University (PhD), Senior Instructor, Research fellow of robotics lab\nSenior Control Engineer at Sber Robotics Lab (2023-Now)"
+    "text": "Instructor\nName: Simeon Nedelchev\nBackground:\n\nMSTU STANKIN (Bachelor/Master in Robotics 2018)\nKorea University of Technology and Education (KoreaTech) (Master ME 2019), Research fellow ‘BioRobotics’ lab\nInnopolis University (PhD), Senior Instructor, Research fellow of robotics lab\nSenior Control Engineer at Sber Robotics Lab (2023-Present)"
   },
   {
     "objectID": "00_intro/00_introduction.html#research-interests",
     "href": "00_intro/00_introduction.html#research-interests",
     "title": "Fundamentals of Robot Control",
     "section": "Research Interests",
-    "text": "Research Interests\n\nControl: Nonlinear, Robust, Adaptive, Energy based, Noncolocated and Underactuated, with focus on discrete-time and physically inspired numerical methods.\nOnline Identification and Estimation: Moving Horizon Estimators, Sliding Mode Observers.\nAnalytical Mechanics and Dynamical Systems: Dynamical Modeling, Limit Cycles, Constrained Dynamics (UK), Computational mechanics.\nApplied Optimization: Linear, Quadratic, and Nonlinear programming, Dynamical programming, Optimal Control, Optimal Mechanical Design.\n\n\nFeel free to contact me via telegram and mail if you face any problems with the course or would like to do research and work on hardware"
+    "text": "Research Interests\n\nControl: Nonlinear, Robust, Adaptive, Energy-based, Noncolocated and Underactuated, with focus on discrete-time and physically inspired numerical methods.\nOnline Identification and Estimation: Moving Horizon Estimators, Sliding Mode Observers.\nAnalytical Mechanics and Dynamical Systems: Dynamical Modeling, Limit Cycles, Constrained Dynamics (UK), Computational mechanics.\nApplied Optimization: Linear, Quadratic, and Nonlinear programming, Dynamic programming, Optimal Control, Optimal Mechanical Design.\n\n\nFeel free to contact me via Telegram and email if you face any problems with the course or would like to do research and work on hardware."
   },
   {
     "objectID": "00_intro/00_introduction.html#what-this-course-is-about",
     "href": "00_intro/00_introduction.html#what-this-course-is-about",
     "title": "Fundamentals of Robot Control",
-    "section": "What this course is about?",
-    "text": "What this course is about?\nThis is an introductory course dedicated to control over robotic systems (mainly fully actuated). You will learn:\n\nRecall of modeling techniques, simulators (MuJoCo)\nAnalysis of linear and nonlinear systems\nLinear control (PD, PID, pole placement, etc.)\nBasics of nonlinear control (Feedback linearization, gravity compensation etc.)\nIntro to advanced control techniques (optimal and adaptive control, model predictive, etc.)"
+    "section": "What this course is about",
+    "text": "What this course is about\nThis is an introductory course dedicated to control of robotic systems (mainly fully actuated). You will learn:\n\nReview of modeling techniques, simulators (MuJoCo)\nAnalysis of linear and nonlinear systems\nLinear control (PD, PID, pole placement, etc.)\nBasics of nonlinear control (Feedback linearization, gravity compensation, etc.)\nIntroduction to advanced control techniques (optimal and adaptive control, model predictive control, etc.)"
   },
   {
     "objectID": "00_intro/00_introduction.html#course-organization",
@@ -32,14 +32,14 @@
     "href": "00_intro/00_introduction.html#grading-policy",
     "title": "Fundamentals of Robot Control",
     "section": "Grading Policy",
-    "text": "Grading Policy\n\n\n\nComponent\nWeight\n\n\n\n\nMidterm\n30%\n\n\nFinal Exam\n30%\n\n\nAssignments\n20%\n\n\nAttendance*\n20%\n\n\n\n\n\nPlagiarism results in zero score\nContact instructor or TA for questions\nAttendance includes presence and active participation\nGrade thresholds: &gt;55% = C; &gt;70% = B; &gt;85% = A"
+    "text": "Grading Policy\n\n\n\nComponent\nWeight\n\n\n\n\nMidterm\n30%\n\n\nFinal Exam\n30%\n\n\nAssignments\n20%\n\n\nAttendance*\n20%\n\n\n\n\n\nPlagiarism results in a zero score\nContact instructor or TA for questions\nAttendance includes presence and active participation\nGrade thresholds: &gt;55% = C; &gt;70% = B; &gt;85% = A"
   },
   {
     "objectID": "00_intro/00_introduction.html#course-structure",
     "href": "00_intro/00_introduction.html#course-structure",
     "title": "Fundamentals of Robot Control",
     "section": "Course Structure",
-    "text": "Course Structure\n\nIntroduction and Modeling (week 1)\nAnalysis and Control of Linear Systems (weeks 2-3)\nMid-term exam (week 4)\nAnalysis and Control over Nonlinear Systems (weeks 5-7)\nOther topics (week 8)\nFinal exam"
+    "text": "Course Structure\n\nIntroduction and Modeling (week 1)\nAnalysis and Control of Linear Systems (weeks 2-3)\nMid-term exam (week 4)\nAnalysis and Control of Nonlinear Systems (weeks 5-7)\nOther topics (week 8)\nFinal exam"
   },
   {
     "objectID": "00_intro/00_introduction.html#prerequisites",
@@ -67,7 +67,7 @@
     "href": "00_intro/00_introduction.html#course-outcomes",
     "title": "Fundamentals of Robot Control",
     "section": "Course Outcomes",
-    "text": "Course Outcomes\nBy the end of the course, you will know:\n\nThe structure of models (differential equations) that are used to describe robotic systems\nThe main sources of nonlinearities in robotic systems\nThe purpose and main blocks of feedback control systems\nHow to perform stability analysis of your robots and controllers\nDifferent control algorithms for motion control of various robots (mainly rigid-body manipulators)"
+    "text": "Course Outcomes\nBy the end of the course, you will know:\n\nThe structure of models (differential equations) used to describe robotic systems\nThe main sources of nonlinearities in robotic systems\nThe purpose and main blocks of feedback control systems\nHow to perform stability analysis of your robots and controllers\nDifferent control algorithms for motion control of various robots (mainly rigid-body manipulators)"
   },
   {
     "objectID": "00_intro/00_introduction.html#thank-you",
@@ -95,7 +95,7 @@
     "href": "01_modeling/01_modeling.html#dynamical-systems",
     "title": "Fundamentals of Robot Control",
     "section": "Dynamical Systems",
-    "text": "Dynamical Systems\nA dynamical system:\n\nBehavior evolves over time\nMay be influenced by external inputs\nCan be SISO or MIMO, continuous-time or discrete-time, causal or non-causal, time-invariant or time-varying, linear or nonlinear\n\nExamples: Electrical circuits, mechanical systems, biological systems, stock market"
+    "text": "Dynamical Systems\nA dynamical system:\n\nHas behavior that evolves over time\nMay be influenced by external inputs\nCan be SISO or MIMO, continuous-time or discrete-time, causal or non-causal, time-invariant or time-varying, linear or nonlinear\n\nExamples: Electrical circuits, mechanical systems, biological systems, stock market"
   },
   {
     "objectID": "01_modeling/01_modeling.html#mathematical-models",
@@ -109,21 +109,21 @@
     "href": "01_modeling/01_modeling.html#differential-equations",
     "title": "Fundamentals of Robot Control",
     "section": "Differential Equations",
-    "text": "Differential Equations\n\nRelate unknown functions and their derivatives\nDescribe rates of change of physical quantities\nOrdinary Differential Equations (ODE) used in this course\nGeneral form: \\(\\mathbf{F}(x,z,z',\\ldots ,z^{(n-1)},z^{(n)})=0\\)"
+    "text": "Differential Equations\n\nRelate unknown functions and their derivatives\nDescribe rates of change of physical quantities\nOrdinary Differential Equations (ODEs) used in this course\nGeneral form: \\(\\mathbf{F}(x,z,z',\\ldots ,z^{(n-1)},z^{(n)})=0\\)"
   },
   {
     "objectID": "01_modeling/01_modeling.html#state-space-models",
     "href": "01_modeling/01_modeling.html#state-space-models",
     "title": "Fundamentals of Robot Control",
     "section": "State-Space Models",
-    "text": "State-Space Models\nBased on the concept of system state: - Smallest set of variables that determine system behavior - State-space: n-dimensional space of state variables - Represented as system of first-order differential equations"
+    "text": "State-Space Models\n\nBased on the concept of system state: smallest set of variables that determine system behavior\nState-space: n-dimensional space of state variables\nRepresented as a system of first-order differential equations"
   },
   {
     "objectID": "01_modeling/01_modeling.html#linear-systems",
     "href": "01_modeling/01_modeling.html#linear-systems",
     "title": "Fundamentals of Robot Control",
     "section": "Linear Systems",
-    "text": "Linear Systems\nGeneral form:\n\\[\n\\begin{matrix}\n    \\dot{\\mathbf{x}} = \\mathbf{A}(t) \\mathbf{x} + \\mathbf{B}(t) \\mathbf{u}\\\\\n    \\mathbf{y}=\\mathbf{C}(t)\\mathbf{x} + \\mathbf{D}(t)\\mathbf{u}\n\\end{matrix}\n\\]\nWhere \\(\\mathbf{x}\\), \\(\\mathbf{y}\\), \\(\\mathbf{u}\\) are state, output, and input vectors respectively.\n\n\nUnique equilibrium point if \\(\\mathbf{A}\\) is full rank\nStability determined by eigenvalues of \\(\\mathbf{A}\\)\nAnalytical solution possible\nSatisfies principle of superposition\nSinusoidal input leads to sinusoidal output of same frequency"
+    "text": "Linear Systems\nGeneral form:\n\\[\n\\begin{matrix}\n    \\dot{\\mathbf{x}} = \\mathbf{A}(t) \\mathbf{x} + \\mathbf{B}(t) \\mathbf{u}\\\\\n    \\mathbf{y}=\\mathbf{C}(t)\\mathbf{x} + \\mathbf{D}(t)\\mathbf{u}\n\\end{matrix}\n\\]\nWhere \\(\\mathbf{x}\\), \\(\\mathbf{y}\\), and \\(\\mathbf{u}\\) are state, output, and input vectors respectively.\n\n\nUnique equilibrium point if \\(\\mathbf{A}\\) is full rank\nStability determined by eigenvalues of \\(\\mathbf{A}\\)\nAnalytical solution possible\nSatisfies principle of superposition\nSinusoidal input leads to sinusoidal output of the same frequency"
   },
   {
     "objectID": "01_modeling/01_modeling.html#example-mass-spring-damper",
@@ -179,6 +179,6 @@
     "href": "01_modeling/01_modeling.html#conclusion",
     "title": "Fundamentals of Robot Control",
     "section": "Conclusion",
-    "text": "Conclusion\n\nIntroduced dynamical systems and mathematical modeling\nCovered linear and nonlinear systems\nPresented state-space representation\nDemonstrated simulation of ODEs\n\nNext: We’ll dive deeper into analysis and control of linear systems"
+    "text": "Conclusion\n\nIntroduced dynamical systems and mathematical modeling\nCovered linear and nonlinear systems\nPresented state-space representation\nDemonstrated simulation of ODEs\n\nNext: We’ll dive deeper into the analysis and control of linear systems"
   }
 ]

@@ -8,7 +8,7 @@
 <link href="../site_libs/quarto-html/light-border.css" rel="stylesheet">
 <link href="../site_libs/quarto-html/quarto-html.min.css" rel="stylesheet" data-mode="light">
 <link href="../site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles"><meta charset="utf-8">
-  <meta name="generator" content="quarto-1.5.57">
+  <meta name="generator" content="quarto-1.4.554">
 
   <meta name="author" content="Simeon Nedelchev">
   <title>Fundamentals of Robot Control</title>
@@ -351,32 +351,25 @@ Simeon Nedelchev
 </section>
 <section id="instructor" class="slide level2">
 <h2>Instructor</h2>
-<!-- ::: {.columns}
-::: {.column width="60%"} -->
 <p><strong>Name:</strong> Simeon Nedelchev</p>
 <p><strong>Background:</strong></p>
 <ul>
 <li>MSTU STANKIN (Bachelor/Master in Robotics 2018)</li>
-<li>Korea University of Technology And Education (KoreaTech) (Master ME 2019), Research fellow ‘BioRobotics’ lab</li>
+<li>Korea University of Technology and Education (KoreaTech) (Master ME 2019), Research fellow ‘BioRobotics’ lab</li>
 <li>Innopolis University (PhD), Senior Instructor, Research fellow of robotics lab</li>
-<li>Senior Control Engineer at Sber Robotics Lab (2023-Now) <!-- :::
-
-::: {.column width="40%"}
-![](..//_template/images/instructor_photo.jpg)[
-:::
-::: --></li>
+<li>Senior Control Engineer at Sber Robotics Lab (2023-Present)</li>
 </ul>
 </section>
 <section id="research-interests" class="slide level2">
 <h2>Research Interests</h2>
 <ul>
-<li><strong>Control</strong>: Nonlinear, Robust, Adaptive, Energy based, Noncolocated and Underactuated, with focus on discrete-time and physically inspired numerical methods.</li>
+<li><strong>Control</strong>: Nonlinear, Robust, Adaptive, Energy-based, Noncolocated and Underactuated, with focus on discrete-time and physically inspired numerical methods.</li>
 <li><strong>Online Identification and Estimation</strong>: Moving Horizon Estimators, Sliding Mode Observers.</li>
 <li><strong>Analytical Mechanics and Dynamical Systems</strong>: Dynamical Modeling, Limit Cycles, Constrained Dynamics (UK), Computational mechanics.</li>
-<li><strong>Applied Optimization</strong>: Linear, Quadratic, and Nonlinear programming, Dynamical programming, Optimal Control, Optimal Mechanical Design.</li>
+<li><strong>Applied Optimization</strong>: Linear, Quadratic, and Nonlinear programming, Dynamic programming, Optimal Control, Optimal Mechanical Design.</li>
 </ul>
 <aside class="notes">
-<p>Feel free to contact me via <a href="https://t.me/simkasimka">telegram</a> and <a href="s.nedelchev@innopolis.university">mail</a> if you face any problems with the course or would like to do research and work on hardware</p>
+<p>Feel free to contact me via <a href="https://t.me/simkasimka">Telegram</a> and <a href="s.nedelchev@innopolis.university">email</a> if you face any problems with the course or would like to do research and work on hardware.</p>
 <style type="text/css">
         span.MJX_Assistive_MathML {
           position:absolute!important;
@@ -390,14 +383,14 @@ Simeon Nedelchev
       }</style></aside>
 </section>
 <section id="what-this-course-is-about" class="slide level2">
-<h2>What this course is about?</h2>
-<p>This is an introductory course dedicated to control over robotic systems (mainly fully actuated). You will learn:</p>
+<h2>What this course is about</h2>
+<p>This is an introductory course dedicated to control of robotic systems (mainly fully actuated). You will learn:</p>
 <ul>
-<li>Recall of modeling techniques, simulators (MuJoCo)</li>
+<li>Review of modeling techniques, simulators (MuJoCo)</li>
 <li>Analysis of linear and nonlinear systems</li>
 <li>Linear control (PD, PID, pole placement, etc.)</li>
-<li>Basics of nonlinear control (Feedback linearization, gravity compensation etc.)</li>
-<li>Intro to advanced control techniques (optimal and adaptive control, model predictive, etc.)</li>
+<li>Basics of nonlinear control (Feedback linearization, gravity compensation, etc.)</li>
+<li>Introduction to advanced control techniques (optimal and adaptive control, model predictive control, etc.)</li>
 </ul>
 </section>
 <section id="course-organization" class="slide level2">
@@ -443,7 +436,7 @@ Simeon Nedelchev
 </table>
 <aside class="notes">
 <ul>
-<li>Plagiarism results in zero score</li>
+<li>Plagiarism results in a zero score</li>
 <li>Contact instructor or TA for questions</li>
 <li>Attendance includes presence and active participation</li>
 <li>Grade thresholds: &gt;55% = C; &gt;70% = B; &gt;85% = A</li>
@@ -466,7 +459,7 @@ Simeon Nedelchev
 <li><strong>Introduction and Modeling</strong> (week 1)</li>
 <li><strong>Analysis and Control of Linear Systems</strong> (weeks 2-3)</li>
 <li><strong>Mid-term exam</strong> (week 4)</li>
-<li><strong>Analysis and Control over Nonlinear Systems</strong> (weeks 5-7)</li>
+<li><strong>Analysis and Control of Nonlinear Systems</strong> (weeks 5-7)</li>
 <li><strong>Other topics</strong> (week 8)</li>
 <li><strong>Final exam</strong></li>
 </ol>
@@ -513,7 +506,7 @@ Simeon Nedelchev
 <h2>Course Outcomes</h2>
 <p>By the end of the course, you will know:</p>
 <ul>
-<li>The structure of models (differential equations) that are used to describe robotic systems</li>
+<li>The structure of models (differential equations) used to describe robotic systems</li>
 <li>The main sources of nonlinearities in robotic systems</li>
 <li>The purpose and main blocks of feedback control systems</li>
 <li>How to perform stability analysis of your robots and controllers</li>
@@ -774,7 +767,18 @@ Simeon Nedelchev
         }
         return false;
       }
-      const onCopySuccess = function(e) {
+      const clipboard = new window.ClipboardJS('.code-copy-button', {
+        text: function(trigger) {
+          const codeEl = trigger.previousElementSibling.cloneNode(true);
+          for (const childEl of codeEl.children) {
+            if (isCodeAnnotation(childEl)) {
+              childEl.remove();
+            }
+          }
+          return codeEl.innerText;
+        }
+      });
+      clipboard.on('success', function(e) {
         // button target
         const button = e.trigger;
         // don't keep focus
@@ -806,29 +810,7 @@ Simeon Nedelchev
         }, 1000);
         // clear code selection
         e.clearSelection();
-      }
-      const getTextToCopy = function(trigger) {
-          const codeEl = trigger.previousElementSibling.cloneNode(true);
-          for (const childEl of codeEl.children) {
-            if (isCodeAnnotation(childEl)) {
-              childEl.remove();
-            }
-          }
-          return codeEl.innerText;
-      }
-      const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
-        text: getTextToCopy
       });
-      clipboard.on('success', onCopySuccess);
-      if (window.document.getElementById('quarto-embedded-source-code-modal')) {
-        // For code content inside modals, clipBoardJS needs to be initialized with a container option
-        // TODO: Check when it could be a function (https://github.com/zenorocha/clipboard.js/issues/860)
-        const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
-          text: getTextToCopy,
-          container: window.document.getElementById('quarto-embedded-source-code-modal')
-        });
-        clipboardModal.on('success', onCopySuccess);
-      }
         var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
         var mailtoRegex = new RegExp(/^mailto:/);
           var filterRegex = new RegExp('/' + window.location.host + '/');
@@ -836,7 +818,7 @@ Simeon Nedelchev
             return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
         }
         // Inspect non-navigation links and adorn them if external
-     	var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+     	var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool)');
         for (var i=0; i<links.length; i++) {
           const link = links[i];
           if (!isInternal(link.href)) {

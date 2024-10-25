@@ -8,7 +8,7 @@
 <link href="../site_libs/quarto-html/light-border.css" rel="stylesheet">
 <link href="../site_libs/quarto-html/quarto-html.min.css" rel="stylesheet" data-mode="light">
 <link href="../site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles"><meta charset="utf-8">
-  <meta name="generator" content="quarto-1.5.57">
+  <meta name="generator" content="quarto-1.4.554">
 
   <meta name="author" content="Simeon Nedelchev">
   <title>Fundamentals of Robot Control</title>
@@ -42,7 +42,7 @@
     }
     @media print {
     pre > code.sourceCode { white-space: pre-wrap; }
-    pre > code.sourceCode > span { display: inline-block; text-indent: -5em; padding-left: 5em; }
+    pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
     }
     pre.numberSource code
       { counter-reset: source-line 0; }
@@ -394,7 +394,7 @@
 
 <section id="title-slide" class="quarto-title-block center">
   <h1 class="title">Fundamentals of Robot Control</h1>
-  <p class="subtitle">Lecture 1: Robotic System, Models, Dynamical Systems and State Space</p>
+  <p class="subtitle">Lecture 1: Robotic Systems, Models, Dynamical Systems, and State Space</p>
 
 <div class="quarto-title-authors">
 <div class="quarto-title-author">
@@ -426,24 +426,12 @@ Simeon Nedelchev
 <section id="robotic-control-system-structure" class="slide level2">
 <h2>Robotic Control System Structure</h2>
 
-<!-- Main components:
-- Operator/User
-- Plant (or Simulator)
-- Controller
-- Environment -->
-<!-- ::: {.notes}
-Explain each component briefly:
-- Operator provides desired commands
-- Plant includes actuators, dynamical system, and sensors
-- Controller processes outputs and produces inputs based on user commands
-- Environment interacts with the system, potentially causing disturbances
-::: -->
 <img data-src="../../images/schemes/forc_robot_scheme.png" class="quarto-figure quarto-figure-center r-stretch" style="width:70.0%"></section>
 <section id="dynamical-systems" class="slide level2">
 <h2>Dynamical Systems</h2>
 <p>A dynamical system:</p>
 <ul>
-<li>Behavior evolves over time</li>
+<li>Has behavior that evolves over time</li>
 <li>May be influenced by external inputs</li>
 <li>Can be SISO or MIMO, continuous-time or discrete-time, causal or non-causal, time-invariant or time-varying, linear or nonlinear</li>
 </ul>
@@ -464,13 +452,17 @@ Explain each component briefly:
 <ul>
 <li>Relate unknown functions and their derivatives</li>
 <li>Describe rates of change of physical quantities</li>
-<li>Ordinary Differential Equations (ODE) used in this course</li>
+<li>Ordinary Differential Equations (ODEs) used in this course</li>
 <li>General form: <span class="math inline">\(\mathbf{F}(x,z,z',\ldots ,z^{(n-1)},z^{(n)})=0\)</span></li>
 </ul>
 </section>
 <section id="state-space-models" class="slide level2">
 <h2>State-Space Models</h2>
-<p>Based on the concept of system <strong>state</strong>: - Smallest set of variables that determine system behavior - State-space: n-dimensional space of state variables - Represented as system of first-order differential equations</p>
+<ul>
+<li>Based on the concept of system <strong>state</strong>: smallest set of variables that determine system behavior</li>
+<li>State-space: n-dimensional space of state variables</li>
+<li>Represented as a system of first-order differential equations</li>
+</ul>
 </section>
 <section id="linear-systems" class="slide level2">
 <h2>Linear Systems</h2>
@@ -481,14 +473,14 @@ Explain each component briefly:
     \mathbf{y}=\mathbf{C}(t)\mathbf{x} + \mathbf{D}(t)\mathbf{u}
 \end{matrix}
 \]</span></p>
-<p>Where <span class="math inline">\(\mathbf{x}\)</span>, <span class="math inline">\(\mathbf{y}\)</span>, <span class="math inline">\(\mathbf{u}\)</span> are state, output, and input vectors respectively.</p>
+<p>Where <span class="math inline">\(\mathbf{x}\)</span>, <span class="math inline">\(\mathbf{y}\)</span>, and <span class="math inline">\(\mathbf{u}\)</span> are state, output, and input vectors respectively.</p>
 <div>
 <ul>
 <li class="fragment">Unique equilibrium point if <span class="math inline">\(\mathbf{A}\)</span> is full rank</li>
 <li class="fragment">Stability determined by eigenvalues of <span class="math inline">\(\mathbf{A}\)</span></li>
 <li class="fragment">Analytical solution possible</li>
 <li class="fragment">Satisfies principle of superposition</li>
-<li class="fragment">Sinusoidal input leads to sinusoidal output of same frequency</li>
+<li class="fragment">Sinusoidal input leads to sinusoidal output of the same frequency</li>
 </ul>
 </div>
 </section>
@@ -624,7 +616,7 @@ mg \\
 <li>Presented state-space representation</li>
 <li>Demonstrated simulation of ODEs</li>
 </ul>
-<p>Next: We’ll dive deeper into analysis and control of linear systems</p>
+<p>Next: We’ll dive deeper into the analysis and control of linear systems</p>
 
 <div class="quarto-auto-generated-content">
 <div class="footer footer-default">
@@ -876,7 +868,18 @@ mg \\
         }
         return false;
       }
-      const onCopySuccess = function(e) {
+      const clipboard = new window.ClipboardJS('.code-copy-button', {
+        text: function(trigger) {
+          const codeEl = trigger.previousElementSibling.cloneNode(true);
+          for (const childEl of codeEl.children) {
+            if (isCodeAnnotation(childEl)) {
+              childEl.remove();
+            }
+          }
+          return codeEl.innerText;
+        }
+      });
+      clipboard.on('success', function(e) {
         // button target
         const button = e.trigger;
         // don't keep focus
@@ -908,29 +911,7 @@ mg \\
         }, 1000);
         // clear code selection
         e.clearSelection();
-      }
-      const getTextToCopy = function(trigger) {
-          const codeEl = trigger.previousElementSibling.cloneNode(true);
-          for (const childEl of codeEl.children) {
-            if (isCodeAnnotation(childEl)) {
-              childEl.remove();
-            }
-          }
-          return codeEl.innerText;
-      }
-      const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
-        text: getTextToCopy
       });
-      clipboard.on('success', onCopySuccess);
-      if (window.document.getElementById('quarto-embedded-source-code-modal')) {
-        // For code content inside modals, clipBoardJS needs to be initialized with a container option
-        // TODO: Check when it could be a function (https://github.com/zenorocha/clipboard.js/issues/860)
-        const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
-          text: getTextToCopy,
-          container: window.document.getElementById('quarto-embedded-source-code-modal')
-        });
-        clipboardModal.on('success', onCopySuccess);
-      }
         var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
         var mailtoRegex = new RegExp(/^mailto:/);
           var filterRegex = new RegExp('/' + window.location.host + '/');
@@ -938,7 +919,7 @@ mg \\
             return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
         }
         // Inspect non-navigation links and adorn them if external
-     	var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+     	var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool)');
         for (var i=0; i<links.length; i++) {
           const link = links[i];
           if (!isInternal(link.href)) {
