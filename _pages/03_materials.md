@@ -7,8 +7,11 @@ layout: post
 permalink: /info/materials.html
 ---
 
+<!-- TODO:
+make the list of available lectures and additional materials for them
+ -->
 ### Lectures 
-
+<!-- 
 ---- 
 
 ## **Part 1**: Introduction, Simulation and Fundamentals
@@ -28,4 +31,4 @@ permalink: /info/materials.html
 |:-:|:-:|
 |**Slides:** [online][1_slides_online], [jupyter notebook][1_slides_jupyter]|**Notes:** [online][1_notes_online], [pdf][1_notes_pdf]|
 
-</div> 
+</div>  -->
