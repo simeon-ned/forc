@@ -59,19 +59,39 @@ This is an introductory course dedicated to control of robotic systems (mainly f
 
 ## Grading Policy
 
-| Component   | Weight |
-|-------------|--------|
+::: {.columns}
+::: {.column width="60%"}
+<div style="display: flex; justify-content: center;">
+
+| Activity   | Weight |
+|:-----------:|:------:|
 | Midterm     | 30%    |
 | Final Exam  | 30%    |
 | Assignments | 20%    |
 | Attendance* | 20%    |
 
-::: {.notes}
-- Plagiarism results in a zero score
-- Contact instructor or TA for questions
-- Attendance includes presence and active participation
-- Grade thresholds: >55% = C; >70% = B; >85% = A
+</div>
 :::
+
+::: {.column width="40%"}
+<div style="display: flex; justify-content: center;">
+
+| Grade | Threshold |
+|:-----:|:---------:|
+| A     | > 85%     |
+| B     | > 70%     |
+| C     | > 55%     |
+
+</div>
+:::
+:::
+
+<!-- ::: {.notes} -->
+- Attendance includes both presence and active participation in class. It is not a strict requirement to complete the course.
+- Students who do not attend regularly often struggle with the course material and have difficulty passing the final exam.
+- <u>Plagiarism results in a zero score for the assignment or exam. This policy is strictly enforced to maintain academic integrity.</u>
+<!-- ::: -->
+
 
 ## Course Structure
 
