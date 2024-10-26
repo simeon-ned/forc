@@ -1,0 +1,631 @@
+---
+title: "Fundamentals of Robot Control"
+subtitle: "Lecture 2: Basics of Linear System Analysis and Control Design, Stability, Pole-placement and PD regulator"
+author:
+  - name: Simeon Nedelchev
+    id: SN
+    email: s.nedelchev@innopolis.university
+    affiliation: 
+      - name: Innopolis University 
+        city: Innopolis
+        state: Tatarstan
+        url: https://innopolis.university/en/
+date: 'today'
+format: 
+  simslides-revealjs:
+    theme: default
+---
+
+
+# Goals for Today
+
+- Recall the analysis techniques for LTI systems: **stability**, pole placement, **controllability**
+- Study the different approach for LTI controllability: **Hautus lemma**
+
+
+
+# Basics of System Analysis and Control Design
+
+
+
+# Concepts of Stability
+
+Once the equilibrium or nominal motion is given, the natural question to ask is how the system will behave nearby. This question is directly related to so-called **stability**.
+
+
+
+Various types of stability may be discussed for the solutions of differential equations or difference equations describing dynamical systems. The one practically important type is that concerning the stability of solutions near a point of equilibrium. This may be analyzed by the theory of **Aleksandr Lyapunov**.
+
+
+
+In simple terms, if the solutions that start out near an equilibrium point $\mathbf{x}_{e}$ stay near $\mathbf{x}_{e}$ forever, then $\mathbf{x}_{e}$ is Lyapunov stable. More strongly, if $\mathbf{x}_{e}$ is Lyapunov stable and all solutions that start out near $\mathbf{x}_{e}$ converge to $\mathbf{x}_{e}$, then $\mathbf{x}_{e}$ is asymptotically stable.
+
+
+
+Strict definitions are as follows:
+
+Equilibrium $\mathbf{x}_e$ is said to be:
+
+- **Lyapunov stable** if:
+
+  $$
+  \forall \epsilon > 0,\ \exists \delta > 0,\ \|\mathbf{x}(0) - \mathbf{x}_e\| < \delta \implies \|\mathbf{x}(t) - \mathbf{x}_e\| < \epsilon,\ \forall t
+  $$
+
+- **Asymptotically stable** if it is Lyapunov stable and:
+
+  $$
+  \exists \delta > 0,\ \|\mathbf{x}(0) - \mathbf{x}_e\| < \delta \implies \lim_{t \to \infty} \|\mathbf{x}(t) - \mathbf{x}_e\| = 0
+  $$
+
+- **Exponentially stable** if it is asymptotically stable and:
+
+  $$
+  \exists \delta, \alpha, \beta > 0,\ \|\mathbf{x}(0) - \mathbf{x}_e\| < \delta \implies \|\mathbf{x}(t) - \mathbf{x}_e\| \leq \alpha \|\mathbf{x}(0) - \mathbf{x}_e\| e^{-\beta t},\ \forall t
+  $$
+
+
+
+Conceptually, the meanings of the above terms are the following:
+
+- **Lyapunov stability** of an equilibrium means that solutions starting "close enough" to the equilibrium (within a distance $\delta$ from it) remain "close enough" forever.
+
+- **Asymptotic stability** means that solutions that start close enough not only remain close enough but also eventually converge to the equilibrium.
+
+- **Exponential stability** means that solutions not only converge but in fact converge faster than or at least as fast as a particular known rate $\alpha \|\mathbf{x}(0) - \mathbf{x}_e\| e^{-\beta t}$.
+
+
+
+# Stability of LTI Systems
+
+Let us start with the stability of LTI systems:
+
+$$
+\dot{\mathbf{x}} = \mathbf{A}\mathbf{x}
+$$
+
+An integral solution can be calculated analytically:
+
+$$
+\mathbf{x}^*(t) = e^{\mathbf{A}t}\mathbf{x}(0)
+$$
+
+where the matrix exponential is defined via power series:
+
+$$
+e^{\mathbf{A}t} = \sum_{k=0}^{\infty} \frac{1}{k!} (\mathbf{A} t)^k
+$$
+
+
+
+Natural questions to ask:
+
+- How to calculate this matrix exponential without power series?
+- Can we analyze the behavior of solutions without explicitly solving the ODE?
+
+
+
+Let us first consider the first question. Assume for a while that we can do the following factorization:
+
+$$
+\mathbf{A} = \mathbf{Q} \mathbf{\Lambda} \mathbf{Q}^{-1}
+$$
+
+Thus, defining new variables $\mathbf{z} = \mathbf{Q}^{-1}\mathbf{x}$ yields:
+
+$$
+\dot{\mathbf{z}} = \mathbf{\Lambda} \mathbf{z}
+$$
+
+Which is, in fact, just a system of decoupled equations:
+
+$$
+\dot{z}_i = \lambda_i z_i,\quad i = 1,2,\dots,n
+$$
+
+with known solutions:
+
+$$
+z_i^*(t) = e^{\lambda_i t} z_i(0)
+$$
+
+
+
+Recalling that $\lambda_i$ is nothing but eigenvalues of matrix $\mathbf{A}$, thus one may discuss the behavior of solutions without explicitly calculating them, just by linear analysis on $\mathbf{A}$!
+
+
+
+The solution $z_i = e^{\lambda_i t} z_i(0)$ can be decomposed using Euler's identity:
+
+$$
+\begin{align*}
+z_i &= e^{\lambda_i t} z_i(0) \\
+    &= e^{(\alpha_i + i \beta_i) t} z_i(0) \\
+    &= e^{\alpha_i t} e^{i \beta_i t} z_i(0) \\
+    &= e^{\alpha_i t} \left( \cos(\beta_i t) + i \sin(\beta_i t) \right) z_i(0)
+\end{align*}
+$$
+
+where $\lambda_i = \alpha_i + i \beta_i$, $\operatorname{Re}(\lambda_i) = \alpha_i$, $\operatorname{Im}(\lambda_i) = \beta_i$.
+
+
+
+Since $\| \cos(\beta_i t) + i \sin(\beta_i t) \| = 1$, thus the norm of $z_i$:
+
+
+
+- **Bounded** if $\operatorname{Re}(\lambda_i) = \alpha_i \leq 0,\ \forall i$, hence the system is **Lyapunov stable**.
+
+- **Decreasing** if $\operatorname{Re}(\lambda_i) = \alpha_i < 0,\ \forall i$, hence the system is **asymptotically** and moreover **exponentially** stable.
+
+- **Increasing** if $\exists i,\ \operatorname{Re}(\lambda_i) = \alpha_i > 0$, hence the system is **unstable**.
+
+
+
+# Example
+
+Determine for which values of $b$ the following system is stable and for which it is not:
+
+$$
+\ddot{y} + b\dot{y} + y = 0
+$$
+
+
+
+First, let us formulate the state-space representation:
+
+$$
+\mathbf{A} =
+\begin{bmatrix}
+0 & 1 \\
+-1 & -b \\
+\end{bmatrix}
+$$
+
+The characteristic polynomial is:
+
+$$
+\Delta(\lambda) = \lambda^2 + b \lambda + 1
+$$
+
+with roots:
+
+$$
+\lambda_{1,2} = -\frac{b}{2} \pm \sqrt{\left( \frac{b}{2} \right)^2 - 1}
+$$
+
+
+
+Thus, for $b > 0$, $\operatorname{Re}(\lambda_i) < 0$ and the system is stable. For $b < 0$, $\operatorname{Re}(\lambda_i) > 0$ and the system is unstable, while for $b = 0$, $\operatorname{Re}(\lambda_i) = 0$ and the system is marginally stable.
+
+
+
+# Example
+
+Check the stability of an ordinary 3rd order differential equation in canonical form:
+
+$$
+y^{(3)} + 2\ddot{y} + 3\dot{y} + y = 0
+$$
+
+
+
+The system matrix is given by:
+
+$$
+\mathbf{A} =
+\begin{bmatrix}
+0 & 1 & 0 \\
+0 & 0 & 1 \\
+-1 & -3 & -2 \\
+\end{bmatrix}
+$$
+
+
+
+Let us calculate eigenvalues:
+
+```python
+import numpy as np
+
+A = np.array([[0, 1, 0],
+              [0, 0, 1],
+              [-1, -3, -2]])
+
+lambdas, Q = np.linalg.eig(A)
+print(np.real(lambdas))
+```
+
+Output:
+
+```
+[-0.71522524 -0.14238738 -1.14238738]
+```
+
+
+
+The similar analysis may be performed in the case of **discrete dynamics** in the form:
+
+$$
+\mathbf{x}_{k+1} = \mathbf{A}\mathbf{x}_k
+$$
+
+And the stability criterion will be as follows:
+
+
+
+- **Bounded** if $|\lambda_i| \leq 1,\ \forall i$, hence the system is **Lyapunov stable**.
+
+- **Decreasing** if $|\lambda_i| < 1,\ \forall i$, hence the system is **asymptotically** and moreover **exponentially** stable.
+
+- **Increasing** if $\exists i,\ |\lambda_i| > 1$, hence the system is **unstable**.
+
+
+
+# Exercise
+
+Consider again the 'damper system' described by matrix:
+
+$$
+\mathbf{A} =
+\begin{bmatrix}
+0 & 1 \\
+-1 & -b \\
+\end{bmatrix}
+$$
+
+Suppose that you know that $|b| < 2$, does this imply that the system is stable? If not, find the tightest bound on $b$.
+
+
+
+# From Analysis to Design: Pole Placement
+
+As we have seen above, the proof of stability of a linear system is fairly straightforward and can be carried out through the analysis of eigenvalues. The natural question arises: can we transform an unstable system into a stable one by means of control?
+
+
+
+To answer this, let us consider an LTI system:
+
+$$
+\dot{\mathbf{x}} = \mathbf{A}\mathbf{x} + \mathbf{B}\mathbf{u}
+$$
+
+with control $\mathbf{u}$ being the **full state linear feedback**:
+
+$$
+\mathbf{u} = \boldsymbol{\phi}(\mathbf{x}) = -\mathbf{K}\mathbf{x}
+$$
+
+
+
+Substitution into system dynamics yields the following closed-loop relations:
+
+$$
+\dot{\mathbf{x}} = (\mathbf{A} - \mathbf{B}\mathbf{K})\mathbf{x} = \mathbf{A}_c \mathbf{x}
+$$
+
+
+
+Thus, the control design dedicated to stabilizing the original system is seen as modifying the eigenvalues of matrix $\mathbf{A}_c$ such that the resulting system will have required properties (namely stability, response time, etc.).
+
+This method is called **pole placement** (poles are another name for eigenvalues).
+
+
+
+```
+from scipy.signal import place_poles
+```
+
+Let us test the pole placement technique to stabilize several linear systems.
+
+
+
+# Example: Pole Placement for Mass-Spring, PD Regulator
+
+Consider the mass-spring system:
+
+$$
+\dot{\mathbf{x}} = \mathbf{A}\mathbf{x} + \mathbf{B}\mathbf{u} =
+\begin{bmatrix}
+\dot{y} \\
+\ddot{y}
+\end{bmatrix} =
+\begin{bmatrix}
+0 & 1 \\
+-\dfrac{k}{m} & 0
+\end{bmatrix}
+\begin{bmatrix}
+y \\
+\dot{y}
+\end{bmatrix} +
+\begin{bmatrix}
+0 \\
+\dfrac{1}{m}
+\end{bmatrix} u
+$$
+
+
+
+In the case of this two-dimensional linear mechanical system, we can put the poles analytically, thus arriving at the so-called PD controller $u = -k_1 y - k_2 \dot{y}$.
+
+Indeed, the characteristic polynomial of the closed-loop system $\mathbf{A} - \mathbf{B}\mathbf{K}$ is:
+
+$$
+\Delta(\lambda) = \lambda (\lambda + k_2) + \dfrac{k + k_1}{m} = \lambda^2 + \dfrac{k_2}{m} \lambda + \dfrac{k + k_1}{m}
+$$
+
+Obviously, we can place poles wherever we want by varying $k_1, k_2$.
+
+
+
+# Example: Pole Placement for DC Motor
+
+Design the controller that will steer the angle for the DC motor driven by the voltage $V$ with state-space representation:
+
+$$
+\begin{bmatrix}
+\dot{\theta} \\
+\ddot{\theta} \\
+\dot{i}
+\end{bmatrix} =
+\begin{bmatrix}
+0 & 1 & 0 \\
+0 & -\dfrac{b}{J} & \dfrac{K_m}{J} \\
+0 & -\dfrac{K_e}{L} & -\dfrac{R}{L}
+\end{bmatrix}
+\begin{bmatrix}
+\theta \\
+\dot{\theta} \\
+i
+\end{bmatrix} +
+\begin{bmatrix}
+0 \\
+0 \\
+\dfrac{1}{L}
+\end{bmatrix} V
+$$
+
+
+
+Let's define parameters first:
+
+```
+k_m = 0.0274
+k_e = k_m
+J = 3.2284E-6
+b = 3.5077E-6
+L = 2.75E-6
+R = 4
+```
+
+
+
+The state-space matrices:
+
+```
+A_dc = [[0, 1, 0],
+        [0, -b/J, k_m/J],
+        [0, -k_e/L, -R/L]]
+
+B_dc = [[0],
+        [0],
+        [1/L]]
+```
+
+
+
+Let us try to place the poles in the following locations:
+
+```
+import numpy as np
+from scipy.signal import place_poles
+import matplotlib.pyplot as plt
+
+P = 10 * np.array([-1 + 0j, -2 + 5j, -2 - 5j])
+
+K_dc = place_poles(np.array(A_dc), np.array(B_dc), np.array(P)).gain_matrix
+Ac = np.array(A_dc) - np.dot(np.array(B_dc), K_dc)
+eigs = np.linalg.eigvals(Ac)
+print(eigs)
+
+plt.figure(figsize=(4, 4))
+plt.plot(P.real, P.imag, 'bo', label='Desired')
+plt.plot(eigs.real, eigs.imag, 'rx', label='Actual')
+plt.grid(color='black', linestyle='--', linewidth=1.0, alpha=0.7)
+plt.xlabel(r'Real part: $\operatorname{Re}(\lambda)$')
+plt.ylabel(r'Imaginary part: $\operatorname{Im}(\lambda)$')
+plt.legend()
+plt.show()
+```
+
+
+
+The output eigenvalues match the desired poles, confirming successful pole placement.
+
+
+
+Now, let's simulate the system's response:
+
+```
+from scipy.integrate import odeint
+
+def system_ode(x, t, A, B, K, x_d):
+    x_e = x_d - x
+    u = np.dot(K, x_e)
+    dx = np.dot(A, x) + np.dot(B, u)
+    return dx
+
+tf = 1.5  # Final time
+N = int(2E3)  # Number of points in time span
+t = np.linspace(0, tf, N)  # Create time span
+
+# Set initial state
+x0 = [1, 0, 0]
+# Desired point
+x_d = [5, 0, 0]
+
+x_sol = odeint(system_ode, x0, t, args=(A_dc, B_dc, K_dc, x_d))
+theta, dtheta, i = x_sol[:, 0], x_sol[:, 1], x_sol[:, 2]
+
+plt.figure(figsize=(8, 3))
+plt.hlines(x_d[0], min(t), max(t), color='black', linestyles='--', linewidth=2.0)
+plt.plot(t, theta, 'r', linewidth=2.0)
+plt.grid(color='black', linestyle='--', linewidth=1.0, alpha=0.7)
+plt.xlim([0, tf])
+plt.ylabel(r'Motor Angle $\theta$ (rad)')
+plt.xlabel(r'Time $t$ (s)')
+plt.show()
+```
+
+
+
+The plot shows the motor angle $\theta$ converging to the desired angle, illustrating the effectiveness of the pole placement.
+
+
+
+# Controllability
+
+Controllability is an important property of a control system, and it plays a crucial role in many control problems, such as stabilization of unstable systems by feedback or optimal control. Roughly, the concept of controllability denotes the ability to move a system around in its entire configuration space using only certain admissible manipulations.
+
+
+
+The most widely used notion of controllability was introduced by Kalman with the help of the following $n \times nm$ matrix:
+
+$$
+\boldsymbol{\mathcal{C}} =
+\begin{bmatrix}
+\mathbf{B} & \mathbf{AB} & \mathbf{A}^2 \mathbf{B} & \dots & \mathbf{A}^{n-1} \mathbf{B}
+\end{bmatrix}
+$$
+
+
+
+The theory says that a system is **fully state controllable if and only if** the controllability matrix has full row rank:
+
+$$
+\operatorname{rank}\{\boldsymbol{\mathcal{C}}\} = n
+$$
+
+
+
+There are tight relationships between controllability and the pole placement technique. If a system is **controllable**, one may place poles **at any desired locations**. In fact, in most pole-placement algorithms (for instance, the celebrated [Ackermann's formula](https://en.wikipedia.org/wiki/Ackermann%27s_formula)), one needs to invert the controllability matrix!
+
+
+
+Let's implement the controllability test:
+
+```
+def ctrb(A, B):
+    C = B
+    n = np.shape(A)[0]
+    for i in range(1, n):
+        A_pwr_n = np.linalg.matrix_power(A, i)
+        C = np.hstack((C, np.dot(A_pwr_n, B)))
+    rank_C = np.linalg.matrix_rank(C)
+
+    if rank_C == n:
+        test = 'controllable'
+    else:
+        test = 'uncontrollable'
+    return C, rank_C, test
+```
+
+
+
+Let's test the controllability of systems that we have considered above.
+
+```
+C_dc, rank_dc, test_dc = ctrb(A_dc, B_dc)
+print(f"Rank of the controllability matrix: {rank_dc}, system is {test_dc}")
+```
+
+
+
+However, there are issues with the Kalman method. First of all, it is **numerically not stable** (the powers of $\mathbf{A}$ are prone to accumulation of errors for higher dimensions of $n$ and badly scaled $\mathbf{A}$ and $\mathbf{B}$).
+
+
+
+# Popov-Belevitch-Hautus Controllability
+
+An alternative view of controllability was provided separately by Hautus, Popov, and Belevitch in the 1970s. It is known as **Hautus lemma**, also commonly known as the Popov-Belevitch-Hautus test or PBH test.
+
+
+
+The lemma is stated as follows: a pair $\{\mathbf{A}, \mathbf{B}\}$ is said to be controllable if and only if:
+
+$$
+\operatorname{rank}\{
+\begin{bmatrix}
+\mathbf{A} - \lambda \mathbf{I} & \mathbf{B}
+\end{bmatrix}
+\} = n,\quad \forall \lambda \in \mathbb{C}
+$$
+
+
+
+Since the only way for $\mathbf{A} - \lambda \mathbf{I}$ to lose rank is for $\lambda$ to be an eigenvalue of $\mathbf{A}$, we may consider just the eigenvalues:
+
+$$
+\operatorname{rank}\{
+\begin{bmatrix}
+\mathbf{A} - \lambda_i \mathbf{I} & \mathbf{B}
+\end{bmatrix}
+\} = n,\quad \forall i \in \{1, 2, \dots, n\}
+$$
+
+
+
+Implementing the PBH test:
+
+```
+def pbh(A, B):
+    lambdas, _ = np.linalg.eig(A)
+    n = np.shape(A)[0]
+    ranks = []
+    test = 'controllable'
+    for i in range(n):
+        A_e = A - lambdas[i]*np.eye(n)
+        M = np.hstack((A_e, B))
+        rank = np.linalg.matrix_rank(M)
+        ranks.append(rank)
+        if rank != n:
+            test = 'uncontrollable'
+    return lambdas, ranks, test
+```
+
+
+
+Testing the DC motor system:
+
+```
+eigs, ranks, test = pbh(A_dc, B_dc)
+print(f"Eigenvalues of PBH matrices:\n{eigs}\n\nRanks of the PBH matrices: {ranks},\nsystem is {test}")
+```
+
+
+
+The PBH test gives us some tips on how matrix $\mathbf{B}$ should be organized! Moreover, the condition above provides insight into the **minimal number of control channels** that we need for the system to be controllable and is directly related to the multiplicity of the eigenvalues.
+
+
+
+# Stabilizability
+
+A slightly weaker notion than controllability is that of stabilizability. A system is said to be stabilizable when all uncontrollable state variables can be made to have stable dynamics. Thus, even though some of the state variables **cannot be controlled**, all the state variables will still remain **bounded** during the system's behavior.
+
+
+
+For linear systems, we can address a variety of issues using **numerical techniques based on linear algebra**. Moreover, the controller **synthesis is also performed numerically**—with pole placement.
+
+
+
+# Conclusion
+
+- We recalled analysis techniques for LTI systems: **stability**, pole placement, **controllability**.
+
+- We studied the different approach for LTI controllability: **Hautus lemma**.
+
+- Numerical methods such as pole placement and PBH test are crucial for control design and analysis.
+
+
+
+Thank you for your attention!

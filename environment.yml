@@ -5,12 +5,14 @@ dependencies:
   - python=3.10
   - pip
   - ipykernel
+  - jupyter
   - libgfortran5
   - matplotlib
   - mesalib
   - scipy
   - pinocchio
   - quarto
+  - nbformat
   - pip:
       - robot_descriptions
       - mujoco
