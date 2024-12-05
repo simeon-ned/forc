@@ -17,7 +17,6 @@ def main():
     print("\nRunning real-time joint space control...")
     sim = Simulator(
         xml_path="robots/universal_robots_ur5e/scene.xml",
-        enable_task_space=False,
         record_video=True,
         video_path="logs/videos/01_joint_space.mp4",
         width=1920,
