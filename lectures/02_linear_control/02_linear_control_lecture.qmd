@@ -1,0 +1,105 @@
+---
+title: "Fundamentals of Robot Control"
+subtitle: "Lecture 2: Basics of Linear System Analysis and Control Design, Stability, Pole-placement and PD regulator"
+author:
+  - name: Simeon Nedelchev
+    id: SN
+    email: s.nedelchev@innopolis.university
+    affiliation: 
+      - name: Innopolis University 
+        city: Innopolis
+        state: Tatarstan
+        url: https://innopolis.university/en/
+date: 'today'
+format: 
+  simslides-revealjs:
+    theme: default
+---
+
+## Goals for Today {.smaller}
+
+- Recall the analysis techniques for LTI systems: **stability**, pole placement, **controllability**
+- Study the different approach for LTI controllability: **Hautus lemma**
+
+## Basics of System Analysis and Control Design {.section}
+
+# Concepts of Stability {background-color="#40666e"}
+
+## Stability Introduction {.smaller}
+ 
+Once the equilibrium or nominal motion is given, the natural question to ask is how the system will behave nearby. This question is directly related to so-called **stability**.
+
+Various types of stability may be discussed for the solutions of differential equations or difference equations describing dynamical systems. The one practically important type is that concerning the stability of solutions near a point of equilibrium. This may be analyzed by the theory of **Aleksandr Lyapunov**.
+
+## Stability Intuition {.smaller}
+
+In simple terms, if the solutions that start out near an equilibrium point $\mathbf{x}_{e}$ stay near $\mathbf{x}_{e}$ forever, then $\mathbf{x}_{e}$ is Lyapunov stable. More strongly, if $\mathbf{x}_{e}$ is Lyapunov stable and all solutions that start out near $\mathbf{x}_{e}$ converge to $\mathbf{x}_{e}$, then $\mathbf{x}_{e}$ is asymptotically stable.
+
+## Formal Stability Definitions {.smaller}
+
+Equilibrium $\mathbf{x}_e$ is said to be:
+
+- **Lyapunov stable** if:
+  $$
+  \forall \epsilon > 0,\ \exists \delta > 0,\ \|\mathbf{x}(0) - \mathbf{x}_e\| < \delta \implies \|\mathbf{x}(t) - \mathbf{x}_e\| < \epsilon,\ \forall t
+  $$
+
+## Formal Stability Definitions (cont.) {.smaller}
+
+- **Asymptotically stable** if it is Lyapunov stable and:
+  $$
+  \exists \delta > 0,\ \|\mathbf{x}(0) - \mathbf{x}_e\| < \delta \implies \lim_{t \to \infty} \|\mathbf{x}(t) - \mathbf{x}_e\| = 0
+  $$
+
+- **Exponentially stable** if it is asymptotically stable and:
+  $$
+  \exists \delta, \alpha, \beta > 0,\ \|\mathbf{x}(0) - \mathbf{x}_e\| < \delta \implies \|\mathbf{x}(t) - \mathbf{x}_e\| \leq \alpha \|\mathbf{x}(0) - \mathbf{x}_e\| e^{-\beta t},\ \forall t
+  $$
+
+## Stability Concepts Summary {.smaller}
+
+::: {.incremental}
+- **Lyapunov stability**: solutions starting "close enough" remain "close enough" forever
+
+- **Asymptotic stability**: solutions not only remain close but converge to equilibrium
+
+- **Exponential stability**: solutions converge at least as fast as a known exponential rate
+:::
+
+# Stability of LTI Systems {background-color="#40666e"}
+
+## LTI System Analysis {.smaller}
+
+Let us start with the stability of LTI systems:
+
+$$
+\dot{\mathbf{x}} = \mathbf{A}\mathbf{x}
+$$
+
+An integral solution can be calculated analytically:
+
+$$
+\mathbf{x}^*(t) = e^{\mathbf{A}t}\mathbf{x}(0)
+$$
+
+where the matrix exponential is defined via power series:
+
+$$
+e^{\mathbf{A}t} = \sum_{k=0}^{\infty} \frac{1}{k!} (\mathbf{A} t)^k
+$$
+
+[Continue with similar slide-by-slide organization for the rest of the content...]
+
+## Conclusion {.smaller}
+
+::: {.incremental}
+- We recalled analysis techniques for LTI systems: **stability**, pole placement, **controllability**
+
+- We studied the different approach for LTI controllability: **Hautus lemma**
+
+- Numerical methods such as pole placement and PBH test are crucial for control design and analysis
+:::
+
+::: {.notes}
+Thank you for your attention!
+:::

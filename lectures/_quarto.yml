@@ -1,0 +1,12 @@
+project:
+  type: website
+  output-dir: .
+  
+format:
+  simslides-revealjs:
+    theme: [default]
+
+filters:
+  - simslides
+
+extension-dir: _extensions

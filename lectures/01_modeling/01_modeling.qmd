@@ -1,0 +1,223 @@
+---
+title: "Fundamentals of Robot Control"
+subtitle: "Lecture 1: Robotic Systems, Models, Dynamical Systems, and State Space"
+author:
+  - name: Simeon Nedelchev
+    id: SN
+    email: s.nedelchev@innopolis.university
+    affiliation: 
+      - name: Innopolis University 
+        city: Innopolis
+        state: Tatarstan
+        url: https://innopolis.university/en/
+date: 'today'
+format: 
+  simslides-revealjs:
+    theme: default
+---
+
+## Introduction
+
+- This course focuses on **control methods for robots**
+- Our task: **design control algorithms** for desired robot behavior
+- We'll consider behavior even in the **presence of disturbances**
+- Today's focus: structure of robotic control systems and mathematical modeling
+
+## Robotic Control System Structure
+
+![](../../images/schemes/forc_robot_scheme.png){width=70% fig-align="center"}
+
+## Dynamical Systems
+
+A dynamical system:
+
+- Has behavior that evolves over time
+- May be influenced by external inputs
+- Can be SISO or MIMO, continuous-time or discrete-time, causal or non-causal, time-invariant or time-varying, linear or nonlinear
+
+Examples: Electrical circuits, mechanical systems, biological systems, stock market
+
+## Mathematical Models
+
+- Abstraction of the real world
+- Based on physical laws (mechanics, electricity, thermodynamics)
+- Result in differential equations
+- Should be as simple as possible, but no simpler
+
+![](../../images/systems/robot_to_model_blank.png){width=70% fig-align="center"}
+
+## Differential Equations
+
+- Relate unknown functions and their derivatives
+- Describe rates of change of physical quantities
+- Ordinary Differential Equations (ODEs) used in this course
+- General form: $\mathbf{F}(x,z,z',\ldots ,z^{(n-1)},z^{(n)})=0$
+
+## State-Space Models
+
+- Based on the concept of system **state**: smallest set of variables that determine system behavior
+- State-space: n-dimensional space of state variables
+- Represented as a system of first-order differential equations
+
+## Linear Systems
+
+General form:
+
+$$
+\begin{matrix}
+    \dot{\mathbf{x}} = \mathbf{A}(t) \mathbf{x} + \mathbf{B}(t) \mathbf{u}\\
+    \mathbf{y}=\mathbf{C}(t)\mathbf{x} + \mathbf{D}(t)\mathbf{u}
+\end{matrix}
+$$
+
+Where $\mathbf{x}$, $\mathbf{y}$, and $\mathbf{u}$ are state, output, and input vectors respectively.
+
+::: {.incremental}
+- Unique equilibrium point if $\mathbf{A}$ is full rank
+- Stability determined by eigenvalues of $\mathbf{A}$
+- Analytical solution possible
+- Satisfies principle of superposition
+- Sinusoidal input leads to sinusoidal output of the same frequency
+:::
+
+## Example: Mass-Spring-Damper
+
+![](../../images/systems/mbk_eq.png){fig-align="center" width=60%}
+
+::: {.fragment}
+State-space form:
+$$
+\dot{\mathbf{x}} = \mathbf{A}\mathbf{x} =
+\begin{bmatrix}
+0 & 1\\
+-\frac{k}{m} & -\frac{b}{m}
+\end{bmatrix}
+ \begin{bmatrix}
+y\\
+\dot{y}
+\end{bmatrix}
+$$
+:::
+
+## Nonlinear Systems
+
+General form:
+
+$$
+\begin{matrix}
+    \dot{\mathbf{x}} = \mathbf{f}(\mathbf{x},\mathbf{u},\mathbf{d}, t) \\ 
+    \mathbf{y}=\mathbf{h}(\mathbf{x},\mathbf{u},\mathbf{d}, t)
+\end{matrix}
+$$
+
+Properties:
+
+::: {.incremental}
+- Multiple equilibrium points possible
+- Stability analysis more complex
+- Analytical solution generally not possible
+- Doesn't satisfy principle of superposition
+:::
+
+## Example: Nonlinear Pendulum
+
+![](../../images/systems/pend_eq.png){fig-align="center" width=60%}
+
+::: {.fragment}
+State-space form:
+
+$$
+\dot{\mathbf{x}} = 
+\begin{bmatrix}
+x_2 \\
+\frac{1}{m L^2 + I}(u - mgL \sin x_1-b x_2)
+\end{bmatrix} 
+$$
+:::
+
+## Generalized Mechanical System
+
+General form:
+
+$$
+\mathbf{M}(\mathbf{q})\ddot{\mathbf{q}} + \mathbf{h}(\mathbf{q},\dot{\mathbf{q}}) + \mathbf{d}(\mathbf{q},\dot{\mathbf{q}},t) = \mathbf{Q} = \mathbf{B}(\mathbf{q})\mathbf{u}
+$$
+
+::: {.fragment}
+State-space form:
+
+$$
+\dot{\mathbf{x}}=
+\begin{bmatrix}
+\mathbf{x}_2 \\
+\mathbf{M}^{-1}(\mathbf{x}_1) \big(\mathbf{B}(\mathbf{x}_1)\mathbf{u} - \mathbf{d}(\mathbf{x}_1, \mathbf{x}_2,t) -  \mathbf{h}(\mathbf{x}_1, \mathbf{x}_2) \big)
+\end{bmatrix}
+$$
+:::
+
+## Example: Floating Rigid Body
+
+![](../../images/systems/srb_eq.png){fig-align="center" width=60%}
+
+::: {.fragment}
+$$
+\mathbf{M}(\mathbf{q}) = 
+\begin{bmatrix}
+mI & 0 \\
+0 & \mathcal{I}\\
+\end{bmatrix}, \quad
+\mathbf{h}(\mathbf{q},\dot{\mathbf{q}}) = 
+\begin{bmatrix}
+mg \\
+\boldsymbol{\omega} \times  \mathcal{I}\boldsymbol{\omega}\\
+\end{bmatrix}, \quad \mathbf{B} = \mathbf{I}
+$$
+:::
+
+## Simulation of ODE
+
+- Goal: Find solution $\mathbf{x}(t)$ to $\dot{\mathbf{x}} = \boldsymbol{f}(\mathbf{x}, \mathbf{u}, t)$
+- Analytical solution often not possible
+- Use numerical integration: $\mathbf{x}_{k+1} = \mathbf{f}_d(\mathbf{x}_k,\mathbf{u}_k,\mathbf{d}_k, k)$
+- Simulation is iteration over discrete dynamics
+
+## Simulation Example: Nonlinear Pendulum
+
+```python
+import numpy as np
+from scipy.integrate import odeint
+
+def f(state, t, control):
+    u = control 
+    x1, x2 = state 
+    dx1 = x2 
+    dx2 = u - np.sin(x1) - 0*x2
+    return np.array([dx1, dx2])
+
+# Simulation parameters
+x_0 = np.array([1,0])
+T = 2E-2
+tf = 10
+N = int(tf/T)
+
+# Simulation loop
+X = []
+x_prev = x_0
+for k in range(N):
+    X.append(x_prev)
+    t_k = np.linspace(k*T, (k+1)*T, 5)
+    u_k = 0
+    x_new = odeint(f, x_prev, t_k, args=(u_k,))
+    x_prev = x_new[-1,:] 
+
+x_sol = np.array(X)
+```
+
+## Conclusion
+
+- Introduced dynamical systems and mathematical modeling
+- Covered linear and nonlinear systems
+- Presented state-space representation
+- Demonstrated simulation of ODEs
+
+Next: We'll dive deeper into the analysis and control of linear systems

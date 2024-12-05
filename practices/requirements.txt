@@ -4,3 +4,5 @@ scipy
 mujoco
 mediapy
 pinocchio
+darli
+robot_descriptions

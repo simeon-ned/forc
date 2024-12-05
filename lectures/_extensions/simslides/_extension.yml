@@ -1,0 +1,27 @@
+name: simslides
+author: Your Name
+version: 1.0.0
+quarto-required: ">=1.2.0"
+contributes:
+  formats:
+    revealjs:
+      theme: [default, inno_style.scss]
+      slide-number: true
+      chalkboard: 
+        theme: whiteboard
+        width: 3
+      hide-inactive-cursor: true
+      default-image-extension: svg
+      cap-location: bottom
+      highlight-style: gruvbox
+      code-block-border-left: true
+      # Default author and copyright settings
+      author:
+        - name: Default Author
+          affiliation: Default Affiliation
+      copyright: 
+        holder: Default Copyright Holder
+      # Default date format
+      date-format: medium
+      # Default CSL file
+      csl: styles/ieee.csl
