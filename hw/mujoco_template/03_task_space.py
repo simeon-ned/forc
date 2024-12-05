@@ -16,7 +16,7 @@ def task_space_controller(q: np.ndarray, dq: np.ndarray, t: float, desired: Dict
     # The trajectory can be hardcoded here or generated based on the desired task
     desired_position = desired['pos'] # [x_des, y_des, z_des]
     desired_quaternion = desired['quat'] # [w_des, x_des, y_des, z_des]
-    
+    print(desired_position, desired_quaternion)
     return tau
 
 def main():
@@ -35,7 +35,7 @@ def main():
         height=1080
     )
     sim.set_controller(task_space_controller)
-    sim.run(time_limit=20.0)
+    sim.run(time_limit=10000.0)
 
 if __name__ == "__main__":
     main() 

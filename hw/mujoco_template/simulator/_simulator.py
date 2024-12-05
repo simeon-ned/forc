@@ -40,7 +40,7 @@ class Simulator:
     def __init__(self, 
                  xml_path: str = "universal_robots_ur5e/scene.xml", 
                  dt: float = 0.002,
-                 enable_task_space: bool = True,
+                 enable_task_space: bool = False,
                  show_viewer: bool = True,
                  record_video: bool = False,
                  video_path: str = "logs/videos/simulation.mp4",
