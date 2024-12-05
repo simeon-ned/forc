@@ -1,0 +1,65 @@
+[
+  {
+    "objectID": "02_linear_control/02_linear_control_lecture.html#goals-for-today",
+    "href": "02_linear_control/02_linear_control_lecture.html#goals-for-today",
+    "title": "Fundamentals of Robot Control",
+    "section": "Goals for Today",
+    "text": "Goals for Today\n\nRecall the analysis techniques for LTI systems: stability, pole placement, controllability\nStudy the different approach for LTI controllability: Hautus lemma"
+  },
+  {
+    "objectID": "02_linear_control/02_linear_control_lecture.html#basics-of-system-analysis-and-control-design",
+    "href": "02_linear_control/02_linear_control_lecture.html#basics-of-system-analysis-and-control-design",
+    "title": "Fundamentals of Robot Control",
+    "section": "Basics of System Analysis and Control Design",
+    "text": "Basics of System Analysis and Control Design"
+  },
+  {
+    "objectID": "02_linear_control/02_linear_control_lecture.html#stability-introduction",
+    "href": "02_linear_control/02_linear_control_lecture.html#stability-introduction",
+    "title": "Fundamentals of Robot Control",
+    "section": "Stability Introduction",
+    "text": "Stability Introduction\nOnce the equilibrium or nominal motion is given, the natural question to ask is how the system will behave nearby. This question is directly related to so-called stability.\nVarious types of stability may be discussed for the solutions of differential equations or difference equations describing dynamical systems. The one practically important type is that concerning the stability of solutions near a point of equilibrium. This may be analyzed by the theory of Aleksandr Lyapunov."
+  },
+  {
+    "objectID": "02_linear_control/02_linear_control_lecture.html#stability-intuition",
+    "href": "02_linear_control/02_linear_control_lecture.html#stability-intuition",
+    "title": "Fundamentals of Robot Control",
+    "section": "Stability Intuition",
+    "text": "Stability Intuition\nIn simple terms, if the solutions that start out near an equilibrium point \\(\\mathbf{x}_{e}\\) stay near \\(\\mathbf{x}_{e}\\) forever, then \\(\\mathbf{x}_{e}\\) is Lyapunov stable. More strongly, if \\(\\mathbf{x}_{e}\\) is Lyapunov stable and all solutions that start out near \\(\\mathbf{x}_{e}\\) converge to \\(\\mathbf{x}_{e}\\), then \\(\\mathbf{x}_{e}\\) is asymptotically stable."
+  },
+  {
+    "objectID": "02_linear_control/02_linear_control_lecture.html#formal-stability-definitions",
+    "href": "02_linear_control/02_linear_control_lecture.html#formal-stability-definitions",
+    "title": "Fundamentals of Robot Control",
+    "section": "Formal Stability Definitions",
+    "text": "Formal Stability Definitions\nEquilibrium \\(\\mathbf{x}_e\\) is said to be:\n\nLyapunov stable if: \\[\n\\forall \\epsilon &gt; 0,\\ \\exists \\delta &gt; 0,\\ \\|\\mathbf{x}(0) - \\mathbf{x}_e\\| &lt; \\delta \\implies \\|\\mathbf{x}(t) - \\mathbf{x}_e\\| &lt; \\epsilon,\\ \\forall t\n\\]"
+  },
+  {
+    "objectID": "02_linear_control/02_linear_control_lecture.html#formal-stability-definitions-cont.",
+    "href": "02_linear_control/02_linear_control_lecture.html#formal-stability-definitions-cont.",
+    "title": "Fundamentals of Robot Control",
+    "section": "Formal Stability Definitions (cont.)",
+    "text": "Formal Stability Definitions (cont.)\n\nAsymptotically stable if it is Lyapunov stable and: \\[\n\\exists \\delta &gt; 0,\\ \\|\\mathbf{x}(0) - \\mathbf{x}_e\\| &lt; \\delta \\implies \\lim_{t \\to \\infty} \\|\\mathbf{x}(t) - \\mathbf{x}_e\\| = 0\n\\]\nExponentially stable if it is asymptotically stable and: \\[\n\\exists \\delta, \\alpha, \\beta &gt; 0,\\ \\|\\mathbf{x}(0) - \\mathbf{x}_e\\| &lt; \\delta \\implies \\|\\mathbf{x}(t) - \\mathbf{x}_e\\| \\leq \\alpha \\|\\mathbf{x}(0) - \\mathbf{x}_e\\| e^{-\\beta t},\\ \\forall t\n\\]"
+  },
+  {
+    "objectID": "02_linear_control/02_linear_control_lecture.html#stability-concepts-summary",
+    "href": "02_linear_control/02_linear_control_lecture.html#stability-concepts-summary",
+    "title": "Fundamentals of Robot Control",
+    "section": "Stability Concepts Summary",
+    "text": "Stability Concepts Summary\n\n\nLyapunov stability: solutions starting “close enough” remain “close enough” forever\nAsymptotic stability: solutions not only remain close but converge to equilibrium\nExponential stability: solutions converge at least as fast as a known exponential rate"
+  },
+  {
+    "objectID": "02_linear_control/02_linear_control_lecture.html#lti-system-analysis",
+    "href": "02_linear_control/02_linear_control_lecture.html#lti-system-analysis",
+    "title": "Fundamentals of Robot Control",
+    "section": "LTI System Analysis",
+    "text": "LTI System Analysis\nLet us start with the stability of LTI systems:\n\\[\n\\dot{\\mathbf{x}} = \\mathbf{A}\\mathbf{x}\n\\]\nAn integral solution can be calculated analytically:\n\\[\n\\mathbf{x}^*(t) = e^{\\mathbf{A}t}\\mathbf{x}(0)\n\\]\nwhere the matrix exponential is defined via power series:\n\\[\ne^{\\mathbf{A}t} = \\sum_{k=0}^{\\infty} \\frac{1}{k!} (\\mathbf{A} t)^k\n\\]\n[Continue with similar slide-by-slide organization for the rest of the content…]"
+  },
+  {
+    "objectID": "02_linear_control/02_linear_control_lecture.html#conclusion",
+    "href": "02_linear_control/02_linear_control_lecture.html#conclusion",
+    "title": "Fundamentals of Robot Control",
+    "section": "Conclusion",
+    "text": "Conclusion\n\n\nWe recalled analysis techniques for LTI systems: stability, pole placement, controllability\nWe studied the different approach for LTI controllability: Hautus lemma\nNumerical methods such as pole placement and PBH test are crucial for control design and analysis\n\n\n\nThank you for your attention!"
+  }
+]

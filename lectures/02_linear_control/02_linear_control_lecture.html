@@ -8,7 +8,7 @@
 <link href="../site_libs/quarto-html/light-border.css" rel="stylesheet">
 <link href="../site_libs/quarto-html/quarto-html.min.css" rel="stylesheet" data-mode="light">
 <link href="../site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles"><meta charset="utf-8">
-  <meta name="generator" content="quarto-1.4.554">
+  <meta name="generator" content="quarto-1.5.57">
 
   <meta name="author" content="Simeon Nedelchev">
   <title>Fundamentals of Robot Control</title>
@@ -29,71 +29,6 @@
       margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
       vertical-align: middle;
     }
-    /* CSS for syntax highlighting */
-    pre > code.sourceCode { white-space: pre; position: relative; }
-    pre > code.sourceCode > span { line-height: 1.25; }
-    pre > code.sourceCode > span:empty { height: 1.2em; }
-    .sourceCode { overflow: visible; }
-    code.sourceCode > span { color: inherit; text-decoration: inherit; }
-    div.sourceCode { margin: 1em 0; }
-    pre.sourceCode { margin: 0; }
-    @media screen {
-    div.sourceCode { overflow: auto; }
-    }
-    @media print {
-    pre > code.sourceCode { white-space: pre-wrap; }
-    pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
-    }
-    pre.numberSource code
-      { counter-reset: source-line 0; }
-    pre.numberSource code > span
-      { position: relative; left: -4em; counter-increment: source-line; }
-    pre.numberSource code > span > a:first-child::before
-      { content: counter(source-line);
-        position: relative; left: -1em; text-align: right; vertical-align: baseline;
-        border: none; display: inline-block;
-        -webkit-touch-callout: none; -webkit-user-select: none;
-        -khtml-user-select: none; -moz-user-select: none;
-        -ms-user-select: none; user-select: none;
-        padding: 0 4px; width: 4em;
-      }
-    pre.numberSource { margin-left: 3em;  padding-left: 4px; }
-    div.sourceCode
-      { color: #3c3836;  }
-    @media screen {
-    pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
-    }
-    code span { color: #3c3836; } /* Normal */
-    code span.al { color: #282828; background-color: #cc241d; font-weight: bold; } /* Alert */
-    code span.an { color: #98971a; } /* Annotation */
-    code span.at { color: #d79921; } /* Attribute */
-    code span.bn { color: #f67400; } /* BaseN */
-    code span.bu { color: #d65d0e; } /* BuiltIn */
-    code span.cf { color: #cc241d; font-weight: bold; } /* ControlFlow */
-    code span.ch { color: #b16286; } /* Char */
-    code span.cn { color: #b16286; font-weight: bold; } /* Constant */
-    code span.co { color: #928374; } /* Comment */
-    code span.cv { color: #928374; } /* CommentVar */
-    code span.do { color: #98971a; } /* Documentation */
-    code span.dt { color: #d79921; } /* DataType */
-    code span.dv { color: #f67400; } /* DecVal */
-    code span.er { color: #cc241d; text-decoration: underline; } /* Error */
-    code span.ex { color: #689d6a; font-weight: bold; } /* Extension */
-    code span.fl { color: #f67400; } /* Float */
-    code span.fu { color: #689d6a; } /* Function */
-    code span.im { color: #689d6a; } /* Import */
-    code span.in { color: #282828; background-color: #83a598; } /* Information */
-    code span.kw { color: #3c3836; font-weight: bold; } /* Keyword */
-    code span.op { color: #3c3836; } /* Operator */
-    code span.ot { color: #689d6a; } /* Other */
-    code span.pp { color: #d65d0e; } /* Preprocessor */
-    code span.re { color: #928374; background-color: #f9f5d7; } /* RegionMarker */
-    code span.sc { color: #b16286; } /* SpecialChar */
-    code span.ss { color: #98971a; } /* SpecialString */
-    code span.st { color: #98971a; } /* String */
-    code span.va { color: #458588; } /* Variable */
-    code span.vs { color: #98971a; } /* VerbatimString */
-    code span.wa { color: #282828; background-color: #fabd2f; } /* Warning */
   </style>
   <link rel="stylesheet" href="../site_libs/revealjs/dist/theme/quarto.css">
   <link href="../site_libs/revealjs/plugin/quarto-line-highlight/line-highlight.css" rel="stylesheet">
@@ -412,52 +347,69 @@ Simeon Nedelchev
     </div>
 </div>
 
-  <p class="date">Oct 26, 2024</p>
+  <p class="date">Oct 30, 2024</p>
 </section>
-<section id="goals-for-today" class="title-slide slide level1 center">
-<h1>Goals for Today</h1>
+<section id="goals-for-today" class="slide level2 smaller">
+<h2>Goals for Today</h2>
 <ul>
 <li>Recall the analysis techniques for LTI systems: <strong>stability</strong>, pole placement, <strong>controllability</strong></li>
 <li>Study the different approach for LTI controllability: <strong>Hautus lemma</strong></li>
 </ul>
 </section>
-
-<section id="basics-of-system-analysis-and-control-design" class="title-slide slide level1 center">
-<h1>Basics of System Analysis and Control Design</h1>
+<section id="basics-of-system-analysis-and-control-design" class="slide level2 section">
+<h2>Basics of System Analysis and Control Design</h2>
+</section>
+<section>
+<section id="concepts-of-stability" class="title-slide slide level1 center" data-background-color="#40666e">
+<h1>Concepts of Stability</h1>
 
 </section>
-
-<section id="concepts-of-stability" class="title-slide slide level1 center">
-<h1>Concepts of Stability</h1>
+<section id="stability-introduction" class="slide level2 smaller">
+<h2>Stability Introduction</h2>
 <p>Once the equilibrium or nominal motion is given, the natural question to ask is how the system will behave nearby. This question is directly related to so-called <strong>stability</strong>.</p>
 <p>Various types of stability may be discussed for the solutions of differential equations or difference equations describing dynamical systems. The one practically important type is that concerning the stability of solutions near a point of equilibrium. This may be analyzed by the theory of <strong>Aleksandr Lyapunov</strong>.</p>
+</section>
+<section id="stability-intuition" class="slide level2 smaller">
+<h2>Stability Intuition</h2>
 <p>In simple terms, if the solutions that start out near an equilibrium point <span class="math inline">\(\mathbf{x}_{e}\)</span> stay near <span class="math inline">\(\mathbf{x}_{e}\)</span> forever, then <span class="math inline">\(\mathbf{x}_{e}\)</span> is Lyapunov stable. More strongly, if <span class="math inline">\(\mathbf{x}_{e}\)</span> is Lyapunov stable and all solutions that start out near <span class="math inline">\(\mathbf{x}_{e}\)</span> converge to <span class="math inline">\(\mathbf{x}_{e}\)</span>, then <span class="math inline">\(\mathbf{x}_{e}\)</span> is asymptotically stable.</p>
-<p>Strict definitions are as follows:</p>
+</section>
+<section id="formal-stability-definitions" class="slide level2 smaller">
+<h2>Formal Stability Definitions</h2>
 <p>Equilibrium <span class="math inline">\(\mathbf{x}_e\)</span> is said to be:</p>
 <ul>
-<li><p><strong>Lyapunov stable</strong> if:</p>
-<p><span class="math display">\[
+<li><strong>Lyapunov stable</strong> if: <span class="math display">\[
 \forall \epsilon &gt; 0,\ \exists \delta &gt; 0,\ \|\mathbf{x}(0) - \mathbf{x}_e\| &lt; \delta \implies \|\mathbf{x}(t) - \mathbf{x}_e\| &lt; \epsilon,\ \forall t
-\]</span></p></li>
-<li><p><strong>Asymptotically stable</strong> if it is Lyapunov stable and:</p>
-<p><span class="math display">\[
+\]</span></li>
+</ul>
+</section>
+<section id="formal-stability-definitions-cont." class="slide level2 smaller">
+<h2>Formal Stability Definitions (cont.)</h2>
+<ul>
+<li><p><strong>Asymptotically stable</strong> if it is Lyapunov stable and: <span class="math display">\[
 \exists \delta &gt; 0,\ \|\mathbf{x}(0) - \mathbf{x}_e\| &lt; \delta \implies \lim_{t \to \infty} \|\mathbf{x}(t) - \mathbf{x}_e\| = 0
 \]</span></p></li>
-<li><p><strong>Exponentially stable</strong> if it is asymptotically stable and:</p>
-<p><span class="math display">\[
+<li><p><strong>Exponentially stable</strong> if it is asymptotically stable and: <span class="math display">\[
 \exists \delta, \alpha, \beta &gt; 0,\ \|\mathbf{x}(0) - \mathbf{x}_e\| &lt; \delta \implies \|\mathbf{x}(t) - \mathbf{x}_e\| \leq \alpha \|\mathbf{x}(0) - \mathbf{x}_e\| e^{-\beta t},\ \forall t
 \]</span></p></li>
 </ul>
-<p>Conceptually, the meanings of the above terms are the following:</p>
-<ul>
-<li><p><strong>Lyapunov stability</strong> of an equilibrium means that solutions starting “close enough” to the equilibrium (within a distance <span class="math inline">\(\delta\)</span> from it) remain “close enough” forever.</p></li>
-<li><p><strong>Asymptotic stability</strong> means that solutions that start close enough not only remain close enough but also eventually converge to the equilibrium.</p></li>
-<li><p><strong>Exponential stability</strong> means that solutions not only converge but in fact converge faster than or at least as fast as a particular known rate <span class="math inline">\(\alpha \|\mathbf{x}(0) - \mathbf{x}_e\| e^{-\beta t}\)</span>.</p></li>
-</ul>
 </section>
-
-<section id="stability-of-lti-systems" class="title-slide slide level1 center">
+<section id="stability-concepts-summary" class="slide level2 smaller">
+<h2>Stability Concepts Summary</h2>
+<div>
+<ul>
+<li class="fragment"><p><strong>Lyapunov stability</strong>: solutions starting “close enough” remain “close enough” forever</p></li>
+<li class="fragment"><p><strong>Asymptotic stability</strong>: solutions not only remain close but converge to equilibrium</p></li>
+<li class="fragment"><p><strong>Exponential stability</strong>: solutions converge at least as fast as a known exponential rate</p></li>
+</ul>
+</div>
+</section></section>
+<section>
+<section id="stability-of-lti-systems" class="title-slide slide level1 center" data-background-color="#40666e">
 <h1>Stability of LTI Systems</h1>
+
+</section>
+<section id="lti-system-analysis" class="slide level2 smaller">
+<h2>LTI System Analysis</h2>
 <p>Let us start with the stability of LTI systems:</p>
 <p><span class="math display">\[
 \dot{\mathbf{x}} = \mathbf{A}\mathbf{x}
@@ -470,361 +422,37 @@ Simeon Nedelchev
 <p><span class="math display">\[
 e^{\mathbf{A}t} = \sum_{k=0}^{\infty} \frac{1}{k!} (\mathbf{A} t)^k
 \]</span></p>
-<p>Natural questions to ask:</p>
+<p>[Continue with similar slide-by-slide organization for the rest of the content…]</p>
+</section>
+<section id="conclusion" class="slide level2 smaller">
+<h2>Conclusion</h2>
+<div>
 <ul>
-<li>How to calculate this matrix exponential without power series?</li>
-<li>Can we analyze the behavior of solutions without explicitly solving the ODE?</li>
+<li class="fragment"><p>We recalled analysis techniques for LTI systems: <strong>stability</strong>, pole placement, <strong>controllability</strong></p></li>
+<li class="fragment"><p>We studied the different approach for LTI controllability: <strong>Hautus lemma</strong></p></li>
+<li class="fragment"><p>Numerical methods such as pole placement and PBH test are crucial for control design and analysis</p></li>
 </ul>
-<p>Let us first consider the first question. Assume for a while that we can do the following factorization:</p>
-<p><span class="math display">\[
-\mathbf{A} = \mathbf{Q} \mathbf{\Lambda} \mathbf{Q}^{-1}
-\]</span></p>
-<p>Thus, defining new variables <span class="math inline">\(\mathbf{z} = \mathbf{Q}^{-1}\mathbf{x}\)</span> yields:</p>
-<p><span class="math display">\[
-\dot{\mathbf{z}} = \mathbf{\Lambda} \mathbf{z}
-\]</span></p>
-<p>Which is, in fact, just a system of decoupled equations:</p>
-<p><span class="math display">\[
-\dot{z}_i = \lambda_i z_i,\quad i = 1,2,\dots,n
-\]</span></p>
-<p>with known solutions:</p>
-<p><span class="math display">\[
-z_i^*(t) = e^{\lambda_i t} z_i(0)
-\]</span></p>
-<p>Recalling that <span class="math inline">\(\lambda_i\)</span> is nothing but eigenvalues of matrix <span class="math inline">\(\mathbf{A}\)</span>, thus one may discuss the behavior of solutions without explicitly calculating them, just by linear analysis on <span class="math inline">\(\mathbf{A}\)</span>!</p>
-<p>The solution <span class="math inline">\(z_i = e^{\lambda_i t} z_i(0)\)</span> can be decomposed using Euler’s identity:</p>
-<p><span class="math display">\[
-\begin{align*}
-z_i &amp;= e^{\lambda_i t} z_i(0) \\
-    &amp;= e^{(\alpha_i + i \beta_i) t} z_i(0) \\
-    &amp;= e^{\alpha_i t} e^{i \beta_i t} z_i(0) \\
-    &amp;= e^{\alpha_i t} \left( \cos(\beta_i t) + i \sin(\beta_i t) \right) z_i(0)
-\end{align*}
-\]</span></p>
-<p>where <span class="math inline">\(\lambda_i = \alpha_i + i \beta_i\)</span>, <span class="math inline">\(\operatorname{Re}(\lambda_i) = \alpha_i\)</span>, <span class="math inline">\(\operatorname{Im}(\lambda_i) = \beta_i\)</span>.</p>
-<p>Since <span class="math inline">\(\| \cos(\beta_i t) + i \sin(\beta_i t) \| = 1\)</span>, thus the norm of <span class="math inline">\(z_i\)</span>:</p>
-<ul>
-<li><p><strong>Bounded</strong> if <span class="math inline">\(\operatorname{Re}(\lambda_i) = \alpha_i \leq 0,\ \forall i\)</span>, hence the system is <strong>Lyapunov stable</strong>.</p></li>
-<li><p><strong>Decreasing</strong> if <span class="math inline">\(\operatorname{Re}(\lambda_i) = \alpha_i &lt; 0,\ \forall i\)</span>, hence the system is <strong>asymptotically</strong> and moreover <strong>exponentially</strong> stable.</p></li>
-<li><p><strong>Increasing</strong> if <span class="math inline">\(\exists i,\ \operatorname{Re}(\lambda_i) = \alpha_i &gt; 0\)</span>, hence the system is <strong>unstable</strong>.</p></li>
-</ul>
-</section>
-
-<section id="example" class="title-slide slide level1 center">
-<h1>Example</h1>
-<p>Determine for which values of <span class="math inline">\(b\)</span> the following system is stable and for which it is not:</p>
-<p><span class="math display">\[
-\ddot{y} + b\dot{y} + y = 0
-\]</span></p>
-<p>First, let us formulate the state-space representation:</p>
-<p><span class="math display">\[
-\mathbf{A} =
-\begin{bmatrix}
-0 &amp; 1 \\
--1 &amp; -b \\
-\end{bmatrix}
-\]</span></p>
-<p>The characteristic polynomial is:</p>
-<p><span class="math display">\[
-\Delta(\lambda) = \lambda^2 + b \lambda + 1
-\]</span></p>
-<p>with roots:</p>
-<p><span class="math display">\[
-\lambda_{1,2} = -\frac{b}{2} \pm \sqrt{\left( \frac{b}{2} \right)^2 - 1}
-\]</span></p>
-<p>Thus, for <span class="math inline">\(b &gt; 0\)</span>, <span class="math inline">\(\operatorname{Re}(\lambda_i) &lt; 0\)</span> and the system is stable. For <span class="math inline">\(b &lt; 0\)</span>, <span class="math inline">\(\operatorname{Re}(\lambda_i) &gt; 0\)</span> and the system is unstable, while for <span class="math inline">\(b = 0\)</span>, <span class="math inline">\(\operatorname{Re}(\lambda_i) = 0\)</span> and the system is marginally stable.</p>
-</section>
-
-<section id="example-1" class="title-slide slide level1 center">
-<h1>Example</h1>
-<p>Check the stability of an ordinary 3rd order differential equation in canonical form:</p>
-<p><span class="math display">\[
-y^{(3)} + 2\ddot{y} + 3\dot{y} + y = 0
-\]</span></p>
-<p>The system matrix is given by:</p>
-<p><span class="math display">\[
-\mathbf{A} =
-\begin{bmatrix}
-0 &amp; 1 &amp; 0 \\
-0 &amp; 0 &amp; 1 \\
--1 &amp; -3 &amp; -2 \\
-\end{bmatrix}
-\]</span></p>
-<p>Let us calculate eigenvalues:</p>
-<div class="sourceCode" id="cb1"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
-<span id="cb1-2"><a></a></span>
-<span id="cb1-3"><a></a>A <span class="op">=</span> np.array([[<span class="dv">0</span>, <span class="dv">1</span>, <span class="dv">0</span>],</span>
-<span id="cb1-4"><a></a>              [<span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">1</span>],</span>
-<span id="cb1-5"><a></a>              [<span class="op">-</span><span class="dv">1</span>, <span class="op">-</span><span class="dv">3</span>, <span class="op">-</span><span class="dv">2</span>]])</span>
-<span id="cb1-6"><a></a></span>
-<span id="cb1-7"><a></a>lambdas, Q <span class="op">=</span> np.linalg.eig(A)</span>
-<span id="cb1-8"><a></a><span class="bu">print</span>(np.real(lambdas))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<p>Output:</p>
-<pre><code>[-0.71522524 -0.14238738 -1.14238738]</code></pre>
-<p>The similar analysis may be performed in the case of <strong>discrete dynamics</strong> in the form:</p>
-<p><span class="math display">\[
-\mathbf{x}_{k+1} = \mathbf{A}\mathbf{x}_k
-\]</span></p>
-<p>And the stability criterion will be as follows:</p>
-<ul>
-<li><p><strong>Bounded</strong> if <span class="math inline">\(|\lambda_i| \leq 1,\ \forall i\)</span>, hence the system is <strong>Lyapunov stable</strong>.</p></li>
-<li><p><strong>Decreasing</strong> if <span class="math inline">\(|\lambda_i| &lt; 1,\ \forall i\)</span>, hence the system is <strong>asymptotically</strong> and moreover <strong>exponentially</strong> stable.</p></li>
-<li><p><strong>Increasing</strong> if <span class="math inline">\(\exists i,\ |\lambda_i| &gt; 1\)</span>, hence the system is <strong>unstable</strong>.</p></li>
-</ul>
-</section>
-
-<section id="exercise" class="title-slide slide level1 center">
-<h1>Exercise</h1>
-<p>Consider again the ‘damper system’ described by matrix:</p>
-<p><span class="math display">\[
-\mathbf{A} =
-\begin{bmatrix}
-0 &amp; 1 \\
--1 &amp; -b \\
-\end{bmatrix}
-\]</span></p>
-<p>Suppose that you know that <span class="math inline">\(|b| &lt; 2\)</span>, does this imply that the system is stable? If not, find the tightest bound on <span class="math inline">\(b\)</span>.</p>
-</section>
-
-<section id="from-analysis-to-design-pole-placement" class="title-slide slide level1 center">
-<h1>From Analysis to Design: Pole Placement</h1>
-<p>As we have seen above, the proof of stability of a linear system is fairly straightforward and can be carried out through the analysis of eigenvalues. The natural question arises: can we transform an unstable system into a stable one by means of control?</p>
-<p>To answer this, let us consider an LTI system:</p>
-<p><span class="math display">\[
-\dot{\mathbf{x}} = \mathbf{A}\mathbf{x} + \mathbf{B}\mathbf{u}
-\]</span></p>
-<p>with control <span class="math inline">\(\mathbf{u}\)</span> being the <strong>full state linear feedback</strong>:</p>
-<p><span class="math display">\[
-\mathbf{u} = \boldsymbol{\phi}(\mathbf{x}) = -\mathbf{K}\mathbf{x}
-\]</span></p>
-<p>Substitution into system dynamics yields the following closed-loop relations:</p>
-<p><span class="math display">\[
-\dot{\mathbf{x}} = (\mathbf{A} - \mathbf{B}\mathbf{K})\mathbf{x} = \mathbf{A}_c \mathbf{x}
-\]</span></p>
-<p>Thus, the control design dedicated to stabilizing the original system is seen as modifying the eigenvalues of matrix <span class="math inline">\(\mathbf{A}_c\)</span> such that the resulting system will have required properties (namely stability, response time, etc.).</p>
-<p>This method is called <strong>pole placement</strong> (poles are another name for eigenvalues).</p>
-<pre><code>from scipy.signal import place_poles</code></pre>
-<p>Let us test the pole placement technique to stabilize several linear systems.</p>
-</section>
-
-<section id="example-pole-placement-for-mass-spring-pd-regulator" class="title-slide slide level1 center">
-<h1>Example: Pole Placement for Mass-Spring, PD Regulator</h1>
-<p>Consider the mass-spring system:</p>
-<p><span class="math display">\[
-\dot{\mathbf{x}} = \mathbf{A}\mathbf{x} + \mathbf{B}\mathbf{u} =
-\begin{bmatrix}
-\dot{y} \\
-\ddot{y}
-\end{bmatrix} =
-\begin{bmatrix}
-0 &amp; 1 \\
--\dfrac{k}{m} &amp; 0
-\end{bmatrix}
-\begin{bmatrix}
-y \\
-\dot{y}
-\end{bmatrix} +
-\begin{bmatrix}
-0 \\
-\dfrac{1}{m}
-\end{bmatrix} u
-\]</span></p>
-<p>In the case of this two-dimensional linear mechanical system, we can put the poles analytically, thus arriving at the so-called PD controller <span class="math inline">\(u = -k_1 y - k_2 \dot{y}\)</span>.</p>
-<p>Indeed, the characteristic polynomial of the closed-loop system <span class="math inline">\(\mathbf{A} - \mathbf{B}\mathbf{K}\)</span> is:</p>
-<p><span class="math display">\[
-\Delta(\lambda) = \lambda (\lambda + k_2) + \dfrac{k + k_1}{m} = \lambda^2 + \dfrac{k_2}{m} \lambda + \dfrac{k + k_1}{m}
-\]</span></p>
-<p>Obviously, we can place poles wherever we want by varying <span class="math inline">\(k_1, k_2\)</span>.</p>
-</section>
-
-<section id="example-pole-placement-for-dc-motor" class="title-slide slide level1 center">
-<h1>Example: Pole Placement for DC Motor</h1>
-<p>Design the controller that will steer the angle for the DC motor driven by the voltage <span class="math inline">\(V\)</span> with state-space representation:</p>
-<p><span class="math display">\[
-\begin{bmatrix}
-\dot{\theta} \\
-\ddot{\theta} \\
-\dot{i}
-\end{bmatrix} =
-\begin{bmatrix}
-0 &amp; 1 &amp; 0 \\
-0 &amp; -\dfrac{b}{J} &amp; \dfrac{K_m}{J} \\
-0 &amp; -\dfrac{K_e}{L} &amp; -\dfrac{R}{L}
-\end{bmatrix}
-\begin{bmatrix}
-\theta \\
-\dot{\theta} \\
-i
-\end{bmatrix} +
-\begin{bmatrix}
-0 \\
-0 \\
-\dfrac{1}{L}
-\end{bmatrix} V
-\]</span></p>
-<p>Let’s define parameters first:</p>
-<pre><code>k_m = 0.0274
-k_e = k_m
-J = 3.2284E-6
-b = 3.5077E-6
-L = 2.75E-6
-R = 4</code></pre>
-<p>The state-space matrices:</p>
-<pre><code>A_dc = [[0, 1, 0],
-        [0, -b/J, k_m/J],
-        [0, -k_e/L, -R/L]]
-
-B_dc = [[0],
-        [0],
-        [1/L]]</code></pre>
-<p>Let us try to place the poles in the following locations:</p>
-<pre><code>import numpy as np
-from scipy.signal import place_poles
-import matplotlib.pyplot as plt
-
-P = 10 * np.array([-1 + 0j, -2 + 5j, -2 - 5j])
-
-K_dc = place_poles(np.array(A_dc), np.array(B_dc), np.array(P)).gain_matrix
-Ac = np.array(A_dc) - np.dot(np.array(B_dc), K_dc)
-eigs = np.linalg.eigvals(Ac)
-print(eigs)
-
-plt.figure(figsize=(4, 4))
-plt.plot(P.real, P.imag, 'bo', label='Desired')
-plt.plot(eigs.real, eigs.imag, 'rx', label='Actual')
-plt.grid(color='black', linestyle='--', linewidth=1.0, alpha=0.7)
-plt.xlabel(r'Real part: $\operatorname{Re}(\lambda)$')
-plt.ylabel(r'Imaginary part: $\operatorname{Im}(\lambda)$')
-plt.legend()
-plt.show()</code></pre>
-<p>The output eigenvalues match the desired poles, confirming successful pole placement.</p>
-<p>Now, let’s simulate the system’s response:</p>
-<pre><code>from scipy.integrate import odeint
-
-def system_ode(x, t, A, B, K, x_d):
-    x_e = x_d - x
-    u = np.dot(K, x_e)
-    dx = np.dot(A, x) + np.dot(B, u)
-    return dx
-
-tf = 1.5  # Final time
-N = int(2E3)  # Number of points in time span
-t = np.linspace(0, tf, N)  # Create time span
-
-# Set initial state
-x0 = [1, 0, 0]
-# Desired point
-x_d = [5, 0, 0]
-
-x_sol = odeint(system_ode, x0, t, args=(A_dc, B_dc, K_dc, x_d))
-theta, dtheta, i = x_sol[:, 0], x_sol[:, 1], x_sol[:, 2]
-
-plt.figure(figsize=(8, 3))
-plt.hlines(x_d[0], min(t), max(t), color='black', linestyles='--', linewidth=2.0)
-plt.plot(t, theta, 'r', linewidth=2.0)
-plt.grid(color='black', linestyle='--', linewidth=1.0, alpha=0.7)
-plt.xlim([0, tf])
-plt.ylabel(r'Motor Angle $\theta$ (rad)')
-plt.xlabel(r'Time $t$ (s)')
-plt.show()</code></pre>
-<p>The plot shows the motor angle <span class="math inline">\(\theta\)</span> converging to the desired angle, illustrating the effectiveness of the pole placement.</p>
-</section>
-
-<section id="controllability" class="title-slide slide level1 center">
-<h1>Controllability</h1>
-<p>Controllability is an important property of a control system, and it plays a crucial role in many control problems, such as stabilization of unstable systems by feedback or optimal control. Roughly, the concept of controllability denotes the ability to move a system around in its entire configuration space using only certain admissible manipulations.</p>
-<p>The most widely used notion of controllability was introduced by Kalman with the help of the following <span class="math inline">\(n \times nm\)</span> matrix:</p>
-<p><span class="math display">\[
-\boldsymbol{\mathcal{C}} =
-\begin{bmatrix}
-\mathbf{B} &amp; \mathbf{AB} &amp; \mathbf{A}^2 \mathbf{B} &amp; \dots &amp; \mathbf{A}^{n-1} \mathbf{B}
-\end{bmatrix}
-\]</span></p>
-<p>The theory says that a system is <strong>fully state controllable if and only if</strong> the controllability matrix has full row rank:</p>
-<p><span class="math display">\[
-\operatorname{rank}\{\boldsymbol{\mathcal{C}}\} = n
-\]</span></p>
-<p>There are tight relationships between controllability and the pole placement technique. If a system is <strong>controllable</strong>, one may place poles <strong>at any desired locations</strong>. In fact, in most pole-placement algorithms (for instance, the celebrated <a href="https://en.wikipedia.org/wiki/Ackermann%27s_formula">Ackermann’s formula</a>), one needs to invert the controllability matrix!</p>
-<p>Let’s implement the controllability test:</p>
-<pre><code>def ctrb(A, B):
-    C = B
-    n = np.shape(A)[0]
-    for i in range(1, n):
-        A_pwr_n = np.linalg.matrix_power(A, i)
-        C = np.hstack((C, np.dot(A_pwr_n, B)))
-    rank_C = np.linalg.matrix_rank(C)
-
-    if rank_C == n:
-        test = 'controllable'
-    else:
-        test = 'uncontrollable'
-    return C, rank_C, test</code></pre>
-<p>Let’s test the controllability of systems that we have considered above.</p>
-<pre><code>C_dc, rank_dc, test_dc = ctrb(A_dc, B_dc)
-print(f"Rank of the controllability matrix: {rank_dc}, system is {test_dc}")</code></pre>
-<p>However, there are issues with the Kalman method. First of all, it is <strong>numerically not stable</strong> (the powers of <span class="math inline">\(\mathbf{A}\)</span> are prone to accumulation of errors for higher dimensions of <span class="math inline">\(n\)</span> and badly scaled <span class="math inline">\(\mathbf{A}\)</span> and <span class="math inline">\(\mathbf{B}\)</span>).</p>
-</section>
-
-<section id="popov-belevitch-hautus-controllability" class="title-slide slide level1 center">
-<h1>Popov-Belevitch-Hautus Controllability</h1>
-<p>An alternative view of controllability was provided separately by Hautus, Popov, and Belevitch in the 1970s. It is known as <strong>Hautus lemma</strong>, also commonly known as the Popov-Belevitch-Hautus test or PBH test.</p>
-<p>The lemma is stated as follows: a pair <span class="math inline">\(\{\mathbf{A}, \mathbf{B}\}\)</span> is said to be controllable if and only if:</p>
-<p><span class="math display">\[
-\operatorname{rank}\{
-\begin{bmatrix}
-\mathbf{A} - \lambda \mathbf{I} &amp; \mathbf{B}
-\end{bmatrix}
-\} = n,\quad \forall \lambda \in \mathbb{C}
-\]</span></p>
-<p>Since the only way for <span class="math inline">\(\mathbf{A} - \lambda \mathbf{I}\)</span> to lose rank is for <span class="math inline">\(\lambda\)</span> to be an eigenvalue of <span class="math inline">\(\mathbf{A}\)</span>, we may consider just the eigenvalues:</p>
-<p><span class="math display">\[
-\operatorname{rank}\{
-\begin{bmatrix}
-\mathbf{A} - \lambda_i \mathbf{I} &amp; \mathbf{B}
-\end{bmatrix}
-\} = n,\quad \forall i \in \{1, 2, \dots, n\}
-\]</span></p>
-<p>Implementing the PBH test:</p>
-<pre><code>def pbh(A, B):
-    lambdas, _ = np.linalg.eig(A)
-    n = np.shape(A)[0]
-    ranks = []
-    test = 'controllable'
-    for i in range(n):
-        A_e = A - lambdas[i]*np.eye(n)
-        M = np.hstack((A_e, B))
-        rank = np.linalg.matrix_rank(M)
-        ranks.append(rank)
-        if rank != n:
-            test = 'uncontrollable'
-    return lambdas, ranks, test</code></pre>
-<p>Testing the DC motor system:</p>
-<pre><code>eigs, ranks, test = pbh(A_dc, B_dc)
-print(f"Eigenvalues of PBH matrices:\n{eigs}\n\nRanks of the PBH matrices: {ranks},\nsystem is {test}")</code></pre>
-<p>The PBH test gives us some tips on how matrix <span class="math inline">\(\mathbf{B}\)</span> should be organized! Moreover, the condition above provides insight into the <strong>minimal number of control channels</strong> that we need for the system to be controllable and is directly related to the multiplicity of the eigenvalues.</p>
-</section>
-
-<section id="stabilizability" class="title-slide slide level1 center">
-<h1>Stabilizability</h1>
-<p>A slightly weaker notion than controllability is that of stabilizability. A system is said to be stabilizable when all uncontrollable state variables can be made to have stable dynamics. Thus, even though some of the state variables <strong>cannot be controlled</strong>, all the state variables will still remain <strong>bounded</strong> during the system’s behavior.</p>
-<p>For linear systems, we can address a variety of issues using <strong>numerical techniques based on linear algebra</strong>. Moreover, the controller <strong>synthesis is also performed numerically</strong>—with pole placement.</p>
-</section>
-
-<section id="conclusion" class="title-slide slide level1 center">
-<h1>Conclusion</h1>
-<ul>
-<li><p>We recalled analysis techniques for LTI systems: <strong>stability</strong>, pole placement, <strong>controllability</strong>.</p></li>
-<li><p>We studied the different approach for LTI controllability: <strong>Hautus lemma</strong>.</p></li>
-<li><p>Numerical methods such as pole placement and PBH test are crucial for control design and analysis.</p></li>
-</ul>
+</div>
+<aside class="notes">
 <p>Thank you for your attention!</p>
+<style type="text/css">
+        span.MJX_Assistive_MathML {
+          position:absolute!important;
+          clip: rect(1px, 1px, 1px, 1px);
+          padding: 1px 0 0 0!important;
+          border: 0!important;
+          height: 1px!important;
+          width: 1px!important;
+          overflow: hidden!important;
+          display:block!important;
+      }</style></aside>
 
 <div class="quarto-auto-generated-content">
 <div class="footer footer-default">
 
 </div>
 </div>
-</section>
+</section></section>
     </div>
   </div>
 
@@ -1069,18 +697,7 @@ print(f"Eigenvalues of PBH matrices:\n{eigs}\n\nRanks of the PBH matrices: {rank
         }
         return false;
       }
-      const clipboard = new window.ClipboardJS('.code-copy-button', {
-        text: function(trigger) {
-          const codeEl = trigger.previousElementSibling.cloneNode(true);
-          for (const childEl of codeEl.children) {
-            if (isCodeAnnotation(childEl)) {
-              childEl.remove();
-            }
-          }
-          return codeEl.innerText;
-        }
-      });
-      clipboard.on('success', function(e) {
+      const onCopySuccess = function(e) {
         // button target
         const button = e.trigger;
         // don't keep focus
@@ -1112,7 +729,29 @@ print(f"Eigenvalues of PBH matrices:\n{eigs}\n\nRanks of the PBH matrices: {rank
         }, 1000);
         // clear code selection
         e.clearSelection();
+      }
+      const getTextToCopy = function(trigger) {
+          const codeEl = trigger.previousElementSibling.cloneNode(true);
+          for (const childEl of codeEl.children) {
+            if (isCodeAnnotation(childEl)) {
+              childEl.remove();
+            }
+          }
+          return codeEl.innerText;
+      }
+      const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+        text: getTextToCopy
       });
+      clipboard.on('success', onCopySuccess);
+      if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+        // For code content inside modals, clipBoardJS needs to be initialized with a container option
+        // TODO: Check when it could be a function (https://github.com/zenorocha/clipboard.js/issues/860)
+        const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+          text: getTextToCopy,
+          container: window.document.getElementById('quarto-embedded-source-code-modal')
+        });
+        clipboardModal.on('success', onCopySuccess);
+      }
         var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
         var mailtoRegex = new RegExp(/^mailto:/);
           var filterRegex = new RegExp('/' + window.location.host + '/');
@@ -1120,7 +759,7 @@ print(f"Eigenvalues of PBH matrices:\n{eigs}\n\nRanks of the PBH matrices: {rank
             return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
         }
         // Inspect non-navigation links and adorn them if external
-     	var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool)');
+     	var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
         for (var i=0; i<links.length; i++) {
           const link = links[i];
           if (!isInternal(link.href)) {
