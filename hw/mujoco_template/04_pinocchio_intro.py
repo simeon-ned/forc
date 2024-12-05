@@ -14,11 +14,9 @@ if __name__ == "__main__":
     
     # Print basic model information
     print("\nRobot Model Info:")
-    print(f"Number of joints: {model.njoints}")
     print(f"Number of DOF: {model.nq}")
-    print(f"Joint names: {[name for name in model.names[1:] if 'joint' in name]}")
-    print(f"Frame names: {[name for name in model.frames]}")
     
+
     # Generate random configuration
     q = np.random.uniform(-np.pi, np.pi, model.nq)  # random joint positions
     dq = np.random.uniform(-1, 1, model.nv)  # random joint velocities
@@ -63,3 +61,14 @@ if __name__ == "__main__":
     J = pin.getFrameJacobian(model, data, ee_frame_id, pin.ReferenceFrame.LOCAL_WORLD_ALIGNED)
     print("\nGeometric Jacobian (Local World-Aligned):")
     print(J)
+    
+    # Compute joint torque regressor
+    # This gives us Y(q,dq,ddq) where tau = Y(q,dq,ddq) * phi
+    # phi contains the dynamic parameters (masses, inertias, etc.)
+    ddq = np.random.uniform(-1, 1, model.nv)  # random joint accelerations
+    regressor = pin.computeJointTorqueRegressor(model, data, q, dq, ddq)
+    
+    print("\nJoint Torque Regressor:")
+    print(f"Shape: {regressor.shape}")  # Should be (nv x 10*nv)
+    print(regressor)
+    
