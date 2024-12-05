@@ -6,9 +6,11 @@ _material/
 draft/
 .jekyll-cache/
 code/
-hw/
+
+hw/hw*
 !hw/mujoco_template/
 hw/mujoco_template/05*
 hw/mujoco_template/06*
+hw/mujoco_template/logs/
 
 TODO
