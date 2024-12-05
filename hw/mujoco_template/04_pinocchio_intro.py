@@ -1,3 +1,31 @@
+"""Introduction to Pinocchio for robot dynamics computation.
+
+This example demonstrates how to use Pinocchio to compute various robot dynamics
+quantities including:
+    - Mass matrix
+    - Gravity compensation terms
+    - Coriolis and centrifugal effects
+    - Forward kinematics
+    - Geometric Jacobian
+    - Dynamic parameters regressor
+
+Key Concepts Demonstrated:
+    - Loading robot models in Pinocchio
+    - Computing dynamic quantities
+    - Accessing robot state information
+    - Working with spatial algebra
+
+Example:
+    To run this example:
+    
+    $ python 04_pinocchio_intro.py
+
+Notes:
+    - The example uses random configurations for demonstration
+    - All computations are performed for the UR5e robot model
+    - Results are printed to console for inspection
+"""
+
 import numpy as np
 import pinocchio as pin
 import os

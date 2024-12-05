@@ -2,7 +2,7 @@
 
 A collection of examples demonstrating robot control and dynamics computation using MuJoCo and Pinocchio.
 
-This template is based on Kevin Zakka's [MuJoCo Control](https://github.com/kevinzakka/mjctrl/tree/main) repository. However, [Pinocchio](https://github.com/stack-of-tasks/pinocchio) is used to compute the robot model instead of MuJoCo's built-in dynamics engine, and the simulation is abstracted to allow more focus on the control problem.
+This template builds upon Kevin Zakka's [MuJoCo Control](https://github.com/kevinzakka/mjctrl/tree/main) repository. The main differences are that it uses [Pinocchio](https://github.com/stack-of-tasks/pinocchio) for robot dynamics computations instead of MuJoCo's built-in engine, supports different actuator types (position, velocity, torque) based on Lev Kozlov's [Actuator Types](https://github.com/lvjonok/mujoco-actuators-types) implementation, and provides a simplified simulation interface to help users focus on control design.
 
 ## Setup
 
