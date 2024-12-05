@@ -1,4 +1,7 @@
 {
+<<<<<<< HEAD
+    "ros.distro": "noetic"
+=======
     "workbench.colorCustomizations": {
         "activityBar.activeBackground": "#69887b",
         "activityBar.background": "#69887b",
@@ -19,4 +22,5 @@
         "titleBar.inactiveForeground": "#e7e7e799"
     },
     "peacock.color": "536B61"
+>>>>>>> fa06618f5e7ecb18d7bb70bfc5415112f5e7ad58
 }
