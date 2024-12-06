@@ -4,3 +4,6 @@ WARNING: mju_openResource: unknown file 'universal_robots_ur5e/scene.xml'
 Thu Dec  5 20:23:46 2024
 WARNING: mju_openResource: unknown file 'universal_robots_ur5e/scene.xml'
 
+Fri Dec  6 14:13:12 2024
+WARNING: mju_openResource: unknown file 'kuka_iiwa_14/scene.xml'
+
