@@ -1,3 +1,26 @@
+"""Task space (operational space) control example.
+
+This example demonstrates how to implement task space control for a robot arm,
+allowing it to track desired end-effector positions and orientations. The example
+uses a simple PD control law but can be extended to more sophisticated controllers.
+
+Key Concepts Demonstrated:
+    - Task space control implementation
+    - End-effector pose tracking
+    - Real-time target visualization
+    - Coordinate frame transformations
+
+Example:
+    To run this example:
+    
+    $ python 03_task_space.py
+
+Notes:
+    - The target pose can be modified interactively using the MuJoCo viewer
+    - The controller gains may need tuning for different trajectories
+    - The example uses a simplified task space controller for demonstration
+"""
+
 import numpy as np
 from simulator import Simulator
 from pathlib import Path
@@ -35,7 +58,7 @@ def main():
         height=1080
     )
     sim.set_controller(task_space_controller)
-    sim.run(time_limit=10000.0)
+    sim.run(time_limit=5.0)
 
 if __name__ == "__main__":
     main() 

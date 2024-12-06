@@ -1,3 +1,26 @@
+"""Step-by-step simulation example with data logging and plotting.
+
+This example shows how to run a robot simulation in headless mode (without visualization),
+collect data at each timestep, and generate plots of the results. This is useful for
+analyzing controller performance and robot behavior.
+
+Key Concepts Demonstrated:
+    - Headless simulation execution
+    - Data collection during simulation
+    - Result visualization using matplotlib
+    - Video recording without real-time display
+
+Example:
+    To run this example:
+    
+    $ python 02_step_by_step.py
+
+The script will generate:
+    - Joint position plots in logs/plots/02_positions.png
+    - Joint velocity plots in logs/plots/02_velocities.png
+    - Simulation video in logs/videos/02_step_by_step.mp4
+"""
+
 import numpy as np
 from simulator import Simulator
 import matplotlib.pyplot as plt
