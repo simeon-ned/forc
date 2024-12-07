@@ -1,6 +1,0 @@
-Thu Dec 21 11:50:23 2023
-WARNING: mju_openResource: unknown file 'practices/01_mujoco/universal_robots_ur5e/scene.xml'
-
-Thu Dec 21 11:50:49 2023
-WARNING: mju_openResource: unknown file 'practices/01_mujoco/universal_robots_ur5e/scene.xml'
-
