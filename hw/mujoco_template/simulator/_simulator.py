@@ -25,74 +25,9 @@ from pathlib import Path
 import mediapy as media
 import signal
 import sys
-
-class ActuatorMotor:
-    """Base class for robot actuators.
-    
-    Attributes:
-        range (List[float]): Valid range for actuator commands [min, max]
-        dyn (np.ndarray): Dynamic parameters for the actuator
-        gain (np.ndarray): Gain parameters for the actuator
-        bias (np.ndarray): Bias parameters for the actuator
-    """
-    
-    def __init__(self, torque_range: List[float] = [-100,100]) -> None:
-        """Initialize actuator with specified torque range.
-        
-        Args:
-            torque_range: Valid range for torque commands [min, max]
-        """
-        self.range = torque_range
-        self.dyn = np.array([1, 0, 0])
-        self.gain = np.array([1, 0, 0])
-        self.bias = np.array([0, 0, 0])
-
-    def __repr__(self) -> str:
-        return f"ActuatorMotor(dyn={self.dyn}, gain={self.gain}, bias={self.bias})"
-
-class ActuatorPosition(ActuatorMotor):
-    """Position-controlled actuator implementation.
-    
-    Attributes:
-        kp (float): Position gain
-        kd (float): Derivative gain
-    """
-    
-    def __init__(self, kp: float = 1, kd: float = 0, position_range: List[float] = [-100,100]) -> None:
-        """Initialize position-controlled actuator.
-        
-        Args:
-            kp: Position gain
-            kd: Derivative gain
-            position_range: Valid range for position commands [min, max]
-        """
-        super().__init__()
-        self.range = position_range
-        self.kp = kp
-        self.kd = kd
-        self.gain[0] = self.kp
-        self.bias[1] = -self.kp
-        self.bias[2] = -self.kd
-
-class ActuatorVelocity(ActuatorMotor):
-    """Velocity-controlled actuator implementation.
-    
-    Attributes:
-        kv (float): Velocity gain
-    """
-    
-    def __init__(self, kv: float = 1, velocity_range: List[float] = [-100,100]) -> None:
-        """Initialize velocity-controlled actuator.
-        
-        Args:
-            kv: Velocity gain
-            velocity_range: Valid range for velocity commands [min, max]
-        """
-        super().__init__()
-        self.range = velocity_range
-        self.kv = kv
-        self.gain[0] = self.kv
-        self.bias[2] = -self.kv
+import os
+import pinocchio as pin
+from ._model_builder import ActuatorMotor, ActuatorPosition, ActuatorVelocity
 
 class Simulator:
     """MuJoCo-based robot simulator with visualization capabilities.
@@ -120,8 +55,7 @@ class Simulator:
     """
     
     def __init__(self, 
-                 xml_path: str = "universal_robots_ur5e/scene.xml", 
-                 dt: float = 0.002,
+                 model: mujoco.MjModel,
                  enable_task_space: bool = False,
                  show_viewer: bool = True,
                  record_video: bool = False,
@@ -132,8 +66,7 @@ class Simulator:
         """Initialize simulator with visualization options.
         
         Args:
-            xml_path: Path to MuJoCo XML model file
-            dt: Simulation timestep
+            model: MuJoCo model instance
             enable_task_space: Whether to enable task space control features
             show_viewer: Whether to show real-time visualization
             record_video: Whether to record simulation video
@@ -142,10 +75,10 @@ class Simulator:
             width: Video frame width
             height: Video frame height
         """
-        self.model = mujoco.MjModel.from_xml_path(xml_path)
-        self.data = mujoco.MjData(self.model)
-        self.model.opt.timestep = dt
-        self.dt = dt
+        # Store model and create data
+        self.model = model
+        self.data = mujoco.MjData(model)
+        self.dt = model.opt.timestep
         
         # Task space control option
         self.enable_task_space = enable_task_space
@@ -176,9 +109,6 @@ class Simulator:
         # Hide task space elements if disabled
         if not enable_task_space:
             self._disable_task_space()
-        
-        # Default actuator configuration
-        self._init_default_actuators()
         
         # Handle graceful shutdown
         signal.signal(signal.SIGINT, self._signal_handler)
@@ -245,60 +175,6 @@ class Simulator:
         mocap_body_id = self.model.body(self.mocap_name).id
         self.model.body_contype[mocap_body_id] = 0
         self.model.body_conaffinity[mocap_body_id] = 0
-
-    def _init_default_actuators(self) -> None:
-        """Initialize default actuator configuration (torque control)."""
-        # Default torque ranges for UR5e joints (in Nm)
-        default_ranges = {
-            'shoulder_pan': [-150, 150],
-            'shoulder_lift': [-150, 150],
-            'elbow': [-150, 150],
-            'wrist_1': [-28, 28],
-            'wrist_2': [-28, 28],
-            'wrist_3': [-28, 28]
-        }
-        
-        self.actuator_configs: Dict[str, ActuatorMotor] = {}
-        for name in self.joint_names:
-            self.actuator_configs[name] = ActuatorMotor(torque_range=default_ranges[name])
-        self._update_actuators()
-
-    def _update_actuators(self) -> None:
-        """Update all actuators in the model based on current configuration."""
-        for name, actuator in self.actuator_configs.items():
-            self.update_actuator(name, actuator)
-
-    def update_actuator(self, actuator_id: Union[str, int], actuator: ActuatorMotor) -> None:
-        """Update specific actuator in the model.
-        
-        Args:
-            actuator_id: Actuator name or ID
-            actuator: Actuator configuration object
-        """
-        model_actuator = self.model.actuator(actuator_id)
-        model_actuator.dynprm = np.zeros(len(model_actuator.dynprm))
-        model_actuator.gainprm = np.zeros(len(model_actuator.gainprm))
-        model_actuator.biasprm = np.zeros(len(model_actuator.biasprm))
-        model_actuator.ctrlrange = actuator.range 
-        model_actuator.dynprm[:3] = actuator.dyn
-        model_actuator.gainprm[:3] = actuator.gain
-        model_actuator.biasprm[:3] = actuator.bias
-
-    def configure_actuators(self, config: Dict[str, ActuatorMotor]) -> None:
-        """Configure multiple actuators at once.
-        
-        Args:
-            config: Dictionary mapping actuator names to their configurations
-        
-        Raises:
-            ValueError: If an unknown actuator name is provided
-        """
-        for name, actuator in config.items():
-            if name in self.actuator_configs:
-                self.actuator_configs[name] = actuator
-            else:
-                raise ValueError(f"Unknown actuator name: {name}")
-        self._update_actuators()
 
     def set_controller(self, controller: Callable) -> None:
         """Set the controller function to be used in simulation.
