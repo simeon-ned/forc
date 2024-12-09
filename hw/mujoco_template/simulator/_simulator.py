@@ -311,7 +311,7 @@ class Simulator:
     def reset(self) -> None:
         """Reset the simulation to initial state using home keyframe."""
         mujoco.mj_resetDataKeyframe(self.model, self.data, self.key_id)
-
+        
     def get_state(self) -> Dict[str, np.ndarray]:
         """Get current robot state.
         
