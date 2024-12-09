@@ -58,7 +58,7 @@ def main():
         height=1080
     )
     sim.set_controller(task_space_controller)
-    sim.run(time_limit=5.0)
+    sim.run(time_limit=10.0)
 
 if __name__ == "__main__":
     main() 
