@@ -9,9 +9,11 @@ code/
 
 hw/hw*
 !hw/mujoco_template/
-hw/mujoco_template/05*
 hw/mujoco_template/06*
 hw/mujoco_template/07*
+hw/mujoco_template/08*
+hw/mujoco_template/09*
+# hw/final/*
 hw/mujoco_template/logs/
 
 TODO
