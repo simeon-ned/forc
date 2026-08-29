@@ -1,0 +1,34 @@
+<p class="sidebar-label">Course</p>
+<ul class="sidebar-list">
+  {% for item in nav.top %}
+  <li>
+    <a href="{{ item.url | url }}"
+       {% if page.url == item.url %}class="active"{% endif %}>{{ item.title }}</a>
+  </li>
+  {% endfor %}
+</ul>
+
+<p class="sidebar-label">Topics</p>
+<ul class="sidebar-list weeks">
+  {% for topic in nav.topics %}
+  <li>
+    <a href="{{ topic.url | url }}"
+       {% if page.url == topic.url %}class="active"{% endif %}>
+      <span class="week-id">{{ topic.id }}</span>
+      {{ topic.title }}
+    </a>
+  </li>
+  {% endfor %}
+</ul>
+
+<p class="sidebar-label">Links</p>
+<ul class="sidebar-list">
+  {% for item in nav.resources %}
+  <li>
+    <a href="{% if item.external %}{{ item.url }}{% else %}{{ item.url | url }}{% endif %}"
+       {% if item.external %}target="_blank" rel="noopener noreferrer"{% endif %}>
+      {{ item.title }}{% if item.external %} ↗{% endif %}
+    </a>
+  </li>
+  {% endfor %}
+</ul>

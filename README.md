@@ -1,66 +1,62 @@
----
-layout: home
-title: Fundamentals of Robot Control
-permalink: /
----
+# Fundamentals of Robot Control (FORC)
 
-### **What this course is about?**
-This is an introductory course dedicated to control over robotic systems (mainly fully actuated). In this course, you will learn the fundamentals of analysis and control over robotic systems described by linear and nonlinear models namely:
-* **State space** modeling
-* **Analysis** of **linear** and **nonlinear** systems
-* **Linear control** (PD, PID, pole placement)
-* **Feedback linearization**, gravity compensation etc.
+Introductory course on classical, optimal, and learning-based control for robots, with MuJoCo practices.
 
+**Site (docs):** build from [`site/`](site/) · **Slides:** [`lectures/`](lectures/) · **Labs:** [`practices/`](practices/) · **Python:** [`src/forc/`](src/forc/)
 
-### **Course organization**
-The course will be delivered in the form of interactive lectures compounded by a
-practice/lab sessions during which we will be implementing all the learned concepts
-within the computer environment (**Google Colab + Python**) and conduct experiments
-* I highly encourage you to do **hand written** notes and not miss classes
-* You will have **final** and **midterm** exams and 
+## Layout
 
+```text
+forc/
+├── site/           # Eleventy course docs (MuJoCo-style nav)
+├── lectures/       # Reveal.js decks (_template + per-week)
+├── practices/      # Guided notebooks + assets
+├── src/forc/       # Shared Python helpers (pip install -e .)
+├── hw/             # Take-homes (th1_mpc, th2_learning) + legacy templates
+├── images/         # Figures shared with the site
+└── _legacy/        # Archived Jekyll + Quarto materials
+```
 
-### **Structure of the course**
+## Quick start (students)
 
-The course is consist of following parts:
+```bash
+git clone https://github.com/simeon-ned/forc.git
+cd forc
+pip install -e ".[sim]"
+```
 
+Then open notebooks under `practices/` (see `practices/README.md` for Docker / devcontainer).
 
-* **Introduction and Modeling** (week 1): recap the concept of dynamical system, model, introducing state space, linear and nonlinear systems, solutions of ODE and simulation.
+## Site (local)
 
+From the repo root (after `npm run install:site` once):
 
+```bash
+npm run install:site
+FORC_PATH_PREFIX= npm run dev
+```
 
-* **Analysis and Control of Linear Systems** (weeks 2-3): Introduction to stability, concept of full state feedback over linear systems
+Or from `site/`:
 
-* **Mid-term exam** (week 4): midterm on linear stability and control 
+```bash
+cd site && npm install && FORC_PATH_PREFIX= npm run dev
+```
 
+Production builds use path prefix `/forc` for GitHub Project Pages (`https://simeon-ned.github.io/forc/`).
 
-* **Analysis and Control over Nonlinear Systems** (weeks 5-7): Linearization, Lyapunov theory, linear control over nonlinear systems, full and partial feedback linearization.
+## Lectures
 
+```bash
+cp -r lectures/_template lectures/02-classical
+cd lectures/01-intro && python3 -m http.server 8081
+```
 
-* **Other topics:** (8 week): Overview of other approaches, state observers, adaptive and robust control, class wrap-up
+## Syllabus
 
-* **Final exam:** the exam on full content of course
+**12 lectures** in **6 topics**, plus weekly practice. Assessment: practices 20%, TH1 25%, TH2 25%, course project (exam) 30%. Guest talks (Sber / Yandex) are separate from the topic list.
 
+Canonical: [`site/content/syllabus.md`](site/content/syllabus.md) · PDF: [`site/public/syllabus.pdf`](site/public/syllabus.pdf) (legacy layout; web page is source of truth).
 
-### **References**
+## License
 
-The material of this course is based on following text books:
-
-
-<p align="center">
-<img src="lectures/00_intro/images/books/references.png" alt="drawing" width="80%" style="margin:auto"/>
-</p>
-
-
-### **Prerequisites**
-
-The students are required to have completed the following courses:
-* **Linear algebra**
-* **Differential Equations**
-  
-Definitely helpful:
-* **Introduction to Robotics** (or similar)
-* **Control Theory** (Linear Control)
-
-Solid knowledge of vector and matrix operations is required, as well as that of
-mechanics (kinematics, dynamics, concept of mechanical energy). 
+See [LICENSE](LICENSE).

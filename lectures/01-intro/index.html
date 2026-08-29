@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>FORC — Week 1 · Intro &amp; simulation</title>
+    <meta name="description" content="Week 1 lectures: control overview, kin/dyn recap, MuJoCo stack." />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/reveal.js@5.1.0/dist/reveal.css" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/reveal.js@5.1.0/dist/theme/white.css" />
+    <link rel="stylesheet" href="css/custom.css" />
+    <link rel="stylesheet" href="css/course.css" />
+  </head>
+  <body>
+    <div class="reveal">
+      <div class="slides">
+        <section class="deck-slide title-slide">
+          <p class="course-tag">FORC · Topic 1 · Lectures 1–2</p>
+          <h1>Intro &amp; simulation</h1>
+          <p class="subtitle">What is control · kin/dyn recap · MuJoCo stack</p>
+          <p class="muted small">Simeon Nedelchev · Fundamentals of Robot Control</p>
+        </section>
+
+        <section class="deck-slide">
+          <h2>Outline</h2>
+          <ol>
+            <li>Course map (6 topics · 12 lectures)</li>
+            <li>Lecture 1 — Control as a loop</li>
+            <li>Kin / dyn interfaces (brief)</li>
+            <li>Lecture 2 — MuJoCo: model, data, step</li>
+            <li>Practice 1 preview</li>
+          </ol>
+        </section>
+
+        <section class="deck-slide">
+          <h2>Course map</h2>
+          <ul>
+            <li><span class="kw">I · Topics 1–3</span> — intro, classical, ID; LQR</li>
+            <li><span class="kw">II · Topics 3–4</span> — LQR, traj opt, MPC, MPPI (TH1)</li>
+            <li><span class="kw">III · Topics 5–6</span> — BC, DAgger, RL (TH2); project = exam</li>
+          </ul>
+          <p class="muted small">Plus guest talks (Sber / Yandex) outside the core topics.</p>
+          <aside class="notes">Breadth over depth; 12 standalone lectures; same MuJoCo stack everywhere.</aside>
+        </section>
+
+        <section class="deck-slide">
+          <h2>Control as a loop</h2>
+          <p>Plant · sensors · controller · actuators.</p>
+          <p>
+            Discrete-time picture we will use in sim:
+            \[
+              x_{t+1} = f(x_t, u_t), \quad
+              y_t = h(x_t), \quad
+              u_t = \pi(y_t)
+            \]
+          </p>
+        </section>
+
+        <section class="deck-slide">
+          <h2>Kin / dyn as interfaces</h2>
+          <ul>
+            <li><span class="kw">FK / IK</span> — map joints ↔ task space</li>
+            <li><span class="kw">Jacobian</span> — velocities / force maps</li>
+            <li><span class="kw">ID / FD</span> — torques ↔ accelerations</li>
+          </ul>
+          <p class="muted small">Prior course owns full derivations; here we only need the APIs for control.</p>
+        </section>
+
+        <section class="deck-slide">
+          <h2>MuJoCo stack</h2>
+          <ul>
+            <li>Author models in <span class="kw">MJCF</span> (or load URDF)</li>
+            <li><code>mjModel</code> — constant compiled model</li>
+            <li><code>mjData</code> — state + scratch for one instance</li>
+            <li><code>mj_step</code> — one simulation step</li>
+          </ul>
+          <p class="muted small">Course code: <code>practices/</code> + shared <code>src/forc/</code></p>
+        </section>
+
+        <section class="deck-slide">
+          <h2>Minimal step</h2>
+          <pre><code class="language-python" data-trim>
+import mujoco
+
+model = mujoco.MjModel.from_xml_path("scene.xml")
+data = mujoco.MjData(model)
+for _ in range(1000):
+    data.ctrl[:] = 0.0          # open-loop
+    mujoco.mj_step(model, data)
+          </code></pre>
+        </section>
+
+        <section class="deck-slide">
+          <h2>Practice 1</h2>
+          <ul>
+            <li>Load a robot (UR5e / IIWA starter in <code>practices/01_mujoco/</code>)</li>
+            <li>Open-loop rollouts</li>
+            <li>Plot joint states and actuators</li>
+          </ul>
+          <p class="muted small">Notes: course site → Week 1</p>
+        </section>
+
+        <section class="deck-slide">
+          <h2>Next</h2>
+          <ul>
+            <li>Finish lecture 2: software layout, viewers, OSMesa / Colab</li>
+            <li>Topic 2 — lectures 3–4: Jacobian velocity control + PD</li>
+          </ul>
+        </section>
+      </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/reveal.js@5.1.0/dist/reveal.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/reveal.js@5.1.0/plugin/notes/notes.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/reveal.js@5.1.0/plugin/math/math.js"></script>
+    <script src="js/config.js"></script>
+  </body>
+</html>

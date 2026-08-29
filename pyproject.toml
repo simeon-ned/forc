@@ -1,0 +1,23 @@
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[project]
+name = "forc"
+version = "0.1.0"
+description = "Shared helpers for Fundamentals of Robot Control (FORC)"
+readme = "README.md"
+requires-python = ">=3.10"
+license = "MIT"
+authors = [{ name = "Simeon Nedelchev", email = "simkaned@gmail.com" }]
+dependencies = [
+  "numpy>=1.24",
+  "matplotlib>=3.7",
+]
+
+[project.optional-dependencies]
+sim = ["mujoco>=3.0"]
+dev = ["ipykernel", "jupyter"]
+
+[tool.hatch.build.targets.wheel]
+packages = ["src/forc"]

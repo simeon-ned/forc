@@ -1,19 +1,48 @@
+# OS / editor
+.DS_Store
+.vscode/
+*.log
 
 # Python
 __pycache__/
+*.py[cod]
+.venv/
+venv/
+*.egg-info/
+dist/
+build/
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+
+# Node / Eleventy
+site/node_modules/
+site/_site/
+
+# Jekyll (legacy)
+.jekyll-cache/
+_site/
+
+# Course drafts / local
 _draft/
 _material/
 draft/
-.jekyll-cache/
 code/
+TODO
 
+# Homework solutions (keep templates)
 hw/hw*
 !hw/mujoco_template/
+!hw/th1_mpc/
+!hw/th2_learning/
+!hw/final/
+!hw/bonus/
 hw/mujoco_template/06*
 hw/mujoco_template/07*
 hw/mujoco_template/08*
 hw/mujoco_template/09*
-# hw/final/*
 hw/mujoco_template/logs/
 
-TODO
+# MuJoCo / notebooks
+**/MUJOCO_LOG.TXT
+**/.ipynb_checkpoints/
