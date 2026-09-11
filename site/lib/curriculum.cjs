@@ -8,7 +8,7 @@ const katex = require("katex");
 const root = path.resolve(__dirname, "../..");
 const read = p => fs.readFileSync(path.join(root, p), "utf8");
 const course = yaml.load(read("course.yml"));
-const prefix = process.env.COURSE_PATH_PREFIX ?? process.env.FORC_PATH_PREFIX ?? course.path_prefix;
+const prefix = process.env.COURSE_PATH_PREFIX ?? course.path_prefix;
 const refs = yaml.load(read("references/references.yml"));
 const url = p => prefix.replace(/\/$/, "") + "/" + p.replace(/^\//, "");
 const md = new MarkdownIt({html:true, linkify:true}).use(anchor).use(texmath, {engine:katex, delimiters:"dollars", katexOptions:{throwOnError:true}});

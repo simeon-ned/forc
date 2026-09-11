@@ -6,8 +6,8 @@ module.exports = function (eleventyConfig) {
   const curriculum = require("./lib/setup.cjs")(eleventyConfig);
   eleventyConfig.setServerPassthroughCopyBehavior("passthrough");
 
-  // Project Pages: https://simeon-ned.github.io/forc/
-  // Local without prefix: FORC_PATH_PREFIX= npm run dev
+  // Project Pages: https://simeon-ned.github.io/courses/forc/
+  // Local without prefix: COURSE_PATH_PREFIX= npm run dev
   const pathPrefix = curriculum.prefix;
 
   const md = markdownIt({
@@ -23,12 +23,10 @@ module.exports = function (eleventyConfig) {
   eleventyConfig.setLibrary("md", {render: curriculum.render});
 
   eleventyConfig.addPassthroughCopy({ "src/css": "css" });
-  eleventyConfig.addPassthroughCopy({ "src/js": "js" });
   eleventyConfig.addPassthroughCopy({ demos: "demos" });
   eleventyConfig.addPassthroughCopy({ public: "." });
 
   eleventyConfig.addWatchTarget("src/css/");
-  eleventyConfig.addWatchTarget("src/js/");
 
   for (const pattern of [
     "**/node_modules/**",

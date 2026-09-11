@@ -1,7 +1,6 @@
 ---
-layout: docs.njk
+layout: course.njk
 title: Syllabus
-subtitle: 12 lectures across 6 topics · weekly practices · breadth over depth.
 permalink: /syllabus/
 ---
 
@@ -10,8 +9,6 @@ permalink: /syllabus/
 **Prior course:** Full kinematics and dynamics are covered previously; here they are only briefly recalled.
 
 We will also host **guest lectures** from experts at **Sber Robotics Center** and **Yandex Robotics** (2–3 speakers) on themes outside the core topics below — not part of the taught topic list.
-
-[Download PDF]({{ '/syllabus.pdf' | url }}) *(legacy layout; this page is canonical)*
 
 ## Short description
 

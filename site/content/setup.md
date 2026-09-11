@@ -39,7 +39,7 @@ npm --prefix site run check
 COURSE_PATH_PREFIX= npm --prefix site run dev
 ~~~
 
-Local development uses port 8080. Production defaults to /forc/ for a project subpath. Set COURSE_PATH_PREFIX to an empty string for root hosting, or to the actual deployment subpath. The generated static site is site/_site/.
+Local development uses port 8080. Production defaults to /courses/forc/. Set COURSE_PATH_PREFIX to an empty string for root hosting, or to the actual deployment subpath. The generated static site is site/_site/.
 
 ## Content ownership
 
@@ -57,4 +57,4 @@ YAML describes data and experiment parameters. Python still uses pyproject.toml 
 
 Changing notes, slides, or YAML rebuilds the local site. Restart the server after changing the hosting path prefix. Run tests and the site link check before release. This edition is a teaching draft; publication requires instructor review and an explicit deployment step. No DOI has been assigned.
 
-See [the course]({{ '/course/' | url }}), [notation]({{ '/notation/' | url }}), and [source map]({{ '/sources/' | url }}).
+See [the course]({{ '/' | url }}), [notation]({{ '/notation/' | url }}), and [source map]({{ '/sources/' | url }}).

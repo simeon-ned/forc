@@ -2,7 +2,7 @@ const fs=require("node:fs"),path=require("node:path");
 const c=require("../lib/curriculum.cjs");
 const root=path.resolve(__dirname,"../_site");
 const pages=[
- "course/index.html","index.html","notation/index.html","setup/index.html",
+ "index.html","notation/index.html","setup/index.html",
  "sources/index.html","references/index.html","cite/index.html","assessments/index.html",
  ...c.modules.flatMap(m=>["notes/"+m.id+"/index.html","lectures/"+m.id+"/index.html"]),
  ...c.practices.map(p=>"practices/"+p.id+"/index.html"),
@@ -14,8 +14,13 @@ for(const m of c.modules) {
  if((deck.match(/<section(?: |>|\n)/g)||[]).length!==m.slides.length+2)
    errors.push("Unexpected nested slide sections: "+m.id);
 }
-const sample=fs.readFileSync(path.join(root,"course/index.html"),"utf8");
+const sample=fs.readFileSync(path.join(root,"index.html"),"utf8");
+if(!sample.includes(c.course.title))errors.push("Title page missing course title");
+if(!sample.includes(">Lecture notes<"))errors.push("Title page missing notes link");
 const prefix=(sample.match(/href="([^"]*)\/css\/curriculum\.css"/)||[])[1]||"";
+const redirect=path.join(root,"course/index.html");
+if(!fs.existsSync(redirect)||!fs.readFileSync(redirect,"utf8").includes('href="'+(prefix||"")+'/'))
+  errors.push("Missing /course/ redirect to the title page");
 for(const file of pages) {
  const full=path.join(root,file);
  if(!fs.existsSync(full)){errors.push("Missing page: "+file);continue;}

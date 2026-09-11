@@ -1,9 +1,0 @@
----
-layout: course.njk
-title: Course notes and practices
-permalink: /course/
----
-<p>{{ course.description }}</p><p>This edition contains {{ lessons.length }} lectures with notes, Reveal.js slides, and linked Python practices. Read <a href="{{ '/notation/' | url }}">the notation contract</a> first and follow <a href="{{ '/setup/' | url }}">the uv setup</a>.</p>
-<h2>Lecture sequence</h2><table><thead><tr><th>Week</th><th>Lecture</th><th>Materials</th></tr></thead><tbody>{% for m in lessons %}<tr><td>{{ m.week }}</td><td>{{ m.number }}. {{ m.title }}</td><td><a href="{{ m.notes_url | url }}">Notes</a> · <a href="{{ m.slides_url | url }}">Slides</a> · <a href="{{ ('/practices/' + m.practice + '/') | url }}">Practice</a></td></tr>{% endfor %}</tbody></table>
-<h2>Assessment</h2><p>Practices 20%, take-home 1 25%, take-home 2 25%, project 30%. See the <a href="{{ '/assessments/' | url }}">assignment briefs and rubrics</a>.</p>
-<h2>Learning from CMU and MIT</h2><p>The lesson notes are original course material. The <a href="{{ '/sources/' | url }}">source map</a> connects each topic to the requested CMU/MIT lecture series and to MuJoCo APIs. These links provide further explanations and derivations.</p>

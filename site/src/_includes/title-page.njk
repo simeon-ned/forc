@@ -1,0 +1,32 @@
+<p class="title-lede">{{ course.description }}</p>
+<p class="muted">{{ course.author }} · {{ lessons.length }} lectures · {{ coursePractices.length }} practices · <a href="{{ course.site_url }}/">{{ course.site_url }}/</a></p>
+<div class="actions">
+  <a class="primary" href="{{ lessons[0].notes_url | url }}">Lecture notes</a>
+  <a href="{{ lessons[0].slides_url | url }}">Slides</a>
+  <a href="{{ '/setup/' | url }}">Setup</a>
+  <a href="{{ '/notation/' | url }}">Notation</a>
+  <a href="{{ '/references/' | url }}">References</a>
+  <a href="{{ '/cite/' | url }}">Cite this course</a>
+</div>
+<h2>Lectures</h2>
+<table>
+  <thead><tr><th>Week</th><th>Lecture</th><th>Materials</th></tr></thead>
+  <tbody>
+  {% for m in lessons %}
+  <tr>
+    <td>{{ m.week }}</td>
+    <td>{{ m.number }}. {{ m.title }}</td>
+    <td><a href="{{ m.notes_url | url }}">Notes</a> · <a href="{{ m.slides_url | url }}">Slides</a> · <a href="{{ ('/practices/' + m.practice + '/') | url }}">Practice</a></td>
+  </tr>
+  {% endfor %}
+  </tbody>
+</table>
+<h2>Practices</h2>
+<ul>
+{% for p in coursePractices %}
+  <li><a href="{{ p.url | url }}">{{ p.title }}</a></li>
+{% endfor %}
+</ul>
+<h2>Assessment</h2>
+<p>Practices 20%, take-home 1 25%, take-home 2 25%, project 30%. See the <a href="{{ '/assessments/' | url }}">assignment briefs and rubrics</a>.</p>
+<p>This is original teaching material. The <a href="{{ '/sources/' | url }}">source map</a> records how each topic connects to the linked CMU and MIT courses and to MuJoCo APIs.</p>

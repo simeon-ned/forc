@@ -12,11 +12,11 @@ The source links are recorded with an access date of 11 September 2026. Online n
 
 ## CMU dynamics
 
-[@cmu-dynamics] and [@cmu-dynamics-code] connect modeling assumptions, integration, rigid-body kinematics, recursive algorithms, constraints, and contact. In the modeling course these form the week-by-week conceptual progression. In FORC they support the compact simulation and dynamics recap rather than duplicating an entire dynamics course.
+[@cmu-dynamics] and [@cmu-dynamics-code] support the compact simulation and dynamics recap in lectures 1–5. They are companions, not a second dynamics course inside FORC.
 
 ## CMU optimal control and reinforcement learning
 
-[@cmu-control] connects local feedback, optimal control, and learning. [@cmu-index] is a dated lecture index, with topics including LQR, MPC, trajectory optimization, rotations, and quadrotors. FORC lectures 6–8 develop local control and predictive control; lectures 9–11 introduce learning. The modeling course uses discretization and rotation topics as supporting context.
+[@cmu-control] connects local feedback, optimal control, and learning. [@cmu-index] is a dated lecture index, with topics including LQR, MPC, trajectory optimization, rotations, and quadrotors. FORC lectures 6–8 develop local control and predictive control; lectures 9–11 introduce learning.
 
 The current course index includes multiple editions. Topic alignment here does not imply that lecture numbering matches every linked playlist.
 
@@ -26,7 +26,7 @@ The current course index includes multiple editions. Topic alignment here does n
 
 ## MIT Robotic Manipulation
 
-[@mit-manipulation-video] is **Robotic Manipulation, Fall 2023**. [@mit-manipulation] and [@mit-pick] support differential kinematics, manipulation, contact, and policy-learning context. FORC's Jacobian and imitation units use these connections; the modeling course uses frame and contact examples.
+[@mit-manipulation-video] is **Robotic Manipulation, Fall 2023**. [@mit-manipulation] and [@mit-pick] support differential kinematics, imitation, and policy-learning context for FORC lectures 3 and 9–10.
 
 ## MuJoCo and other algorithms
 

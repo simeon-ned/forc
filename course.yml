@@ -4,9 +4,9 @@ short_title: FORC
 author: Simeon Nedelchev
 version: 0.2.0
 status: teaching-draft
-site_url: https://simeon-ned.github.io/forc
+site_url: https://simeon-ned.github.io/courses/forc
 repository: https://github.com/simeon-ned/forc
-path_prefix: /forc
+path_prefix: /courses/forc
 python_package: forc
 lectures: 12
 description: Feedback, classical and optimal control, imitation learning, and reinforcement learning with MuJoCo experiments.

@@ -6,5 +6,6 @@ authors:
   - family-names: Nedelchev
     given-names: Simeon
 version: 0.2.0
+url: "https://simeon-ned.github.io/courses/forc/"
 repository-code: "https://github.com/simeon-ned/forc"
 license: Apache-2.0
