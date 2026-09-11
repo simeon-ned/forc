@@ -1,0 +1,9 @@
+id: "04-pd-pid"
+number: 4
+title: "PD, PID, and state feedback"
+week: 2
+duration: 90
+practice: "p02-manipulator"
+prerequisites: "Linear algebra, ODEs, and earlier lectures in this sequence."
+outcomes: ["Relate PD gains to a second-order response.","Explain integral windup and actuator saturation.","Separate continuous stability from sampled implementation."]
+references: ["mit-underactuated","cmu-index"]

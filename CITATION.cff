@@ -1,0 +1,10 @@
+cff-version: 1.2.0
+message: "Please cite the course version and repository commit you consulted."
+title: "Fundamentals of Robot Control"
+type: software
+authors:
+  - family-names: Nedelchev
+    given-names: Simeon
+version: 0.2.0
+repository-code: "https://github.com/simeon-ned/forc"
+license: Apache-2.0

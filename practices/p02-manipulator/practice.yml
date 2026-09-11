@@ -1,0 +1,7 @@
+id: "p02-manipulator"
+title: "2. Differential IK and torque control"
+week: 2
+duration: 120
+references: ["mit-pick","mit-multibody","mujoco-api"]
+entrypoint: "run.py"
+config: "config.yml"

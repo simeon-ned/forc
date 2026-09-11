@@ -1,0 +1,9 @@
+id: "11-reinforcement-learning"
+number: 11
+title: "Reinforcement learning for feedback control"
+week: 6
+duration: 90
+practice: "p06-reinforcement-learning"
+prerequisites: "Linear algebra, ODEs, and earlier lectures in this sequence."
+outcomes: ["Define an MDP and a discounted return.","Implement a small tabular Q-learning baseline.","Distinguish termination, time limits, and reward design."]
+references: ["cmu-control","mit-underactuated","q-learning-paper"]

@@ -1,0 +1,7 @@
+id: "p01-simulation"
+title: "1. A reproducible MuJoCo control loop"
+week: 1
+duration: 120
+references: ["mujoco-api","mujoco-computation"]
+entrypoint: "run.py"
+config: "config.yml"

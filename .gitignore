@@ -24,6 +24,7 @@ site/_site/
 _site/
 
 # Course drafts / local
+outputs/
 _draft/
 _material/
 draft/

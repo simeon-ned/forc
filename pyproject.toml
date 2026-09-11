@@ -4,20 +4,25 @@ build-backend = "hatchling.build"
 
 [project]
 name = "forc"
-version = "0.1.0"
-description = "Shared helpers for Fundamentals of Robot Control (FORC)"
+version = "0.2.0"
+description = "Independent Python course practices"
 readme = "README.md"
-requires-python = ">=3.10"
-license = "MIT"
-authors = [{ name = "Simeon Nedelchev", email = "simkaned@gmail.com" }]
-dependencies = [
-  "numpy>=1.24",
-  "matplotlib>=3.7",
-]
+requires-python = ">=3.11"
+license = "Apache-2.0"
+authors = [{ name = "Simeon Nedelchev" }]
+dependencies = ["numpy>=2.0,<3", "scipy>=1.14,<2", "matplotlib>=3.9,<4", "PyYAML>=6.0,<7", "mujoco==3.13.0"]
 
 [project.optional-dependencies]
-sim = ["mujoco>=3.0"]
-dev = ["ipykernel", "jupyter"]
+sim = []
+notebooks = ["ipykernel>=6", "jupyterlab>=4"]
+mjx = ["mujoco-mjx==3.13.0", "jax>=0.4.35"]
+comparison = ["pin>=3.3"]
+
+[dependency-groups]
+dev = ["pytest>=8,<10"]
 
 [tool.hatch.build.targets.wheel]
 packages = ["src/forc"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]

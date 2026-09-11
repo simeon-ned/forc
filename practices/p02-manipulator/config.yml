@@ -1,0 +1,7 @@
+seed: 7
+dt: 0.005
+steps: 1200
+kp: 35
+kd: 12
+torque_limit: 100
+damping: 0.05

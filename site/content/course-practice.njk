@@ -1,0 +1,11 @@
+---
+pagination:
+  data: coursePractices
+  size: 1
+  alias: practice
+permalink: "/practices/{{ practice.id }}/"
+layout: course.njk
+eleventyComputed:
+  title: "{{ practice.title }}"
+---
+{{ practice.body | safe }}

@@ -1,0 +1,7 @@
+id: "p05-imitation"
+title: "5. Behavior cloning and DAgger"
+week: 5
+duration: 120
+references: ["mit-manipulation","cmu-control"]
+entrypoint: "run.py"
+config: "config.yml"

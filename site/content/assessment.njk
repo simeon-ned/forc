@@ -1,0 +1,11 @@
+---
+pagination:
+  data: assessments
+  size: 1
+  alias: assessment
+permalink: "/assessments/{{ assessment.id }}/"
+layout: course.njk
+eleventyComputed:
+  title: "{{ assessment.title }}"
+---
+{{ assessment.body | safe }}

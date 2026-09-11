@@ -1,6 +1,7 @@
 /** Course IA: topics with separately numbered lectures (guests are not a topic). */
 module.exports = {
   top: [
+    { title: "Current notes & slides", url: "/course/" },
     { title: "Overview", url: "/" },
     { title: "Syllabus", url: "/syllabus/" },
     { title: "Setup", url: "/setup/" },
@@ -139,3 +140,12 @@ module.exports = {
     },
   ],
 };
+
+// Preserve the older topic navigation while connecting it to the current decks.
+const currentLessons = require("../../lib/curriculum.cjs").modules;
+for (const topic of module.exports.topics) {
+  for (const lecture of topic.lectures) {
+    const current = currentLessons.find(item => item.number === lecture.n);
+    if (current) lecture.slides = current.slides_url;
+  }
+}

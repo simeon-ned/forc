@@ -1,0 +1,15 @@
+---
+pagination:
+  data: lessons
+  size: 1
+  alias: lesson
+permalink: "/lectures/{{ lesson.id }}/"
+---
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>{{ lesson.title }} — {{ course.short_title }}</title>
+<link rel="stylesheet" href="{{ '/vendor/reveal/reveal.css' | url }}"><link rel="stylesheet" href="{{ '/vendor/reveal/theme/white.css' | url }}"><link rel="stylesheet" href="{{ '/vendor/katex/katex.min.css' | url }}">
+<style>.reveal{font-family:system-ui,sans-serif;font-size:28px;color:#172c46}.reveal h1{font-size:1.75em}.reveal h2{font-size:1.3em}.reveal h1,.reveal h2{text-transform:none;color:#132947}.reveal .slides{text-align:left}.reveal pre{font-size:.63em;width:100%;box-shadow:none;background:#f2f6fa;padding:12px}.reveal code{font-family:ui-monospace,monospace}.reveal p{line-height:1.4}.reveal li{margin:8px 0}.reveal .katex{font-size:1.02em}.reveal .katex-display{margin:.5em 0}.reveal small{color:#52657c}.reveal a{color:#145c98}</style>
+</head><body><div class="reveal"><div class="slides"><section><small>{{ course.short_title }} · Lecture {{ lesson.number }}</small><h1>{{ lesson.title }}</h1><p>{{ course.author }}</p><p><a href="{{ lesson.notes_url | url }}">Full notes, practice, and references</a></p></section>
+{% for slide in lesson.slides %}<section>{{ slide | safe }}<aside class="notes"><p>Use the worked example and discussion in <a href="{{ lesson.notes_url | url }}">the lecture notes</a>.</p><p>Reading connections: {% for r in lesson.reading %}<a href="{{ r.url }}">{{ r.short }}</a>{% if not loop.last %}; {% endif %}{% endfor %}.</p></aside></section>{% endfor %}
+<section><h2>Reading</h2><ul>{% for r in lesson.reading %}<li><a href="{{ r.url }}">{{ r.short }}</a></li>{% endfor %}</ul><a href="{{ lesson.notes_url | url }}">Return to the notes</a></section></div></div>
+<script src="{{ '/vendor/reveal/reveal.js' | url }}"></script><script src="{{ '/vendor/reveal/notes/notes.js' | url }}"></script><script>Reveal.initialize({hash:true,slideNumber:"c/t",transition:"none",width:1200,height:800,margin:.07,plugins:[RevealNotes]});</script></body></html>

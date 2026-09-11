@@ -1,0 +1,6 @@
+seed: 7
+dt: 0.05
+steps: 100
+episodes: 12
+rounds: 3
+ridge: 0.01

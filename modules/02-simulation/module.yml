@@ -1,0 +1,9 @@
+id: "02-simulation"
+number: 2
+title: "Simulation and the MuJoCo control loop"
+week: 1
+duration: 90
+practice: "p01-simulation"
+prerequisites: "Linear algebra, ODEs, and earlier lectures in this sequence."
+outcomes: ["Map the equations of motion to MuJoCo arrays.","Separate physics and controller rates.","Construct a deterministic headless experiment."]
+references: ["cmu-index","mujoco-api","mujoco-mjx"]

@@ -1,26 +1,27 @@
 ---
-layout: docs.njk
-title: Practices
-subtitle: MuJoCo (Python) — same stack for guided labs, take-homes, and the project.
+layout: course.njk
+title: Practice schedule and earlier notebooks
 permalink: /practices/
 ---
 
-Practices live in [`practices/`](https://github.com/simeon-ned/forc/tree/master/practices). Install helpers first ([Setup]({{ '/setup/' | url }})), then open the material for the week.
+The current teaching edition has seven practice briefs with complete Python reference experiments, YAML configurations, and submission guidance. The first labs are formative; the later weeks support the take-homes and project.
 
-Practice weeks roughly follow the [topics]({{ '/syllabus/#lectures-by-topic' | url }}). Early weeks are **guided / in-class**; later weeks are mainly **take-home and project** work with TA support.
+~~~bash
+uv sync --locked
+uv run --locked python scripts/run_practices.py
+~~~
 
-## Schedule
+{% for p in coursePractices %}
+<h2 id="week-{{ loop.index }}">Week {{ loop.index }}: {{ p.title }}</h2>
 
-| Week | Mode | Plant / focus | Short description | Location |
-| --- | --- | --- | --- | --- |
-| <span id="week-1">1</span> | Guided lab | Simple models → MuJoCo | State-space toys; load a robot; open-loop sim; plot states, actuators, sensors | `practices/01_mujoco/` |
-| <span id="week-2">2</span> | Guided lab | Manipulator | **IK + inverse dynamics** (one lab): Jacobian / IK tracking; ID / gravity compensation vs PD | TBD |
-| <span id="week-3">3</span> | In-class / TH1 start | **Cart-pole + quadrotor** | **LQR in class** (hover / tracking); clarify Take-home 1 | TBD |
-| <span id="week-4">4</span> | Take-home | **Quadrotor** | TH1: traj opt + constrained MPC (thrust / rate / box limits) vs LQR; optional MPPI | `hw/th1_mpc/` |
-| <span id="week-5">5</span> | Take-home | IL task (provided) | TH2 kickoff: BC + DAgger; early progress with TA | `hw/th2_learning/` |
-| <span id="week-6">6</span> | Take-home / project | RL + project | Reward / RL experiments; project progress; TA feedback | `hw/th2_learning/` |
-| <span id="week-7">7</span> | Project | Course project | Dry-runs / presentations; final TA feedback | — |
+[Open practice]({{ p.url | url }}). The corresponding source is practices/{{ p.id }}/. Each entrypoint records its configuration and metrics under outputs/.
 
-**Split:** LQR = in-class on cart-pole **and** quadrotor (week 3). TH1 = MPC + traj opt on the **same quadrotor** so constraints are clearly useful.
+{% endfor %}
 
-Existing starter notebooks (UR5e / IIWA / Go1) under `practices/` will be remapped as content is rewritten.
+## Assessments
+
+[TH1: constrained quadrotor motion]({{ '/assessments/th1/' | url }}) extends the full quadrotor LQR model with trajectory optimization and MPC. [TH2: learning]({{ '/assessments/th2/' | url }}) compares imitation and reward-based control. The [final project]({{ '/assessments/project/' | url }}) requires a bounded new question and reproducible evidence.
+
+## Earlier notebooks
+
+The older UR5e, IIWA, and Go1 notebooks remain in the repository. They are historical supplements and may use different dependencies or conventions. The current p01- through p07- practices and the MuJoCo notation contract define this edition's tested baseline.

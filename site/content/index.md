@@ -7,6 +7,8 @@ permalink: /
 
 ## What this course is
 
+The **new teaching edition** is ready to browse: [12 lectures, notes and slides]({{ '/course/' | url }}) · [MuJoCo notation]({{ '/notation/' | url }}) · [Python practices]({{ '/practices/p01-simulation/' | url }}).
+
 This introductory course surveys robot control from classical methods to optimal and learning-based approaches. Students briefly recall kinematics/dynamics, learn what feedback control is, simulate systems in modern software, design **kinematic (velocity)** and **dynamic (torque)** controllers, and apply optimal control (LQR, trajectory optimization, MPC, MPPI) and learning methods (behavior cloning, DAgger, reinforcement learning).
 
 Style is **breadth over depth**: **12 standalone lectures** grouped into topics, plus weekly practices — core ideas, simulation, and curated references / GitHub code, not deep proofs. Advanced classical and learning methods are omitted; Lyapunov appears only lightly as energy-based reasoning.

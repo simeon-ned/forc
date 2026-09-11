@@ -1,0 +1,9 @@
+id: "05-inverse-dynamics"
+number: 5
+title: "Gravity compensation and inverse dynamics"
+week: 3
+duration: 90
+practice: "p02-manipulator"
+prerequisites: "Linear algebra, ODEs, and earlier lectures in this sequence."
+outcomes: ["Derive computed-torque control under explicit assumptions.","Distinguish bias compensation from full inverse dynamics.","Diagnose force accounting with MuJoCo."]
+references: ["mit-multibody","mujoco-computation","mujoco-api"]

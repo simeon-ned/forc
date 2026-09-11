@@ -1,0 +1,9 @@
+id: "09-behavior-cloning"
+number: 9
+title: "Behavior cloning and policy evaluation"
+week: 5
+duration: 90
+practice: "p05-imitation"
+prerequisites: "Linear algebra, ODEs, and earlier lectures in this sequence."
+outcomes: ["Build a supervised dataset from an expert controller.","Prevent trajectory leakage between training and evaluation.","Explain the gap between action prediction and closed-loop success."]
+references: ["mit-manipulation","mit-manipulation-video","cmu-control"]

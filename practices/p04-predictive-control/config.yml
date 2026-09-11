@@ -1,0 +1,11 @@
+seed: 7
+dt: 0.05
+steps: 80
+horizon: 20
+initial_height: 1.6
+target_height: 0.5
+height_bounds: [0,2]
+acceleration_bounds: [-4,4]
+samples: 256
+noise: 1.5
+temperature: 2

@@ -1,0 +1,7 @@
+---
+layout: course.njk
+title: References
+permalink: /references/
+---
+<p>References used in this course. Bibliography and source coverage are versioned with the repository.</p>
+{% for r in references %}<section id="{{ r.id }}"><h2>{{ r.short }}</h2><p>{{ r.author }}. <a href="{{ r.url }}">{{ r.title }}</a>.</p><p>{{ r.use }}</p></section>{% endfor %}

@@ -1,0 +1,9 @@
+id: "07-mpc"
+number: 7
+title: "Constrained model predictive control"
+week: 4
+duration: 90
+practice: "p04-predictive-control"
+prerequisites: "Linear algebra, ODEs, and earlier lectures in this sequence."
+outcomes: ["Formulate a finite-horizon constrained controller.","Explain receding-horizon execution and feasibility.","Compare MPC with saturated LQR fairly."]
+references: ["cmu-index","mit-trajopt"]

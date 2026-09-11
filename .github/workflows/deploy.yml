@@ -39,6 +39,18 @@ jobs:
       - name: Build site
         run: npm run build
 
+      - name: Check generated links and assets
+        run: npm run check
+
+      - name: Setup uv
+        uses: astral-sh/setup-uv@v6
+
+      - name: Verify numerical practices
+        working-directory: .
+        run: |
+          uv sync --locked
+          uv run --locked pytest
+
       - name: Setup Pages
         uses: actions/configure-pages@v5
 

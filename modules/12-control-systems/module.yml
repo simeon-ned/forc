@@ -1,0 +1,9 @@
+id: "12-control-systems"
+number: 12
+title: "Control stacks, locomotion, and the course project"
+week: 7
+duration: 90
+practice: "p07-project"
+prerequisites: "Linear algebra, ODEs, and earlier lectures in this sequence."
+outcomes: ["Explain a layered robot-control architecture.","Identify contact, estimation, and timing assumptions.","Design a reproducible comparison with defensible conclusions."]
+references: ["mit-underactuated","mit-manipulation","mujoco-mjx"]

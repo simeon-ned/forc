@@ -1,63 +1,60 @@
 ---
-layout: docs.njk
-title: Setup
-subtitle: Environment for practices, take-homes, and shared helpers.
+layout: course.njk
+title: Setup and reproducible workflow
 permalink: /setup/
 ---
 
-## Clone
+## Python with uv
 
-```bash
-git clone https://github.com/simeon-ned/forc.git
-cd forc
-```
+Work in this course's repository. It has its own Python package, environment, and lockfile; the other course is not a dependency.
 
-## Python package
+~~~bash
+uv sync --locked
+uv run --locked python practices/p01-simulation/run.py
+uv run --locked pytest
+~~~
 
-Shared helpers live in `src/forc/`. From the repo root:
+Use Python 3.12 as recorded in .python-version. Core examples are headless CPU programs and do not require OpenGL, a viewer, or a GPU. Generated metrics and CSV traces go under outputs/. Keep each experiment's YAML file and output directory separate.
 
-```bash
-pip install -e ".[sim]"
-# or, if you use uv:
-uv sync
-```
+Install [uv using Astral's instructions](https://docs.astral.sh/uv/getting-started/installation/) if it is not available. The dependency lock fixes the tested software; a successful install does not replace the course's numerical tests.
 
-Then in notebooks:
+## Optional environments
 
-```python
-from forc.sim import load_model
-from forc.plot import states
-```
+~~~bash
+uv sync --locked --extra notebooks
+uv sync --locked --extra mjx
+uv sync --locked --extra comparison
+~~~
 
-## Practices environment
+Extras are optional and can be combined. MJX and Pinocchio comparisons live in the modeling course's Practice 7. Installing an extra does not mean every possible model feature or hardware backend has been tested.
 
-See [`practices/README.md`](https://github.com/simeon-ned/forc/blob/master/practices/README.md) for the recommended **devcontainer** / Docker setup (MuJoCo + OSMesa).
+## Notes and slides
 
-A conda-style env file is also at the repo root (`environment.yml`) for local installs.
+The site uses Eleventy, with Reveal.js and KaTeX served locally from the built site.
 
-## Software you will touch
+~~~bash
+npm --prefix site ci
+npm --prefix site run build
+npm --prefix site run check
+COURSE_PATH_PREFIX= npm --prefix site run dev
+~~~
 
-Brief, practical exposure as needed by topic (not a full software course):
+Local development uses port 8080. Production defaults to /forc/ for a project subpath. Set COURSE_PATH_PREFIX to an empty string for root hosting, or to the actual deployment subpath. The generated static site is site/_site/.
 
-| Area | Tools |
-| --- | --- |
-| Dynamics / simulation / learning envs | MuJoCo, Warp, mjlab, Newton, Pinocchio |
-| Optimal control / traj opt | Crocoddyl, CasADi, CVXOPT |
+## Content ownership
 
-Primary lab stack: **MuJoCo + Python** notebooks (local or containerized).
+Each lecture lives in modules/<id>/:
 
-## Site (optional, for contributors)
+- module.yml declares its stable ID, week, objectives, practice, and reference IDs.
+- notes.md contains explanations, derivations, worked examples, and exercises.
+- slides.md contains short Reveal sections separated by a line containing three hyphens.
 
-```bash
-cd site
-npm install
-FORC_PATH_PREFIX= npm run dev   # http://localhost:8080
-```
+Each practice contains practice.yml, config.yml, README.md, and run.py. Reusable Python functions live in src/forc/. course.yml holds course metadata, references/references.yml holds source records, and CITATION.cff supplies citation metadata.
 
-Production builds use path prefix `/forc` for GitHub Project Pages.
+YAML describes data and experiment parameters. Python still uses pyproject.toml and uv.lock, and Eleventy still needs a small JavaScript build configuration. These tool-native files are intentionally retained.
 
-## Lectures
+## Editing and release
 
-Slide decks are static Reveal.js folders under `lectures/`. Open any `index.html` locally, or use the **Open slides** button on week pages after the site is built.
+Changing notes, slides, or YAML rebuilds the local site. Restart the server after changing the hosting path prefix. Run tests and the site link check before release. This edition is a teaching draft; publication requires instructor review and an explicit deployment step. No DOI has been assigned.
 
-Course overview and assessment: [Syllabus]({{ '/syllabus/' | url }}).
+See [the course]({{ '/course/' | url }}), [notation]({{ '/notation/' | url }}), and [source map]({{ '/sources/' | url }}).

@@ -1,0 +1,9 @@
+id: "10-dagger"
+number: 10
+title: "DAgger and interactive imitation learning"
+week: 5
+duration: 90
+practice: "p05-imitation"
+prerequisites: "Linear algebra, ODEs, and earlier lectures in this sequence."
+outcomes: ["Implement dataset aggregation using expert labels.","Explain why expert access is part of the algorithm's cost.","Design comparisons that can reveal both improvement and failure."]
+references: ["mit-manipulation","cmu-control","dagger-paper"]

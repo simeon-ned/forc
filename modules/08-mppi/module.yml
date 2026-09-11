@@ -1,0 +1,9 @@
+id: "08-mppi"
+number: 8
+title: "Sampling-based predictive control and MPPI"
+week: 4
+duration: 90
+practice: "p04-predictive-control"
+prerequisites: "Linear algebra, ODEs, and earlier lectures in this sequence."
+outcomes: ["Implement a weighted stochastic-shooting controller.","Explain sample count, temperature, and exploration scale.","Separate an MPPI-inspired baseline from formal path-integral assumptions."]
+references: ["cmu-control","mit-trajopt","mujoco-mjx","mppi-paper"]

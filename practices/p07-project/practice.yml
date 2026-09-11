@@ -1,0 +1,7 @@
+id: "p07-project"
+title: "7. Reproducible control project"
+week: 7
+duration: 120
+references: ["mit-underactuated","mit-manipulation"]
+entrypoint: "run.py"
+config: "config.yml"

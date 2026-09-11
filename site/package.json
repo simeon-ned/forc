@@ -1,19 +1,22 @@
 {
   "name": "forc-site",
   "private": true,
-  "version": "0.1.0",
-  "description": "Fundamentals of Robot Control — course site (Eleventy)",
+  "version": "0.2.0",
   "scripts": {
     "build": "eleventy",
     "dev": "CHOKIDAR_USEPOLLING=1 eleventy --serve --port=8080",
-    "dev:native": "eleventy --serve --port=8080",
-    "clean": "rm -rf _site"
+    "check": "node scripts/check.cjs"
   },
   "engines": {
     "node": ">=20"
   },
   "devDependencies": {
-    "@11ty/eleventy": "^3.0.0",
-    "markdown-it-anchor": "^9.2.0"
+    "@11ty/eleventy": "3.1.6",
+    "markdown-it": "14.3.1",
+    "markdown-it-anchor": "9.2.0",
+    "markdown-it-texmath": "1.0.0",
+    "katex": "0.16.22",
+    "js-yaml": "4.3.2",
+    "reveal.js": "5.2.1"
   }
 }

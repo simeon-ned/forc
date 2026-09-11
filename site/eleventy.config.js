@@ -3,11 +3,12 @@ const markdownItAnchor = require("markdown-it-anchor");
 
 /** @param {import("@11ty/eleventy").UserConfig} eleventyConfig */
 module.exports = function (eleventyConfig) {
+  const curriculum = require("./lib/setup.cjs")(eleventyConfig);
   eleventyConfig.setServerPassthroughCopyBehavior("passthrough");
 
   // Project Pages: https://simeon-ned.github.io/forc/
   // Local without prefix: FORC_PATH_PREFIX= npm run dev
-  const pathPrefix = process.env.FORC_PATH_PREFIX ?? "/forc";
+  const pathPrefix = curriculum.prefix;
 
   const md = markdownIt({
     html: true,
@@ -19,7 +20,7 @@ module.exports = function (eleventyConfig) {
     }),
     level: [2, 3],
   });
-  eleventyConfig.setLibrary("md", md);
+  eleventyConfig.setLibrary("md", {render: curriculum.render});
 
   eleventyConfig.addPassthroughCopy({ "src/css": "css" });
   eleventyConfig.addPassthroughCopy({ "src/js": "js" });
@@ -36,7 +37,6 @@ module.exports = function (eleventyConfig) {
     "**/_site/**",
     "../lectures/**",
     "../images/**",
-    "../practices/**",
     "../_legacy/**",
     "**/.git/**",
   ]) {

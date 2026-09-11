@@ -1,0 +1,13 @@
+---
+pagination:
+  data: lessons
+  size: 1
+  alias: lesson
+permalink: "/notes/{{ lesson.id }}/"
+layout: course.njk
+eleventyComputed:
+  title: "{{ lesson.title }}"
+---
+<h2>Learning outcomes</h2><ul>{% for outcome in lesson.outcomes %}<li>{{ outcome }}</li>{% endfor %}</ul>
+<p><strong>Prerequisites:</strong> {{ lesson.prerequisites }}</p>
+{{ lesson.notes | safe }}

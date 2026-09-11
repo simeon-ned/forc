@@ -1,62 +1,39 @@
 # Fundamentals of Robot Control (FORC)
 
-Introductory course on classical, optimal, and learning-based control for robots, with MuJoCo practices.
+Independent course repository: 12 lecture units, Reveal.js slides, Eleventy notes, seven practice briefs, Python reference experiments, and assessments.
 
-**Site (docs):** build from [`site/`](site/) · **Slides:** [`lectures/`](lectures/) · **Labs:** [`practices/`](practices/) · **Python:** [`src/forc/`](src/forc/)
+## Start
 
-## Layout
+~~~bash
+uv sync --locked
+uv run --locked pytest
+uv run --locked python scripts/run_practices.py
+npm --prefix site ci
+COURSE_PATH_PREFIX= npm --prefix site run dev
+~~~
 
-```text
-forc/
-├── site/           # Eleventy course docs (MuJoCo-style nav)
-├── lectures/       # Reveal.js decks (_template + per-week)
-├── practices/      # Guided notebooks + assets
-├── src/forc/       # Shared Python helpers (pip install -e .)
-├── hw/             # Take-homes (th1_mpc, th2_learning) + legacy templates
-├── images/         # Figures shared with the site
-└── _legacy/        # Archived Jekyll + Quarto materials
-```
+Open http://localhost:8080/course/. See [TEACHING_GUIDE.md](TEACHING_GUIDE.md) for the teaching rhythm and release checklist.
 
-## Quick start (students)
+## Current material
 
-```bash
-git clone https://github.com/simeon-ned/forc.git
-cd forc
-pip install -e ".[sim]"
-```
+- [modules/](modules/): module.yml, notes.md, and slides.md per lecture.
+- [practices/](practices/): current labs use p01- through p07- directory names, each with YAML metadata/config and a runnable entrypoint.
+- [src/forc/](src/forc/): local Python models, numerical utilities, and reference experiments.
+- [assessments/](assessments/): two take-homes and the project, with rubrics.
+- [course.yml](course.yml), [references](references/references.yml), and [CITATION.cff](CITATION.cff): metadata and attribution.
+- [site/](site/): independent static-site build. The modeling course is not a dependency.
 
-Then open notebooks under `practices/` (see `practices/README.md` for Docker / devcontainer).
+## Build and verify
 
-## Site (local)
+~~~bash
+npm --prefix site run build
+npm --prefix site run check
+~~~
 
-From the repo root (after `npm run install:site` once):
+Production uses /forc/ by default; COURSE_PATH_PREFIX selects another hosting subpath. The existing Pages workflow now checks numerical tests and generated links before deployment. No deployment happens until the repository workflow is explicitly triggered by its configured events.
 
-```bash
-npm run install:site
-FORC_PATH_PREFIX= npm run dev
-```
+## Earlier material
 
-Or from `site/`:
+The original decks under lectures/, older notebooks, hw/ templates, and _legacy/ remain available. New teaching content is authored in modules/ and rendered by Eleventy. The existing [syllabus](site/content/syllabus.md) remains the 12-lecture schedule; its older PDF is historical.
 
-```bash
-cd site && npm install && FORC_PATH_PREFIX= npm run dev
-```
-
-Production builds use path prefix `/forc` for GitHub Project Pages (`https://simeon-ned.github.io/forc/`).
-
-## Lectures
-
-```bash
-cp -r lectures/_template lectures/02-classical
-cd lectures/01-intro && python3 -m http.server 8081
-```
-
-## Syllabus
-
-**12 lectures** in **6 topics**, plus weekly practice. Assessment: practices 20%, TH1 25%, TH2 25%, course project (exam) 30%. Guest talks (Sber / Yandex) are separate from the topic list.
-
-Canonical: [`site/content/syllabus.md`](site/content/syllabus.md) · PDF: [`site/public/syllabus.pdf`](site/public/syllabus.pdf) (legacy layout; web page is source of truth).
-
-## License
-
-See [LICENSE](LICENSE).
+This is a teaching draft with original explanations and links to the requested CMU/MIT sources. It is not a video transcript or a peer-reviewed release. New material retains the repository's [Apache-2.0 license](LICENSE); linked external material retains its own licensing.

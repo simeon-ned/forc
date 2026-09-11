@@ -1,0 +1,9 @@
+---
+layout: course.njk
+title: Assessments and project
+permalink: /assessments/
+---
+<p>Practices contribute 20%, each take-home 25%, and the final project 30%. Calendar dates remain for the instructor to set.</p>
+<ul>{% for a in assessments %}<li><a href="{{ ('/assessments/' + a.id + '/') | url }}">{{ a.title }}</a> ({{ a.weight }}%)</li>{% endfor %}</ul>
+<h2>Common submission standard</h2><p>Include equations and assumptions, code, a YAML configuration, a locked environment, numerical results with units, and a failure analysis. Cite external ideas and respect source licenses. Disclose assistance and keep responsibility for verifying all submitted claims.</p>
+<p>The weekly reference practices are formative material. Assessment requires the additional experiments and analysis specified in each brief. This draft has no announced dates or institution-specific late-work policy.</p>

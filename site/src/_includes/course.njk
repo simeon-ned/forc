@@ -1,0 +1,19 @@
+<!doctype html>
+<html lang="en"><head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<title>{{ title }} — {{ course.short_title }}</title>
+<meta name="description" content="{{ description or course.description }}">
+<link rel="stylesheet" href="{{ '/css/curriculum.css' | url }}">
+<link rel="stylesheet" href="{{ '/vendor/katex/katex.min.css' | url }}">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='6' fill='%23132947'/%3E%3Cpath d='M6 23V9h20M16 9v14' fill='none' stroke='%2385c7fa' stroke-width='3'/%3E%3C/svg%3E">
+</head><body>
+<a class="skip" href="#content">Skip to content</a>
+<header class="course-bar"><a href="{{ '/course/' | url }}">{{ course.short_title }}</a><nav aria-label="Main"><a href="{{ '/course/' | url }}">Course</a><a href="{{ '/notation/' | url }}">Notation</a><a href="{{ '/setup/' | url }}">Setup</a><a href="{{ '/references/' | url }}">References</a><a href="{{ '/cite/' | url }}">Cite</a></nav></header>
+<div class="course-shell">
+<aside class="course-nav"><p>Lectures</p>{% for item in lessons %}<a {% if lesson.id == item.id %}aria-current="page"{% endif %} href="{{ item.notes_url | url }}"><span>{{ item.number }}</span>{{ item.title }}</a>{% endfor %}<p>Practices</p>{% for item in coursePractices %}<a href="{{ item.url | url }}">{{ item.title }}</a>{% endfor %}<a href="{{ '/assessments/' | url }}">Assessments &amp; project</a></aside>
+<main id="content"><p class="eyebrow">{{ course.short_title }} · {{ course.status }} · v{{ course.version }}</p><h1>{{ title }}</h1>
+{% if lesson %}<p class="muted">Lecture {{ lesson.number }} · Week {{ lesson.week }} · {{ lesson.duration }} minutes</p><div class="actions"><a href="{{ lesson.slides_url | url }}">Open slides</a><a href="{{ ('/practices/' + lesson.practice + '/') | url }}">Practice</a></div>{% endif %}
+<article>{{ content | safe }}</article>
+{% if lesson %}<section class="reading"><h2>Reading and source connections</h2>{% for r in lesson.reading %}<p><a href="{{ r.url }}">{{ r.title }}</a> — {{ r.author }}. {{ r.use }}</p>{% endfor %}</section>{% endif %}
+<footer>{{ course.author }} · <a href="{{ course.repository }}">Repository</a> · <a href="{{ '/cite/' | url }}">Citation and attribution</a></footer>
+</main></div></body></html>

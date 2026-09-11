@@ -1,0 +1,9 @@
+id: "06-lqr-trajopt"
+number: 6
+title: "LQR and trajectory optimization"
+week: 3
+duration: 90
+practice: "p03-lqr"
+prerequisites: "Linear algebra, ODEs, and earlier lectures in this sequence."
+outcomes: ["Linearize a discrete simulator in tangent coordinates.","Compute and validate a discrete LQR controller.","Distinguish local regulation from trajectory optimization."]
+references: ["cmu-index","mit-lqr","mit-trajopt"]

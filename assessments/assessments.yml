@@ -1,0 +1,9 @@
+- id: th1
+  title: "TH1: Constrained quadrotor motion"
+  weight: 25
+- id: th2
+  title: "TH2: Learning a control policy"
+  weight: 25
+- id: project
+  title: "Final control project"
+  weight: 30
