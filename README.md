@@ -30,7 +30,7 @@ npm --prefix site run build
 npm --prefix site run check
 ~~~
 
-Production uses `/courses/forc/` by default, so the public title page is https://simeon-ned.github.io/courses/forc/. `COURSE_PATH_PREFIX` selects another hosting subpath. Every push to `main` or `master` builds, validates, and publishes only `site/_site` through GitHub Pages; the workflow can also be started manually.
+Production uses `/forc/` by default, so the public title page is https://simeon-ned.github.io/forc/. `COURSE_PATH_PREFIX` selects another hosting subpath. Every push to `main` or `master` builds, validates, and publishes only `site/_site` through GitHub Pages; the workflow can also be started manually.
 
 ## Earlier material
 

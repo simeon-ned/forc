@@ -6,7 +6,7 @@ module.exports = function (eleventyConfig) {
   const curriculum = require("./lib/setup.cjs")(eleventyConfig);
   eleventyConfig.setServerPassthroughCopyBehavior("passthrough");
 
-  // Project Pages: https://simeon-ned.github.io/courses/forc/
+  // Project Pages: https://simeon-ned.github.io/forc/
   // Local without prefix: COURSE_PATH_PREFIX= npm run dev
   const pathPrefix = curriculum.prefix;
 

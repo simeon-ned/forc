@@ -39,7 +39,7 @@ npm --prefix site run check
 COURSE_PATH_PREFIX= npm --prefix site run dev
 ~~~
 
-Local development uses port 8080. Production defaults to /courses/forc/. Set COURSE_PATH_PREFIX to an empty string for root hosting, or to the actual deployment subpath. The generated static site is site/_site/.
+Local development uses port 8080. Production defaults to /forc/. Set COURSE_PATH_PREFIX to an empty string for root hosting, or to the actual deployment subpath. The generated static site is site/_site/.
 
 ## Content ownership
 
