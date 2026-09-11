@@ -30,10 +30,10 @@ npm --prefix site run build
 npm --prefix site run check
 ~~~
 
-Production uses /forc/ by default; COURSE_PATH_PREFIX selects another hosting subpath. The existing Pages workflow now checks numerical tests and generated links before deployment. No deployment happens until the repository workflow is explicitly triggered by its configured events.
+Production uses `/forc/` by default; `COURSE_PATH_PREFIX` selects another hosting subpath. Every push to `main` or `master` builds, validates, and publishes only `site/_site` through GitHub Pages; the workflow can also be started manually.
 
 ## Earlier material
 
-The original decks under lectures/, older notebooks, hw/ templates, and _legacy/ remain available. New teaching content is authored in modules/ and rendered by Eleventy. The existing [syllabus](site/content/syllabus.md) remains the 12-lecture schedule; its older PDF is historical.
+Historical source notes and notebooks remain under `_legacy/content/`; obsolete Jekyll, Quarto, and standalone lecture-site bundles have been removed. Current teaching content is authored in `modules/` and rendered by Eleventy. The [syllabus](site/content/syllabus.md) is the current 12-lecture schedule.
 
 This is a teaching draft with original explanations and links to the requested CMU/MIT sources. It is not a video transcript or a peer-reviewed release. New material retains the repository's [Apache-2.0 license](LICENSE); linked external material retains its own licensing.

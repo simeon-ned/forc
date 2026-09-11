@@ -25,8 +25,6 @@ module.exports = function (eleventyConfig) {
   eleventyConfig.addPassthroughCopy({ "src/css": "css" });
   eleventyConfig.addPassthroughCopy({ "src/js": "js" });
   eleventyConfig.addPassthroughCopy({ demos: "demos" });
-  eleventyConfig.addPassthroughCopy({ "../lectures": "lectures" });
-  eleventyConfig.addPassthroughCopy({ "../images": "images" });
   eleventyConfig.addPassthroughCopy({ public: "." });
 
   eleventyConfig.addWatchTarget("src/css/");
@@ -35,8 +33,6 @@ module.exports = function (eleventyConfig) {
   for (const pattern of [
     "**/node_modules/**",
     "**/_site/**",
-    "../lectures/**",
-    "../images/**",
     "../_legacy/**",
     "**/.git/**",
   ]) {

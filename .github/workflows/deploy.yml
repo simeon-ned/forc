@@ -19,9 +19,6 @@ concurrency:
 jobs:
   build:
     runs-on: ubuntu-latest
-    defaults:
-      run:
-        working-directory: site
     steps:
       - name: Checkout
         uses: actions/checkout@v4
@@ -29,27 +26,27 @@ jobs:
       - name: Setup Node
         uses: actions/setup-node@v4
         with:
-          node-version: "20"
+          node-version: "22"
           cache: npm
           cache-dependency-path: site/package-lock.json
 
       - name: Install dependencies
-        run: npm ci
+        run: npm --prefix site ci
 
       - name: Build site
-        run: npm run build
+        run: npm --prefix site run build
 
       - name: Check generated links and assets
-        run: npm run check
+        run: npm --prefix site run check
 
       - name: Setup uv
         uses: astral-sh/setup-uv@v6
 
       - name: Verify numerical practices
-        working-directory: .
         run: |
           uv sync --locked
           uv run --locked pytest
+          uv run --locked python scripts/run_practices.py
 
       - name: Setup Pages
         uses: actions/configure-pages@v5

@@ -11,6 +11,6 @@ This edition is a teaching draft, not a published or peer-reviewed course releas
 - Keep generated datasets, environments, and temporary output out of the source commit.
 - Review and commit only intended changes, preserving unrelated work.
 - Set a release tag and update version metadata together when approved. CITATION.cff currently has no DOI or release date.
-- The existing Pages workflow publishes on its configured main/master push or manual trigger. Its build now includes numerical and link checks.
+- The Pages workflow publishes only `site/_site` on a `main`/`master` push or manual trigger, after numerical practices and generated links pass.
 
 No repository push, release tag, deployment, or DOI registration was performed while creating this draft.

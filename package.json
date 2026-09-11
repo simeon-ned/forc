@@ -4,10 +4,9 @@
   "description": "Fundamentals of Robot Control — scripts delegate to site/",
   "scripts": {
     "dev": "npm run dev --prefix site",
-    "dev:native": "npm run dev:native --prefix site",
     "build": "npm run build --prefix site",
-    "clean": "npm run clean --prefix site",
-    "install:site": "npm install --prefix site"
+    "check": "npm run check --prefix site",
+    "install:site": "npm ci --prefix site"
   },
   "engines": {
     "node": ">=20"

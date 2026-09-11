@@ -1,9 +1,7 @@
-# Archived materials from the Jekyll + Quarto edition
+# Archived source materials
 
 | Path | Contents |
 | --- | --- |
-| `jekyll/` | GitBook remote theme, layouts, old pages, assets |
-| `lectures-quarto/` | Quarto / Reveal site_libs + previous lecture HTML |
 | `content/` | Old `_sort` notes, `_sim` TODOs, syllabus drafts |
 
-Active course content lives in `site/`, `lectures/`, `practices/`, `src/forc/`, and `hw/`.
+The obsolete Jekyll, Quarto, and standalone lecture-site bundles were removed so they cannot be published accidentally. Active course content lives in `modules/`, `site/`, `practices/`, `src/forc/`, and `assessments/`.
