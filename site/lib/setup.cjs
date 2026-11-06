@@ -16,6 +16,9 @@ module.exports = function(config) {
   config.addPassthroughCopy({"node_modules/reveal.js/plugin/notes":"vendor/reveal/notes"});
   config.addPassthroughCopy({"node_modules/katex/dist":"vendor/katex"});
   config.addPassthroughCopy({"../CITATION.cff":"CITATION.cff"});
+  config.addPassthroughCopy({"../practices/p01-simulation/tutorial.ipynb":"practices/p01-simulation/tutorial.ipynb"});
+  config.addPassthroughCopy({"../practices/p01-simulation/run.py":"practices/p01-simulation/run.py"});
+  config.addPassthroughCopy({"../practices/p02-manipulator/control_and_linearization.ipynb":"practices/p02-manipulator/control_and_linearization.ipynb"});
   config.addPassthroughCopy({"../course.yml":"downloads/course.yml"});
   config.addPassthroughCopy({"../assessments":"downloads/assessments"});
   for (const item of ["../modules","../practices","../course.yml","../references"]) config.addWatchTarget(item);

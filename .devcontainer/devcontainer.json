@@ -1,0 +1,23 @@
+{
+  "name": "FORC practices (Python 3.12 + uv)",
+  "build": {
+    "dockerfile": "Dockerfile",
+    "context": "."
+  },
+  "remoteUser": "vscode",
+  "containerEnv": {
+    "UV_PROJECT_ENVIRONMENT": "/home/vscode/.venvs/forc"
+  },
+  "postCreateCommand": "uv sync --locked --extra all --group dev",
+  "customizations": {
+    "vscode": {
+      "extensions": [
+        "ms-python.python",
+        "ms-toolsai.jupyter"
+      ],
+      "settings": {
+        "python.defaultInterpreterPath": "/home/vscode/.venvs/forc/bin/python"
+      }
+    }
+  }
+}

@@ -19,9 +19,9 @@ Review mathematical claims, select optional extensions appropriate to prerequisi
 ## Validation commands
 
 ~~~bash
-uv sync --locked
-uv run --locked pytest
-uv run --locked python scripts/run_practices.py
+uv sync --locked --extra all --group dev
+uv run --locked --extra all --group dev pytest
+uv run --locked --extra all --group dev python scripts/run_practices.py
 npm --prefix site ci
 npm --prefix site run build
 npm --prefix site run check

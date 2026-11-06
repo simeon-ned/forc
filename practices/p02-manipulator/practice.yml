@@ -1,5 +1,5 @@
 id: "p02-manipulator"
-title: "2. Differential IK and torque control"
+title: "2. Manipulator control and linearization"
 week: 2
 duration: 120
 references: ["mit-pick","mit-multibody","mujoco-api"]

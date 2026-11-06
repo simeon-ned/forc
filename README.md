@@ -5,14 +5,16 @@ Independent course repository: 12 lecture units, Reveal.js slides, Eleventy note
 ## Start
 
 ~~~bash
-uv sync --locked
-uv run --locked pytest
-uv run --locked python scripts/run_practices.py
+uv sync --locked --extra all --group dev
+uv run --locked --extra all --group dev pytest
+uv run --locked --extra all --group dev python scripts/run_practices.py
 npm --prefix site ci
 COURSE_PATH_PREFIX= npm --prefix site run dev
 ~~~
 
 Open http://localhost:8080/. See [TEACHING_GUIDE.md](TEACHING_GUIDE.md) for the teaching rhythm and release checklist.
+
+For a smaller install, use `uv sync --locked --extra p01` (or `p02` through `p07`). The [practice setup guide](practices/README.md) includes conda, the tutorial, and the devcontainer.
 
 ## Current material
 

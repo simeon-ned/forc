@@ -7,8 +7,8 @@ permalink: /practices/
 The current teaching edition has seven practice briefs with complete Python reference experiments, YAML configurations, and submission guidance. The first labs are formative; the later weeks support the take-homes and project.
 
 ~~~bash
-uv sync --locked
-uv run --locked python scripts/run_practices.py
+uv sync --locked --extra all
+uv run --locked --extra all python scripts/run_practices.py
 ~~~
 
 {% for p in coursePractices %}

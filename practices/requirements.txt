@@ -1,8 +1,0 @@
-ipykernel
-numpy 
-scipy
-mujoco
-mediapy
-pinocchio
-darli
-robot_descriptions

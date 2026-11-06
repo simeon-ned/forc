@@ -1,18 +1,22 @@
 """Numerical and MuJoCo utilities, local to this course repository."""
 import argparse
 import json
+from importlib.metadata import PackageNotFoundError, version
 from pathlib import Path
 import numpy as np
 import yaml
-import mujoco
 
 def dense_mass(model, data):
     """MuJoCo 3.13 signature. Call mj_forward before requesting derived quantities."""
+    import mujoco
+
     result = np.empty((model.nv, model.nv))
     mujoco.mj_fullM(model, data, result)
     return result
 
 def tangent_error(model, reference_q, q, reference_v, v):
+    import mujoco
+
     dq = np.empty(model.nv)
     mujoco.mj_differentiatePos(model, dq, 1.0, reference_q, q)
     return np.concatenate((dq, v - reference_v))
@@ -29,6 +33,8 @@ def quat_exp(phi):
     return np.r_[np.cos(theta/2), 0.5*np.sinc(theta/(2*np.pi))*phi]
 
 def quat_matrix(q):
+    import mujoco
+
     out = np.empty(9)
     mujoco.mju_quat2Mat(out, np.asarray(q, dtype=float))
     return out.reshape(3, 3)
@@ -54,7 +60,11 @@ def run_cli(experiment, practice_dir):
     output=args.output or practice_dir.parents[1]/"outputs"/practice_dir.name
     output.mkdir(parents=True, exist_ok=True)
     metrics, trace=experiment(config)
-    result={"experiment":practice_dir.name, "mujoco_version":mujoco.__version__,
+    try:
+        mujoco_version = version("mujoco")
+    except PackageNotFoundError:
+        mujoco_version = None
+    result={"experiment":practice_dir.name, "mujoco_version":mujoco_version,
             "config":config, "metrics":metrics}
     encoded=json.dumps(result, indent=2, allow_nan=False)
     (output/"metrics.json").write_text(encoded+"\n")

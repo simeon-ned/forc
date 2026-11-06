@@ -6,17 +6,26 @@ Implement and inspect reward-based learning before moving to neural robot polici
 
 ## Run from this repository
 
+Run from the repository root. See the [shared setup guide](../README.md) for uv, conda, rendering, and installing all practices.
+
 ~~~bash
-uv sync --locked
-uv run --locked python practices/p06-reinforcement-learning/run.py
+uv sync --locked --extra p06
+uv run --locked --extra p06 python practices/p06-reinforcement-learning/run.py
 ~~~
 
-The program writes configuration, MuJoCo version, and metrics to outputs/p06-reinforcement-learning/metrics.json. Experiments with a time history also write trajectory.csv. These are generated results and are not source material.
+With the course conda environment activated:
+
+~~~bash
+python scripts/setup_conda.py p06
+python practices/p06-reinforcement-learning/run.py
+~~~
+
+The program writes configuration, available MuJoCo version (null when not installed), and metrics to outputs/p06-reinforcement-learning/metrics.json. Experiments with a time history also write trajectory.csv. These are generated results and are not source material.
 
 Use a separate configuration and output directory for each variation:
 
 ~~~bash
-uv run --locked python practices/p06-reinforcement-learning/run.py --config practices/p06-reinforcement-learning/config.yml --output outputs/p06-reinforcement-learning/baseline
+uv run --locked --extra p06 python practices/p06-reinforcement-learning/run.py --config practices/p06-reinforcement-learning/config.yml --output outputs/p06-reinforcement-learning/baseline
 ~~~
 
 Keep the original configuration as the baseline. Record all changes in your report; avoid changing several physical and numerical parameters at once.

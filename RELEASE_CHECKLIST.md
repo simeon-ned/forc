@@ -4,7 +4,7 @@ This edition is a teaching draft, not a published or peer-reviewed course releas
 
 - Review the 12 lecture notes, worked examples, slide decks, and assessment rubrics.
 - Confirm dates, grading policies, prerequisites, and optional topics with the instructor.
-- Run uv sync --locked, uv run --locked pytest, and uv run --locked python scripts/run_practices.py.
+- Run uv sync --locked --extra all --group dev, uv run --locked --extra all --group dev pytest, and uv run --locked --extra all --group dev python scripts/run_practices.py.
 - Build with npm --prefix site ci and npm --prefix site run build, then run npm --prefix site run check.
 - Check both the root-hosted preview and the intended production path prefix.
 - Verify external links and source licenses. The playlist links are companion material; full video transcripts have not been reviewed or copied.

@@ -41,12 +41,14 @@ jobs:
 
       - name: Setup uv
         uses: astral-sh/setup-uv@v6
+        with:
+          version: "0.11.25"
 
       - name: Verify numerical practices
         run: |
-          uv sync --locked
-          uv run --locked pytest
-          uv run --locked python scripts/run_practices.py
+          uv sync --locked --extra all --group dev
+          uv run --locked --extra all --group dev pytest
+          uv run --locked --extra all --group dev python scripts/run_practices.py
 
       - name: Setup Pages
         uses: actions/configure-pages@v5

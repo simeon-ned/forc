@@ -908,18 +908,28 @@ name = "forc"
 version = "0.2.0"
 source = { editable = "." }
 dependencies = [
-    { name = "matplotlib" },
-    { name = "mujoco" },
     { name = "numpy", version = "2.4.6", source = { registry = "https://pypi.org/simple" }, marker = "python_full_version < '3.12'" },
     { name = "numpy", version = "2.5.3", source = { registry = "https://pypi.org/simple" }, marker = "python_full_version >= '3.12'" },
     { name = "pyyaml" },
-    { name = "scipy", version = "1.17.1", source = { registry = "https://pypi.org/simple" }, marker = "python_full_version < '3.12'" },
-    { name = "scipy", version = "1.18.1", source = { registry = "https://pypi.org/simple" }, marker = "python_full_version >= '3.12'" },
 ]
 
 [package.optional-dependencies]
+all = [
+    { name = "ipykernel" },
+    { name = "jupyterlab" },
+    { name = "matplotlib" },
+    { name = "mediapy" },
+    { name = "mujoco" },
+    { name = "mujoco-menagerie" },
+    { name = "scipy", version = "1.17.1", source = { registry = "https://pypi.org/simple" }, marker = "python_full_version < '3.12'" },
+    { name = "scipy", version = "1.18.1", source = { registry = "https://pypi.org/simple" }, marker = "python_full_version >= '3.12'" },
+]
 comparison = [
     { name = "pin" },
+]
+control = [
+    { name = "scipy", version = "1.17.1", source = { registry = "https://pypi.org/simple" }, marker = "python_full_version < '3.12'" },
+    { name = "scipy", version = "1.18.1", source = { registry = "https://pypi.org/simple" }, marker = "python_full_version >= '3.12'" },
 ]
 mjx = [
     { name = "jax", version = "0.10.2", source = { registry = "https://pypi.org/simple" }, marker = "python_full_version < '3.12'" },
@@ -929,6 +939,43 @@ mjx = [
 notebooks = [
     { name = "ipykernel" },
     { name = "jupyterlab" },
+    { name = "matplotlib" },
+    { name = "mediapy" },
+    { name = "mujoco" },
+    { name = "mujoco-menagerie" },
+]
+p01 = [
+    { name = "ipykernel" },
+    { name = "jupyterlab" },
+    { name = "matplotlib" },
+    { name = "mediapy" },
+    { name = "mujoco" },
+    { name = "mujoco-menagerie" },
+]
+p02 = [
+    { name = "ipykernel" },
+    { name = "jupyterlab" },
+    { name = "matplotlib" },
+    { name = "mediapy" },
+    { name = "mujoco" },
+    { name = "mujoco-menagerie" },
+]
+p03 = [
+    { name = "mujoco" },
+    { name = "scipy", version = "1.17.1", source = { registry = "https://pypi.org/simple" }, marker = "python_full_version < '3.12'" },
+    { name = "scipy", version = "1.18.1", source = { registry = "https://pypi.org/simple" }, marker = "python_full_version >= '3.12'" },
+]
+p04 = [
+    { name = "scipy", version = "1.17.1", source = { registry = "https://pypi.org/simple" }, marker = "python_full_version < '3.12'" },
+    { name = "scipy", version = "1.18.1", source = { registry = "https://pypi.org/simple" }, marker = "python_full_version >= '3.12'" },
+]
+p07 = [
+    { name = "mujoco" },
+    { name = "scipy", version = "1.17.1", source = { registry = "https://pypi.org/simple" }, marker = "python_full_version < '3.12'" },
+    { name = "scipy", version = "1.18.1", source = { registry = "https://pypi.org/simple" }, marker = "python_full_version >= '3.12'" },
+]
+sim = [
+    { name = "mujoco" },
 ]
 
 [package.dev-dependencies]
@@ -938,18 +985,27 @@ dev = [
 
 [package.metadata]
 requires-dist = [
+    { name = "forc", extras = ["control"], marker = "extra == 'p04'" },
+    { name = "forc", extras = ["notebooks"], marker = "extra == 'p01'" },
+    { name = "forc", extras = ["notebooks"], marker = "extra == 'p02'" },
+    { name = "forc", extras = ["p01", "p02", "p03", "p04", "p05", "p06", "p07"], marker = "extra == 'all'" },
+    { name = "forc", extras = ["sim"], marker = "extra == 'notebooks'" },
+    { name = "forc", extras = ["sim", "control"], marker = "extra == 'p03'" },
+    { name = "forc", extras = ["sim", "control"], marker = "extra == 'p07'" },
     { name = "ipykernel", marker = "extra == 'notebooks'", specifier = ">=6" },
     { name = "jax", marker = "extra == 'mjx'", specifier = ">=0.4.35" },
     { name = "jupyterlab", marker = "extra == 'notebooks'", specifier = ">=4" },
-    { name = "matplotlib", specifier = ">=3.9,<4" },
-    { name = "mujoco", specifier = "==3.13.0" },
+    { name = "matplotlib", marker = "extra == 'notebooks'", specifier = ">=3.9,<4" },
+    { name = "mediapy", marker = "extra == 'notebooks'", specifier = ">=1.2,<2" },
+    { name = "mujoco", marker = "extra == 'sim'", specifier = "==3.13.0" },
+    { name = "mujoco-menagerie", marker = "extra == 'notebooks'", specifier = "==2026.9.0" },
     { name = "mujoco-mjx", marker = "extra == 'mjx'", specifier = "==3.13.0" },
     { name = "numpy", specifier = ">=2.0,<3" },
     { name = "pin", marker = "extra == 'comparison'", specifier = ">=3.3" },
     { name = "pyyaml", specifier = ">=6.0,<7" },
-    { name = "scipy", specifier = ">=1.14,<2" },
+    { name = "scipy", marker = "extra == 'control'", specifier = ">=1.14,<2" },
 ]
-provides-extras = ["sim", "notebooks", "mjx", "comparison"]
+provides-extras = ["sim", "control", "notebooks", "p01", "p02", "p03", "p04", "p05", "p06", "p07", "all", "mjx", "comparison"]
 
 [package.metadata.requires-dev]
 dev = [{ name = "pytest", specifier = ">=8,<10" }]
@@ -1808,6 +1864,22 @@ wheels = [
 ]
 
 [[package]]
+name = "mediapy"
+version = "1.2.7"
+source = { registry = "https://pypi.org/simple" }
+dependencies = [
+    { name = "ipython" },
+    { name = "matplotlib" },
+    { name = "numpy", version = "2.4.6", source = { registry = "https://pypi.org/simple" }, marker = "python_full_version < '3.12'" },
+    { name = "numpy", version = "2.5.3", source = { registry = "https://pypi.org/simple" }, marker = "python_full_version >= '3.12'" },
+    { name = "pillow" },
+]
+sdist = { url = "https://files.pythonhosted.org/packages/7c/99/8b59dbcebf7e84b35e86c893f52fdc2953299d66ef1fcbacca26162818b0/mediapy-1.2.7.tar.gz", hash = "sha256:fd3826ca156f9165cd369f44d4d345d5609df1da3caf867df7ce304e19dd7fde", size = 28660, upload-time = "2026-07-01T13:14:43.448Z" }
+wheels = [
+    { url = "https://files.pythonhosted.org/packages/10/70/eeb41d81fea2b3165cfe7ae1c662f9dc6310b14b230a96260376c2891cc7/mediapy-1.2.7-py3-none-any.whl", hash = "sha256:fc81a9190d9724b02286efac4e7a67f384024e078fda0a3cac9fdf25e2f8878f", size = 28015, upload-time = "2026-07-01T13:14:42.524Z" },
+]
+
+[[package]]
 name = "mistune"
 version = "3.3.4"
 source = { registry = "https://pypi.org/simple" }
@@ -1905,6 +1977,18 @@ wheels = [
     { url = "https://files.pythonhosted.org/packages/d0/24/d8940d78fe095ba1a487ddbb78988c1bf713cc5bf804decab69f9139c2ad/mujoco-3.13.0-cp315-cp315t-manylinux_2_27_aarch64.manylinux_2_28_aarch64.whl", hash = "sha256:b721c67303c6d9b199975ea4877c1630e631e9c516364d8d0facce50a4478c74", size = 19429100, upload-time = "2026-09-09T15:39:46.758Z" },
     { url = "https://files.pythonhosted.org/packages/ee/62/008aff0516c03ce691087dd2725a3b0a9465898c4a3cedbdf6271d7da4ff/mujoco-3.13.0-cp315-cp315t-manylinux_2_27_x86_64.manylinux_2_28_x86_64.whl", hash = "sha256:f8408eb402c4faab5ad854ae17c19a6761dc45954a514bb553151b936cea274c", size = 20376298, upload-time = "2026-09-09T15:39:49.31Z" },
     { url = "https://files.pythonhosted.org/packages/1f/c1/f5bf84a9c719e1089c67afa254627dace7ec8aa4552223afcd298c50cece/mujoco-3.13.0-cp315-cp315t-win_amd64.whl", hash = "sha256:509ac70d08707b41bcdb754c481fb5ddbb03acc38c0072f72c6768fbd0ee1d83", size = 18314734, upload-time = "2026-09-09T15:39:52.471Z" },
+]
+
+[[package]]
+name = "mujoco-menagerie"
+version = "2026.9.0"
+source = { registry = "https://pypi.org/simple" }
+dependencies = [
+    { name = "mujoco" },
+]
+sdist = { url = "https://files.pythonhosted.org/packages/7e/78/9bb837efbd6fb4fc3506644c59fc006817cf5ded02f7d4c71c82996b2504/mujoco_menagerie-2026.9.0.tar.gz", hash = "sha256:529692ad7293855f3f6f426940f492df758e8486e323101a89c6118c7996fda9", size = 24416, upload-time = "2026-09-04T16:52:46.308Z" }
+wheels = [
+    { url = "https://files.pythonhosted.org/packages/1f/97/5e99584a51dfeb0f86b1643f9718365de6e3abc79c5fab0599280d46a2d8/mujoco_menagerie-2026.9.0-py3-none-any.whl", hash = "sha256:6e664043f773691bf44861b2d157599e75bf3443e8430ffda122b4f42a82bbd7", size = 29673, upload-time = "2026-09-04T16:52:45.153Z" },
 ]
 
 [[package]]

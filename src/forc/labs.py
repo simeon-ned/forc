@@ -1,33 +1,51 @@
 """Headless reference experiments for FORC. Each function returns metrics and a trace."""
 import time
 import numpy as np
-import mujoco
-from scipy.linalg import solve_discrete_are
-from scipy.optimize import minimize
-from . import models
 from .numerics import dense_mass, tangent_error
 
 def dlqr(A, B, Q, R):
+    from scipy.linalg import solve_discrete_are
+
     P=solve_discrete_are(A,B,Q,R)
     return np.linalg.solve(R+B.T@P@B, B.T@P@A), P
 
 def simulation(cfg):
-    """Inspect model dimensions and the generalized force balance."""
-    m=models.arm(cfg["dt"]); d=mujoco.MjData(m)
-    d.qpos[:]=[0.4,-0.6]; d.qvel[:]=[0.2,-0.1]; d.ctrl[:]=[1,-1]
-    mujoco.mj_forward(m,d)
-    M=dense_mass(m,d)
-    residual=M@d.qacc+d.qfrc_bias-d.qfrc_passive-d.qfrc_actuator-d.qfrc_applied-d.qfrc_constraint
-    rows=[]
+    """Inspect Menagerie robot dimensions and the generalized force balance."""
+    import mujoco
+    import mujoco_menagerie as mm
+
+    m = mm.load("universal_robots_ur5e")
+    m.opt.timestep = cfg["dt"]
+    m.opt.disableflags |= mujoco.mjtDisableBit.mjDSBL_ACTUATION
+    d = mujoco.MjData(m)
+    d.qpos[:] = [-0.6, -1.2, -2.1, 0.7, 0.7, 0.7]
+    d.qvel[:] = np.linspace(-0.1, 0.1, m.nv)
+    mujoco.mj_forward(m, d)
+    M = dense_mass(m, d)
+    residual = (M @ d.qacc + d.qfrc_bias - d.qfrc_passive
+                - d.qfrc_actuator - d.qfrc_applied - d.qfrc_constraint)
+    rows = []
     for _ in range(cfg["steps"]):
-        mujoco.mj_step(m,d); rows.append([d.time,*d.qpos,*d.qvel])
-    free=models.quadrotor()
-    return {"force_residual":float(np.linalg.norm(residual)),
-            "minimum_mass_eigenvalue":float(np.linalg.eigvalsh(M).min()),
-            "arm_nq":m.nq,"arm_nv":m.nv,"free_nq":free.nq,"free_nv":free.nv}, (["time","q1","q2","v1","v2"],rows)
+        mujoco.mj_step(m, d)
+        if not np.isfinite(d.qpos).all() or not np.isfinite(d.qvel).all():
+            raise ValueError("Non-finite state in passive UR5e simulation")
+        rows.append([d.time, *d.qpos, *d.qvel])
+    dimensions = {"universal_robots_ur5e": {"nq": m.nq, "nv": m.nv, "nu": m.nu}}
+    for name in ("unitree_g1", "unitree_go2"):
+        robot = mm.load(name)
+        dimensions[name] = {"nq": robot.nq, "nv": robot.nv, "nu": robot.nu}
+    metrics = {"force_residual": float(np.linalg.norm(residual)),
+               "minimum_mass_eigenvalue": float(np.linalg.eigvalsh(M).min()),
+               "robots": dimensions, "actuation_enabled": False}
+    columns = ["time", *[f"q{i + 1}" for i in range(m.nq)],
+               *[f"v{i + 1}" for i in range(m.nv)]]
+    return metrics, (columns, rows)
 
 def manipulator(cfg):
     """Compare joint controllers and demonstrate damped differential IK."""
+    import mujoco
+    from . import models
+
     m=models.arm(cfg["dt"]); target=np.array([-0.3,0.6]); initial=np.array([0.6,-0.8])
     metrics={}; rows=[]
     for method in ("pd","bias_pd","computed_torque"):
@@ -60,6 +78,8 @@ def manipulator(cfg):
     return metrics,(["time","q1","q2","v1","v2","u1","u2"],rows)
 
 def linearize_equilibrium(m, d):
+    import mujoco
+
     n=2*m.nv+m.na
     A=np.zeros((n,n)); B=np.zeros((n,m.nu))
     mujoco.mj_forward(m,d)
@@ -68,6 +88,9 @@ def linearize_equilibrium(m, d):
 
 def lqr(cfg):
     """Stabilize cart-pole and full free-joint quadrotor near their equilibria."""
+    import mujoco
+    from . import models
+
     metrics={}; trace=[]
     for name in ("cartpole","quadrotor"):
         m=getattr(models,name)(cfg["dt"]); ref=mujoco.MjData(m)
@@ -101,6 +124,8 @@ def lqr(cfg):
 
 def predictive(cfg):
     """Compare MPC, clipped LQR, and MPPI-inspired weighted shooting in vertical flight."""
+    from scipy.optimize import minimize
+
     dt=cfg["dt"]; A=np.array([[1,dt],[0,1.]])
     B=np.array([[dt*dt/2],[dt]])
     Q=np.diag([12.,2.]); R=np.array([[0.2]])

@@ -11,10 +11,11 @@ jobs:
       - uses: actions/checkout@v4
       - uses: astral-sh/setup-uv@v6
         with:
+          version: "0.11.25"
           enable-cache: true
-      - run: uv sync --locked
-      - run: uv run --locked pytest
-      - run: uv run --locked python scripts/run_practices.py
+      - run: uv sync --locked --extra all --group dev
+      - run: uv run --locked --extra all --group dev pytest
+      - run: uv run --locked --extra all --group dev python scripts/run_practices.py
       - uses: actions/setup-node@v4
         with:
           node-version: "22"
@@ -23,3 +24,17 @@ jobs:
       - run: npm --prefix site ci
       - run: npm --prefix site run build
       - run: npm --prefix site run check
+
+  practice-environments:
+    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        profile: [p01, p02, p03, p04, p05, p06, p07]
+    steps:
+      - uses: actions/checkout@v4
+      - uses: astral-sh/setup-uv@v6
+        with:
+          version: "0.11.25"
+          enable-cache: true
+      - run: uv run --no-project --python 3.12 python scripts/check_practice_envs.py --profile ${{ matrix.profile }}

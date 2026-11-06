@@ -10,13 +10,34 @@ readme = "README.md"
 requires-python = ">=3.11"
 license = "Apache-2.0"
 authors = [{ name = "Simeon Nedelchev" }]
-dependencies = ["numpy>=2.0,<3", "scipy>=1.14,<2", "matplotlib>=3.9,<4", "PyYAML>=6.0,<7", "mujoco==3.13.0"]
+dependencies = ["numpy>=2.0,<3", "PyYAML>=6.0,<7"]
 
 [project.optional-dependencies]
-sim = []
-notebooks = ["ipykernel>=6", "jupyterlab>=4"]
+# Features are shared by the practice profiles below.
+sim = ["mujoco==3.13.0"]
+control = ["scipy>=1.14,<2"]
+notebooks = [
+    "ipykernel>=6",
+    "jupyterlab>=4",
+    "matplotlib>=3.9,<4",
+    "mediapy>=1.2,<2",
+    "mujoco-menagerie==2026.9.0",
+    "forc[sim]",
+]
+p01 = ["forc[notebooks]"]
+p02 = ["forc[notebooks]"]
+p03 = ["forc[sim,control]"]
+p04 = ["forc[control]"]
+p05 = []
+p06 = []
+p07 = ["forc[sim,control]"]
+all = ["forc[p01,p02,p03,p04,p05,p06,p07]"]
+# Optional extensions, not required by the seven current practices.
 mjx = ["mujoco-mjx==3.13.0", "jax>=0.4.35"]
 comparison = ["pin>=3.3"]
+
+[tool.uv]
+default-groups = []
 
 [dependency-groups]
 dev = ["pytest>=8,<10"]

@@ -35,10 +35,18 @@ const modules = fs.readdirSync(path.join(root,"modules"), {withFileTypes:true})
      reading:m.references.map(id => ({id,...refs[id]})),
      notes_url:"/notes/"+e.name+"/", slides_url:"/lectures/"+e.name+"/"};
  }).sort((a,b) => a.number-b.number);
+// Practice READMEs are also read directly in the repository. Map their shared
+// setup links to the site route while keeping notebook downloads relative.
+function renderPractice(source) {
+  return render(source).replace(/href="\.\.\/README\.md(?:#([^"]+))?"/g, (_, fragment) => {
+    const anchor = fragment === "rendering-and-robot-downloads" ? "#rendering-and-verification" : "";
+    return 'href="' + url("/setup/") + anchor + '"';
+  });
+}
 const practices = fs.readdirSync(path.join(root,"practices"), {withFileTypes:true})
  .filter(e => e.isDirectory() && fs.existsSync(path.join(root,"practices",e.name,"practice.yml")))
  .map(e => ({...yaml.load(read("practices/"+e.name+"/practice.yml")),
-   body:render(read("practices/"+e.name+"/README.md")), url:"/practices/"+e.name+"/"}));
+   body:renderPractice(read("practices/"+e.name+"/README.md")), url:"/practices/"+e.name+"/"}));
 const assessments = yaml.load(read("assessments/assessments.yml")).map(a => ({...a,body:render(read("assessments/"+a.id+".md"))}));
 if (modules.length !== course.lectures) throw new Error("Lecture count differs from course.yml");
 for (const m of modules) {

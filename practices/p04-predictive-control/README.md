@@ -6,17 +6,26 @@ Compare explicit constraints and sampling on a shared vertical-flight model.
 
 ## Run from this repository
 
+Run from the repository root. See the [shared setup guide](../README.md) for uv, conda, rendering, and installing all practices.
+
 ~~~bash
-uv sync --locked
-uv run --locked python practices/p04-predictive-control/run.py
+uv sync --locked --extra p04
+uv run --locked --extra p04 python practices/p04-predictive-control/run.py
 ~~~
 
-The program writes configuration, MuJoCo version, and metrics to outputs/p04-predictive-control/metrics.json. Experiments with a time history also write trajectory.csv. These are generated results and are not source material.
+With the course conda environment activated:
+
+~~~bash
+python scripts/setup_conda.py p04
+python practices/p04-predictive-control/run.py
+~~~
+
+The program writes configuration, available MuJoCo version (null when not installed), and metrics to outputs/p04-predictive-control/metrics.json. Experiments with a time history also write trajectory.csv. These are generated results and are not source material.
 
 Use a separate configuration and output directory for each variation:
 
 ~~~bash
-uv run --locked python practices/p04-predictive-control/run.py --config practices/p04-predictive-control/config.yml --output outputs/p04-predictive-control/baseline
+uv run --locked --extra p04 python practices/p04-predictive-control/run.py --config practices/p04-predictive-control/config.yml --output outputs/p04-predictive-control/baseline
 ~~~
 
 Keep the original configuration as the baseline. Record all changes in your report; avoid changing several physical and numerical parameters at once.

@@ -1,5 +1,5 @@
 id: "p01-simulation"
-title: "1. A reproducible MuJoCo control loop"
+title: "1. Robot models and MuJoCo basics"
 week: 1
 duration: 120
 references: ["mujoco-api","mujoco-computation"]
