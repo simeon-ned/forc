@@ -1,0 +1,15 @@
+id: "01-modeling"
+aliases: ["02-simulation"]
+number: 1
+title: "Robotic systems, models, and state space"
+week: 1
+duration: 90
+practice: "p01-simulation"
+prerequisites: "Vectors and matrices, basic calculus, and Newton’s laws. No previous FORC lecture is required."
+outcomes:
+  - "Construct a state-space description and distinguish model assumptions from numerical approximation."
+  - "Explain MuJoCo configuration, tangent velocity, actuator input, and floating-base dimensions."
+  - "Connect kinematics, Jacobians, dynamics, energy, and external wrenches to MuJoCo quantities."
+  - "Interpret contact and equilibrium for G1 and Go2 without assuming a standing pose is balanced."
+  - "Separate physics and viewer update rates, check force consistency, and explain model edits."
+references: ["mujoco-computation", "mujoco-api", "mujoco-modeling", "mujoco-model-editing", "mujoco-menagerie", "mit-multibody"]

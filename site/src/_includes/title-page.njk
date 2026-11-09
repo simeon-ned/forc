@@ -1,7 +1,7 @@
 <p class="title-lede">{{ course.description }}</p>
 <p class="muted">{{ course.author }} · {{ lessons.length }} lectures · {{ coursePractices.length }} practices · <a href="{{ course.site_url }}/">{{ course.site_url }}/</a></p>
 <div class="actions">
-  <a class="primary" href="{{ lessons[0].notes_url | url }}">Lecture notes</a>
+  <a class="primary" href="{{ lessons[0].notes_url | url }}">Start lecture 01</a>
   <a href="{{ lessons[0].slides_url | url }}">Slides</a>
   <a href="{{ '/setup/' | url }}">Setup</a>
   <a href="{{ '/notation/' | url }}">Notation</a>
@@ -16,7 +16,7 @@
   <tr>
     <td>{{ m.week }}</td>
     <td>{{ m.number }}. {{ m.title }}</td>
-    <td><a href="{{ m.notes_url | url }}">Notes</a> · <a href="{{ m.slides_url | url }}">Slides</a> · <a href="{{ ('/practices/' + m.practice + '/') | url }}">Practice</a></td>
+    <td><a href="{{ m.notes_url | url }}">Read lecture</a> · <a href="{{ m.slides_url | url }}">Slides</a> · <a href="{{ ('/practices/' + m.practice + '/') | url }}">Practice</a></td>
   </tr>
   {% endfor %}
   </tbody>

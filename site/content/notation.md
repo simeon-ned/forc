@@ -4,7 +4,7 @@ title: MuJoCo notation and API contract
 permalink: /notation/
 ---
 
-## One convention across both independent courses
+## One convention across lectures and practices
 
 The executable baseline is **MuJoCo 3.13.0**, fixed in pyproject.toml and uv.lock. The Python baseline is 3.12. Links to stable documentation may advance; use the version selector when comparing with these examples. SI units and radians are the default. Use $\Delta t$ for timestep, so h cannot be confused with a bias-force symbol.
 
@@ -21,7 +21,7 @@ $$M(q)\dot v+c(q,v)=\tau+J^\top f.$$
 - $\tau$: total nonconstraint generalized force. Separate **qfrc_actuator**, **qfrc_passive**, and **qfrc_applied**. Cartesian loads in **xfrc_applied** also need their generalized-force mapping.
 - $J^\top f$: engine constraint contribution, **qfrc_constraint**. Constraint-space data include **efc_J** and **efc_force**, with storage and active rows determined by the model/solver.
 
-The simple force-residual practices deliberately leave xfrc_applied zero. Do not reuse that abbreviated residual for a model with nonzero Cartesian applied loads without including their mapping. **ctrl** has length nu and is an actuator input, not generally an nv-dimensional torque vector. **act** stores optional activation state.
+The notebook’s abbreviated force-residual checks leave xfrc_applied zero; its wrench example maps a Cartesian load explicitly into qfrc_applied. The interactive viewer instead uses xfrc_applied for mouse perturbations. Do not reuse that abbreviated residual for a model with nonzero Cartesian applied loads without including their mapping. **ctrl** has length nu and is an actuator input, not generally an nv-dimensional torque vector. **act** stores optional activation state.
 
 Reference: [MuJoCo computation](https://mujoco.readthedocs.io/en/stable/computation/index.html).
 
@@ -43,7 +43,7 @@ mujoco.mj_differentiatePos(model, dq, 1.0, q_reference, data.qpos)
 error = np.concatenate([dq, data.qvel - v_reference])
 ~~~
 
-For direct actuators without activation, the local dynamics state has 2 nv coordinates. With activation, it has 2 nv + na. [mjd_transitionFD](https://mujoco.readthedocs.io/en/stable/APIreference/APIfunctions.html#mjd-transitionfd) uses these tangent dimensions. The teaching examples use Euler; this derivative API does not support RK4 in the referenced version.
+For direct actuators without activation, the local dynamics state has 2 nv coordinates. With activation, it has 2 nv + na. [mjd_transitionFD](https://mujoco.readthedocs.io/en/stable/APIreference/APIfunctions.html#mjd-transitionfd) uses these tangent dimensions. The practice 02 linearization example uses an implicit integrator; this derivative API does not support RK4 in the referenced version.
 
 ## Function connections
 

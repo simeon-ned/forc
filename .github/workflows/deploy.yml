@@ -50,6 +50,9 @@ jobs:
           uv run --locked --extra all --group dev pytest
           uv run --locked --extra all --group dev python scripts/run_practices.py
 
+      - name: Verify browser simulation
+        run: npm --prefix site run test:lab
+
       - name: Setup Pages
         uses: actions/configure-pages@v5
 

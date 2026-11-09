@@ -59,12 +59,12 @@ Guest lectures and project presentations happen outside these topic blocks (typi
 
 Each lecture is a standalone session (idea and key equations → short demo → 2–3 references + 1 GitHub repository).
 
-### Topic 1 — Intro & simulation
+### Topic 1 — Modeling & feedback
 
 | # | Lecture |
 | --- | --- |
-| 1 | What is control? Feedback, objectives, architecture; **brief** kinematics & dynamics recap |
-| 2 | Simulation: ODEs, MuJoCo / software stack, sensing & actuation |
+| 1 | [Robotic systems, models, and state space]({{ "/notes/01-modeling/" | url }}): dynamical systems, ODEs, mechanical models, and MuJoCo simulation |
+| 2 | [Feedback, state, and control objectives]({{ "/notes/02-feedback/" | url }}): regulation, tracking, disturbances, and experimental objectives |
 
 ### Topic 2 — Classical control
 
@@ -118,7 +118,7 @@ Practices are held in **MuJoCo** (Python): guided labs, take-homes, and the cour
 
 | Week | Mode | Plant / focus | Short description |
 | --- | --- | --- | --- |
-| 1 | Guided lab | Simple models → MuJoCo | Write/inspect state-space toys; load a MuJoCo robot; open-loop sim; plot states, actuators, sensors |
+| 1 | Guided lab | Menagerie UR5e, G1, and Go2 | Load and view robots; inspect coordinates, kinematics, dynamics, energy, and contact; simulate and edit a model |
 | 2 | Guided lab | Manipulator | **IK + inverse dynamics** (one lab): Jacobian / IK tracking; ID / gravity compensation vs PD |
 | 3 | In-class lab / TH1 start | **Cart-pole + quadrotor** | **LQR in class** on a cart-pole and on a quadrotor (hover / tracking); clarify Take-home 1 |
 | 4 | Take-home | **Quadrotor** | Work on TH1: **trajectory optimization + constrained MPC** (thrust / rate / box limits); contrast with unconstrained LQR; optional MPPI; checkpoint |

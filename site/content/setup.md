@@ -62,17 +62,11 @@ COURSE_PATH_PREFIX= npm --prefix site run dev
 
 Local development uses port 8080. Production defaults to /forc/. Set COURSE_PATH_PREFIX to an empty string for root hosting, or to the actual deployment subpath. The generated static site is site/_site/.
 
-## Content ownership
+## Reading lectures online
 
-Each lecture lives in modules/<id>/:
+Use [Start lecture 01]({{ '/notes/01-modeling/' | url }}) to read the modeling lecture in the browser. Each lecture page includes section navigation, typeset equations, figures, references, and links to its slides and practice.
 
-- module.yml declares its stable ID, week, objectives, practice, and reference IDs.
-- notes.md contains explanations, derivations, worked examples, and exercises.
-- slides.md contains short Reveal sections separated by a line containing three hyphens.
-
-Each practice contains practice.yml, config.yml, README.md, and run.py. Reusable Python functions live in src/forc/. course.yml holds course metadata, references/references.yml holds source records, and CITATION.cff supplies citation metadata.
-
-YAML describes data and experiment parameters. Python still uses pyproject.toml and uv.lock, and Eleventy still needs a small JavaScript build configuration. These tool-native files are intentionally retained.
+The [slide deck]({{ '/lectures/01-modeling/' | url }}) is also a web page. Use the arrow keys to navigate and open the lecture page for the full explanation. No Markdown reader is needed.
 
 ## Editing and release
 

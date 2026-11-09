@@ -24,6 +24,8 @@ jobs:
       - run: npm --prefix site ci
       - run: npm --prefix site run build
       - run: npm --prefix site run check
+      - run: npm --prefix site run test:lab
+
 
   practice-environments:
     runs-on: ubuntu-latest
@@ -38,3 +40,22 @@ jobs:
           version: "0.11.25"
           enable-cache: true
       - run: uv run --no-project --python 3.12 python scripts/check_practice_envs.py --profile ${{ matrix.profile }}
+
+  browser-experiment:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "22"
+          cache: npm
+          cache-dependency-path: site/package-lock.json
+      - run: npm --prefix site ci
+      - run: npx playwright install --with-deps chromium
+        working-directory: site
+      - run: npm --prefix site run test:browser
+      - uses: actions/upload-artifact@v4
+        if: failure()
+        with:
+          name: browser-experiment-failure
+          path: site/test-results/

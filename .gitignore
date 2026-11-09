@@ -47,3 +47,8 @@ hw/mujoco_template/logs/
 # MuJoCo / notebooks
 **/MUJOCO_LOG.TXT
 **/.ipynb_checkpoints/
+
+# Generated browser experiment assets
+site/.lab-build/
+site/test-results/
+site/playwright-report/

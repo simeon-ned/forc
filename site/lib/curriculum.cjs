@@ -18,11 +18,25 @@ for (const name of ["math_block", "math_block_eqno"]) {
   if (renderMath) md.renderer.rules[name] = (...args) => renderMath(...args)
     .replace(/<section(?=[ >])/g, "<div").replace(/<\/section>/g, "</div>");
 }
+// Keep Markdown links readable in the repository and resolve them to site routes.
 function render(source) {
   return md.render(source.replace(/\[@([a-z0-9-]+)\]/g, (_, id) => {
     if (!refs[id]) throw new Error("Unknown citation: " + id);
     return "[" + refs[id].short + "](" + url("/references/#" + id) + ")";
-  }));
+  })).replace(/href="(?:\.\.\/)+modules\/([a-z0-9-]+)\/(notes|slides)\.md"/g,
+    (_, id, kind) => 'href="' + url('/' + (kind === 'notes' ? 'notes' : 'lectures') + '/' + id + '/') + '"')
+    .replace(/href="(?:\.\.\/)+practices\/([a-z0-9-]+)\/README\.md"/g,
+      (_, id) => 'href="' + url('/practices/' + id + '/') + '"')
+    .replace(/href="(?:\.\.\/)+site\/content\/notation\.md"/g,
+      'href="' + url('/notation/') + '"')
+    .replaceAll('href="' + course.site_url.replace(/\/$/, '') + '/', 'href="' + url('/'));
+}
+function renderModule(source, id) {
+  return render(source)
+    .replace(/(<h[23] id=")([^"]+)"/g,
+      (_, opening, id) => opening + md.utils.escapeHtml(decodeURIComponent(id)) + '"')
+    .replace(/(src|href)="images\/([^"<>]+)"/g,
+    (_, attribute, file) => attribute + '="' + url('/assets/lectures/' + id + '/' + file) + '"');
 }
 const modules = fs.readdirSync(path.join(root,"modules"), {withFileTypes:true})
  .filter(e => e.isDirectory() && fs.existsSync(path.join(root,"modules",e.name,"module.yml")))
@@ -30,11 +44,25 @@ const modules = fs.readdirSync(path.join(root,"modules"), {withFileTypes:true})
    const m = yaml.load(read("modules/" + e.name + "/module.yml"));
    if (m.id !== e.name) throw new Error("Module ID/directory mismatch: " + e.name);
    for (const id of m.references) if (!refs[id]) throw new Error("Unknown reference " + id);
-   return {...m, notes:render(read("modules/"+e.name+"/notes.md")),
-     slides:read("modules/"+e.name+"/slides.md").split(/\n---\s*\n/).map(render),
+   const notes = renderModule(read("modules/"+e.name+"/notes.md"), e.name);
+   const sections = [];
+   for (const [,level,id,heading] of notes.matchAll(/<h([23]) id="([^"]+)"[^>]*>(.*?)<\/h[23]>/g)) {
+     const entry = {id:md.utils.unescapeAll(id), title:heading.replace(/<[^>]*>/g, ''), children:[]};
+     if (level === '2') sections.push(entry);
+     else if (sections.length) sections[sections.length - 1].children.push(entry);
+   }
+   const firstHeading = notes.indexOf('<h2');
+   const introduction = firstHeading > 0 ? notes.slice(0, firstHeading) : '';
+   const body = firstHeading > 0 ? notes.slice(firstHeading) : notes;
+   return {...m, notes, introduction, body, sections,
+     slides:read("modules/"+e.name+"/slides.md").split(/\n---\s*\n/).map(source => renderModule(source, e.name)),
      reading:m.references.map(id => ({id,...refs[id]})),
      notes_url:"/notes/"+e.name+"/", slides_url:"/lectures/"+e.name+"/"};
  }).sort((a,b) => a.number-b.number);
+const lectureRedirects = modules.flatMap(m => (m.aliases || []).flatMap(alias => [
+  {from:'/notes/' + alias + '/', to:m.notes_url, title:m.title},
+  {from:'/lectures/' + alias + '/', to:m.slides_url, title:m.title}
+]));
 // Practice READMEs are also read directly in the repository. Map their shared
 // setup links to the site route while keeping notebook downloads relative.
 function renderPractice(source) {
@@ -53,4 +81,4 @@ for (const m of modules) {
   if (!practices.some(p=>p.id===m.practice)) throw new Error("Missing practice for " + m.id);
   if (!m.outcomes.length || m.slides.length < 4) throw new Error("Incomplete module " + m.id);
 }
-module.exports = {course,prefix,refs,modules,practices,assessments,render};
+module.exports = {course,prefix,refs,modules,lectureRedirects,practices,assessments,render};

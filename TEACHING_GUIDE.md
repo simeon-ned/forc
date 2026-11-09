@@ -4,9 +4,24 @@ This independent repository contains 12 original lecture units, seven practice b
 
 ## Suggested teaching rhythm
 
-For each 90-minute lecture: 10 minutes of prerequisite recall and the opening question, 25 minutes of derivation using the notes, 15 minutes of the worked example, 20 minutes of the linked live experiment, 15 minutes for the exercise and discussion, and 5 minutes to summarize assumptions and assign reading. The eight-slide decks are concise teaching aids, not transcripts of a 90-minute lecture.
+For each 90-minute lecture: 10 minutes of prerequisite recall and the opening question, 25 minutes of derivation using the notes, 15 minutes of the worked example, 20 minutes of the linked live experiment, 15 minutes for the exercise and discussion, and 5 minutes to summarize assumptions and assign reading. The slide decks are teaching aids; the companion notes contain the detailed derivations and answer checks.
 
 Each weekly practice reserves about two hours. Students first reproduce the working baseline, then change one parameter or assumption and explain the result. Reference implementations are public formative material. The take-homes require additional experiments and analysis, so merely rerunning the reference program is not a complete submission.
+
+## Lecture 01 before practice 01
+
+Start with [the modeling notes](modules/01-modeling/notes.md) and [their slides](modules/01-modeling/slides.md). They preserve the legacy `01_modeling` progression and its eight original figures. Suggested allocation for 90 minutes:
+
+- **0–15 min:** robotic system, dynamical systems, and mathematical models (sections 1–3).
+- **15–30 min:** ODEs, state space, linear systems, and the mass–spring–damper (4–6).
+- **30–40 min:** nonlinear systems, pendulum, and variable-mass lander (7).
+- **40–60 min:** generalized mechanics; floating body, satellite, and cart-pole (8).
+- **60–75 min:** Other model classes (9), then MuJoCo state, kinematics, force, energy, and contact connections (10).
+- **75–90 min:** numerical simulation, model editing, and questions before practice 01 (11–12).
+
+Use the detailed Jacobian and energy checks as guided reading if the class needs more time on state construction. The analytical examples introduce modeling choices; executable practice uses Menagerie's UR5e, G1, and Go2. Figure captions translate the archived symbols, while the text gives corrected equations. The archive and copied PNGs remain unchanged.
+
+Feedback is lecture 02, linked to practice 02. The course home page, sidebar, slide decks, and citation index derive their order from the module metadata. Previous lecture URLs redirect to the renamed modules.
 
 ## Reuse contract
 

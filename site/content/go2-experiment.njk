@@ -1,0 +1,70 @@
+---
+permalink: /experiments/go2/
+---
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Go2 interactive experiment — FORC</title>
+<meta name="description" content="Explore a floating Go2 robot, joint feedback, and live state plots with MuJoCo in your browser.">
+<link rel="stylesheet" href="{{ '/demos/lab/main.css' | url }}">
+</head>
+<body>
+<a class="skip" href="#experiment">Skip to experiment</a>
+<header class="lab-header">
+  <a href="{{ '/' | url }}" target="_top">FORC</a>
+  <nav aria-label="Course links"><a href="{{ '/notes/01-modeling/' | url }}" target="_top">Modeling lecture</a><a href="{{ '/notes/02-feedback/' | url }}" target="_top">Feedback lecture</a></nav>
+</header>
+<main id="experiment">
+  <div class="heading-row"><div><p class="eyebrow">Interactive experiment · MuJoCo 4</p><h1 id="lesson-title">Go2 · models and motion</h1></div><a id="lesson-link" href="?lesson=control">Open the feedback experiment</a></div>
+  <p class="lede" id="lesson-description">Inspect a floating robot, its motion and contact with the ground.</p>
+  <div class="experiment-grid">
+    <section class="simulation" aria-label="Robot and playback">
+      <div class="viewport" id="viewport"><div id="intro-load" class="load-intro"><strong>A real floating robot, in your browser.</strong><p>Load the Go2 model from MuJoCo Menagerie to begin. No Python installation is needed.</p><p id="download-size"></p></div></div>
+      <div class="status-row"><span id="model-stats">Model not loaded</span><span id="speed">500 Hz physics · 50 Hz state updates</span></div>
+      <div class="toolbar" aria-label="Playback controls">
+        <button id="load" class="primary">Load Go2</button>
+        <button id="play" class="primary" data-needs-model disabled>Play</button>
+        <button id="step" data-needs-model disabled>Step 2 ms</button>
+        <button id="reset" data-needs-model disabled>Reset</button>
+        <button id="push" data-needs-model disabled>Push +y · 30 N</button>
+        <button id="home-camera" data-needs-model disabled>Reset camera</button>
+      </div>
+      <p id="status" role="status" aria-live="polite">Press Load Go2 to start. Model assets are downloaded on demand.</p>
+      <div class="readouts"><strong id="time">0.000 s</strong><span id="contacts">0 detected contacts</span><label><input type="checkbox" id="collision" data-needs-model disabled> Show collision geometry</label></div>
+      <p class="hint">Drag to orbit · scroll or pinch to zoom · right-drag to pan. The push acts at the base center of mass for 0.10 simulated seconds. Press Play or Step to apply it.</p>
+    </section>
+    <aside class="controls" aria-label="Experiment parameters">
+      <h2>Initial condition</h2>
+      <label for="lift"><span>Height above home (m)</span><output id="lift-value" for="lift">0.12</output></label>
+      <input id="lift" type="range" min="0" max="0.5" step="0.01" value="0.12">
+      <p class="hint">Applied on Reset. The home pose is a configuration, not a guarantee of equilibrium.</p>
+      <fieldset id="controller-panel" hidden>
+        <legend>Joint feedback</legend>
+        <label for="mode">Controller</label><select id="mode" data-needs-model disabled><option value="pd">PD · home joint angles</option><option value="passive">Zero motor torque</option></select>
+        <p class="equation">τ = clip[K<sub>p</sub> (q* − q) − K<sub>d</sub> v]</p>
+        <label for="kp"><span>K<sub>p</sub> (N m/rad)</span><output id="kp-value" for="kp">35</output></label><input id="kp" type="range" min="0" max="100" step="1" value="35" data-needs-model disabled>
+        <label for="kd"><span>K<sub>d</sub> (N m s/rad)</span><output id="kd-value" for="kd">2.00</output></label><input id="kd" type="range" min="0" max="8" step="0.1" value="2" data-needs-model disabled>
+        <label for="target-joint">Joint to offset from home</label><select id="target-joint" data-needs-model disabled><option>Load the model first</option></select>
+        <label for="offset"><span>Target offset (rad)</span><output id="offset-value" for="offset">0.00</output></label><input id="offset" type="range" min="-0.3" max="0.3" step="0.01" value="0" data-needs-model disabled>
+        <p class="hint">All 12 joints use these gains. Only the chosen joint receives an offset. Targets respect joint limits; torques respect motor limits. The floating base is unactuated.</p>
+      </fieldset>
+      <h2>Observe and compare</h2>
+      <label for="joint">Joint to plot</label><select id="joint" data-needs-model disabled><option>Load the model first</option></select>
+      <p class="hint" id="torque-limit"></p>
+      <div class="button-stack"><button id="save-run" disabled>Save current trace as Run A</button><button id="clear-run" disabled>Clear Run A</button><button id="export" disabled>Download current CSV</button><button id="export-settings" data-needs-model disabled>Download experiment settings</button></div>
+      <p id="comparison" class="hint" role="status"></p>
+    </aside>
+  <section class="plot-section" aria-label="Live state plots">
+    <h2>Motion, inputs, and contact</h2>
+    <p>Plots retain the last 15 simulated seconds. CSV records every 2 ms; display downsampling preserves local extrema. Traces share the simulation-time axis. The normal-force plot sums contact-frame magnitudes; it is not the net vertical force.</p>
+    <div id="plots" class="plots"></div>
+  </section>
+  </div>
+  <details class="teaching"><summary>Predict → experiment → explain</summary><ol><li>With zero motor torque, predict how the base height and contact forces will change after release.</li><li>Save a trace as Run A. Reset with the same height, change one parameter, and compare the traces at the same simulated time.</li><li data-control-exercise>In the feedback experiment, increase Kp. Look for torque saturation as well as smaller position error.</li><li data-control-exercise>Apply the 30 N push. Explain why regulating joint angles does not guarantee base balance.</li></ol></details>
+  <footer>Model: <a id="model-source" href="https://github.com/google-deepmind/mujoco_menagerie/tree/main/unitree_go2" target="_blank" rel="noopener">Unitree Go2 / MuJoCo Menagerie</a> · <a id="model-license" href="https://github.com/google-deepmind/mujoco_menagerie/blob/main/unitree_go2/LICENSE" target="_blank" rel="noopener">Model license</a> · <a href="https://mujoco.readthedocs.io/en/4.0.0/computation/index.html" target="_blank" rel="noopener">MuJoCo dynamics reference</a> · <a href="{{ '/demos/lab/NOTICE.txt' | url }}">Attribution</a><p>The browser uses MuJoCo 4.0.0; the Python practices currently use 3.13.0. Cross-version trajectories need not match exactly. The renderer shows compiled meshes with simple materials; the original collision geometry drives physics.</p></footer>
+</main>
+<noscript><p>This experiment requires JavaScript. The lecture text and Python practice remain available through the course links above.</p></noscript>
+<script type="module" src="{{ '/demos/lab/main.js' | url }}"></script>
+</body>
+</html>

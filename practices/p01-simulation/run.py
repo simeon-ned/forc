@@ -4,31 +4,35 @@ import time
 import mujoco
 import mujoco.viewer
 import mujoco_menagerie as mm
-
+import numpy as np
 
 def main():
     # Choose ONE robot: leave one line uncommented and comment out the others.
-    model = mm.load("unitree_g1")          # Floating-base humanoid.
-    # model = mm.load("unitree_go2")         # Floating-base quadruped.
+    # model = mm.load("unitree_g1")          # Floating-base humanoid.
+    model = mm.load("universal_robots_ur5e")         # Floating-base quadruped.
 
-    model.opt.timestep = 1.0 / 500  # 500 Hz physics: 2 ms per step.
-    render_every = 10              # Publish a new viewer frame at 50 Hz.
+    model.opt.timestep = 1.0 / 1000  # 500 Hz physics: 2 ms per step.
+    render_every = 20              # Publish a new viewer frame at 50 Hz.
 
-    # These robots use unit-gear hinge actuators: ctrl is joint torque in N m.
-    # Replace position-servo gains/biases with direct-drive torque motors.
+    # Menagerie ships position servos. Match the p02 torque motor:
+    # p = a u + b0 + b1 q + b2 v, with a = 1 and b = 0, so ctrl is torque in N m.
     for actuator_id in range(model.nu):
-        joint_id = model.actuator_trnid[actuator_id, 0]
-        if model.jnt_actfrclimited[joint_id]:
-            # G1 stores effort limits on joints; its old ctrlrange is in radians.
-            model.actuator_ctrlrange[actuator_id] = model.jnt_actfrcrange[joint_id]
-            model.actuator_ctrllimited[actuator_id] = True
-        # Go2 already has motor torque limits in ctrlrange; retain them.
-    model.actuator_dyntype[:] = mujoco.mjtDyn.mjDYN_NONE
-    model.actuator_gaintype[:] = mujoco.mjtGain.mjGAIN_FIXED
-    model.actuator_biastype[:] = mujoco.mjtBias.mjBIAS_NONE
-    model.actuator_gainprm[:] = 0
-    model.actuator_gainprm[:, 0] = 1
-    model.actuator_biasprm[:] = 0
+        actuator = model.actuator(actuator_id)
+        if model.actuator_forcelimited[actuator_id]:
+            torque_range = np.array(model.actuator_forcerange[actuator_id])
+        else:
+            torque_range = np.array([-100.0, 100.0])
+        actuator.dynprm[:] = 0
+        actuator.gainprm[:] = 0
+        actuator.biasprm[:] = 0
+        actuator.ctrlrange[:] = torque_range
+        actuator.dynprm[:3] = (1.0, 0.0, 0.0)
+        actuator.gainprm[:3] = (1.0, 0.0, 0.0)
+        actuator.biasprm[:3] = (0.0, 0.0, 0.0)
+        model.actuator_dyntype[actuator_id] = mujoco.mjtDyn.mjDYN_NONE
+        model.actuator_gaintype[actuator_id] = mujoco.mjtGain.mjGAIN_FIXED
+        model.actuator_biastype[actuator_id] = mujoco.mjtBias.mjBIAS_AFFINE
+        model.actuator_ctrllimited[actuator_id] = True
 
     data = mujoco.MjData(model)
     if model.nkey:
@@ -55,6 +59,21 @@ def main():
             while viewer.is_running():
                 with viewer.lock():
                     # Later: compute joint torques and assign data.ctrl[:] here.
+                    # 
+                    # encoder = 14 bit
+                    encoder_resolution = 2**14
+                    encoder_range = 2*np.pi
+                    encoder_to_radians = encoder_range / encoder_resolution
+                    y = data.qpos  + np.random.uniform(-1, 0.01, model.nq) * encoder_to_radians
+                    dy = data.qvel
+
+                    kp = 100
+                    kd = 20
+                    y_des = [2.0, -1.5, 1.5, 0.0, 0.0, 0.0]
+                    data.ctrl[:] = -kp*(y - y_des) - kd*dy
+                    y = data.qpos 
+                    dy = data.qvel
+                    print('Position:\n', y)
                     mujoco.mj_step(model, data)
                 step += 1
                 if step % render_every == 0:

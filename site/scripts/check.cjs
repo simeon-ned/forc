@@ -2,13 +2,21 @@ const fs=require("node:fs"),path=require("node:path");
 const c=require("../lib/curriculum.cjs");
 const root=path.resolve(__dirname,"../_site");
 const pages=[
- "index.html","notation/index.html","setup/index.html",
+ "experiments/go2/index.html","index.html","notation/index.html","setup/index.html","syllabus/index.html",
  "sources/index.html","references/index.html","cite/index.html","assessments/index.html",
  ...c.modules.flatMap(m=>["notes/"+m.id+"/index.html","lectures/"+m.id+"/index.html"]),
+ ...c.lectureRedirects.map(r=>r.from.slice(1)+"index.html"),
  ...c.practices.map(p=>"practices/"+p.id+"/index.html"),
  ...c.assessments.map(a=>"assessments/"+a.id+"/index.html")
 ];
 let errors=[];
+if(c.modules.some((m,i)=>m.number!==i+1))errors.push("Lecture numbering must be consecutive and unique");
+if(c.modules[0].id!=="01-modeling")errors.push("Modeling must be the first lecture");
+for(const r of c.lectureRedirects) {
+ const file=path.join(root,r.from,"index.html");
+ if(!fs.existsSync(file)||!fs.readFileSync(file,"utf8").includes('href="'+c.prefix+r.to+'"'))
+  errors.push("Missing lecture redirect: "+r.from);
+}
 for(const m of c.modules) {
  const deck=fs.readFileSync(path.join(root,"lectures",m.id,"index.html"),"utf8");
  if((deck.match(/<section(?: |>|\n)/g)||[]).length!==m.slides.length+2)
@@ -16,7 +24,7 @@ for(const m of c.modules) {
 }
 const sample=fs.readFileSync(path.join(root,"index.html"),"utf8");
 if(!sample.includes(c.course.title))errors.push("Title page missing course title");
-if(!sample.includes(">Lecture notes<"))errors.push("Title page missing notes link");
+if(!sample.includes(">Start lecture 01<"))errors.push("Title page missing first-lecture link");
 const prefix=(sample.match(/href="([^"]*)\/css\/curriculum\.css"/)||[])[1]||"";
 const redirect=path.join(root,"course/index.html");
 if(!fs.existsSync(redirect)||!fs.readFileSync(redirect,"utf8").includes('href="'+(prefix||"")+'/'))
@@ -26,7 +34,7 @@ for(const file of pages) {
  if(!fs.existsSync(full)){errors.push("Missing page: "+file);continue;}
  const html=fs.readFileSync(full,"utf8");
  if(!html.includes("<!doctype html>")&&!html.includes("<!DOCTYPE html>"))errors.push("Missing doctype: "+file);
- if(/katex-error|\[@[\w-]+\]|{{|{%/.test(html))errors.push("Unrendered content or math error: "+file);
+ if(/katex-error|KaTeX parse error|ParseError|\[@[\w-]+\]|{{|{%/.test(html))errors.push("Unrendered content or math error: "+file);
  const base=new URL((prefix?prefix:"")+"/"+file,"https://course.invalid");
  for(const match of html.matchAll(/(?:href|src)="([^"]+)"/g)) {
   const href=match[1].replace(/&amp;/g,"&");

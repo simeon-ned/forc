@@ -1,3 +1,5 @@
+const fs = require("node:fs");
+const path = require("node:path");
 let c = require("./curriculum.cjs");
 module.exports = function(config) {
   config.on("eleventy.before", () => {
@@ -6,6 +8,7 @@ module.exports = function(config) {
   });
   config.addGlobalData("course", () => c.course);
   config.addGlobalData("lessons", () => c.modules);
+  config.addGlobalData("lectureRedirects", () => c.lectureRedirects);
   config.addGlobalData("coursePractices", () => c.practices);
   config.addGlobalData("assessments", () => c.assessments);
   config.addWatchTarget("../assessments");
@@ -16,6 +19,12 @@ module.exports = function(config) {
   config.addPassthroughCopy({"node_modules/reveal.js/plugin/notes":"vendor/reveal/notes"});
   config.addPassthroughCopy({"node_modules/katex/dist":"vendor/katex"});
   config.addPassthroughCopy({"../CITATION.cff":"CITATION.cff"});
+  for (const lesson of c.modules) {
+    const images = '../modules/' + lesson.id + '/images';
+    if (fs.existsSync(path.resolve(__dirname, '..', images))) {
+      config.addPassthroughCopy({[images]:'assets/lectures/' + lesson.id});
+    }
+  }
   config.addPassthroughCopy({"../practices/p01-simulation/tutorial.ipynb":"practices/p01-simulation/tutorial.ipynb"});
   config.addPassthroughCopy({"../practices/p01-simulation/run.py":"practices/p01-simulation/run.py"});
   config.addPassthroughCopy({"../practices/p02-manipulator/control_and_linearization.ipynb":"practices/p02-manipulator/control_and_linearization.ipynb"});

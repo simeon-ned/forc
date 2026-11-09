@@ -8,7 +8,15 @@ permalink: /sources/
 
 This is original teaching material organized around the existing 12-lecture FORC syllabus. It is not a transcript, copy, or official adaptation of a CMU or MIT course. The public course indexes, linked notes, and documentation were used for topic alignment and conventions. The four supplied playlists are companion viewing. Their complete video contents have **not** been independently reviewed or transcribed, and no video timestamps are asserted.
 
-The source links are recorded with an access date of 11 September 2026. Online notes and stable documentation can change. Preserve a release tag or commit when citing this edition.
+Source access dates are recorded per entry on the references page. Online notes and stable documentation can change. Preserve a release tag or commit when citing this edition.
+
+## Lecture 01: the original FORC modeling lecture
+
+[Robotic systems, models, and state space]({{ '/notes/01-modeling/' | url }}) adapts `_legacy/content/_sort/01_modeling/01_modeling_notes.md` and its companion notebook. Its structure follows the original progression: robotic system, dynamical systems, mathematical models, differential equations, state space, linear and nonlinear examples, generalized mechanics, other model classes, and simulation.
+
+The eight original figures are copied unchanged into `modules/01-modeling/images/` and included in both the notes and slides. The [figure provenance record]({{ '/assets/lectures/01-modeling/README.md' | url }}) identifies the source paths. Captions translate archived symbols into the MuJoCo convention, and the surrounding text corrects the original cart-pole input placement and polar-coordinate generalized inertia/input pairing. No CMU or MIT figures have been added.
+
+The lecture is the first module in the course navigation and has an [individual citation entry]({{ '/cite/#01-modeling' | url }}).
 
 ## CMU dynamics
 
@@ -34,6 +42,6 @@ The current course index includes multiple editions. Topic alignment here does n
 
 ## Rights and reuse
 
-New notes, code, and slides are authored within this repository and retain its existing Apache-2.0 license. Linked lectures, notes, images, and code remain governed by their owners' licenses. This edition does not redistribute external slides, transcripts, figures, or notebook code. A citation is attribution, not permission to copy an entire source.
+New notes, code, and slides are authored within this repository and retain its existing Apache-2.0 license. Linked lectures, notes, images, and code remain governed by their owners' licenses. This edition does not add external course slides, transcripts, or notebook code. Lecture 01 reuses figures already present in the FORC archive, including their embedded imagery; original third-party rights remain unchanged. A citation is attribution, not permission to copy an entire source.
 
 Each module lists its relevant references in module.yml. Use the references page for the complete linked records, and the citation page to cite this repository.

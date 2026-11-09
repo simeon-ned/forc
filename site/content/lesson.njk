@@ -8,6 +8,20 @@ layout: course.njk
 eleventyComputed:
   title: "{{ lesson.title }}"
 ---
-<h2>Learning outcomes</h2><ul>{% for outcome in lesson.outcomes %}<li>{{ outcome }}</li>{% endfor %}</ul>
-<p><strong>Prerequisites:</strong> {{ lesson.prerequisites }}</p>
-{{ lesson.notes | safe }}
+<div class="lecture-intro">{{ lesson.introduction | safe }}</div>
+<details class="lecture-outcomes">
+  <summary>Learning goals and prerequisites</summary>
+  <ul>{% for outcome in lesson.outcomes %}<li>{{ outcome }}</li>{% endfor %}</ul>
+  <p><strong>Prerequisites:</strong> {{ lesson.prerequisites }}</p>
+</details>
+{% if lesson.sections.length %}
+<nav aria-label="On this page">
+<details class="lecture-contents" open data-collapse-mobile>
+  <summary>In this lecture</summary>
+  <ul>{% for section in lesson.sections %}
+    <li>{% if section.children.length %}<details class="contents-subsections"><summary><a href="#{{ section.id }}">{{ section.title }}</a></summary><ul>{% for child in section.children %}<li><a href="#{{ child.id }}">{{ child.title }}</a></li>{% endfor %}</ul></details>{% else %}<a href="#{{ section.id }}">{{ section.title }}</a>{% endif %}</li>
+  {% endfor %}</ul>
+</details>
+</nav>
+{% endif %}
+<div class="lecture-body">{{ lesson.body | safe }}</div>

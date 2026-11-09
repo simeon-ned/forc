@@ -4,6 +4,10 @@ Learn robot models and MuJoCo basics using Menagerie’s UR5e, Unitree G1 humano
 
 **Time:** about 120 minutes for the core path. Use the detailed kinematics and energy checks as guided extensions. Feedback control and linearization continue in [practice 02](../p02-manipulator/control_and_linearization.ipynb).
 
+## Lecture before this practice
+
+Read [lecture 01: Robotic systems, models, and state space](https://simeon-ned.github.io/forc/notes/01-modeling/), with the accompanying [lecture slides](https://simeon-ned.github.io/forc/lectures/01-modeling/). The web lecture develops state-space models, floating-base coordinates, kinematics, dynamics, energy, contact, and integration before the notebook calculations. They also include answer checks and the original modeling examples and figures, with MuJoCo notation explained alongside them.
+
 ## Setup and tutorial
 
 Run from the repository root. The [shared setup guide](../README.md) covers uv, conda, graphics, and offline caching.

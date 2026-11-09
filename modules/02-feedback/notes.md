@@ -16,11 +16,31 @@ Consider $m\ddot p=u+d$, with $m=2$ kg and a constant disturbance $d=1$ N. Under
 
 An open-loop force computed from the nominal model cannot react to an unexpected disturbance. Feedback can react, but a noisy measurement or a delayed loop can also inject unwanted motion. We therefore evaluate perturbations, delay, and saturation explicitly.
 
+## Browser experiment: joint feedback on Go2
+
+**Predict first:** what happens to joint error and motor torque when proportional gain increases? Can joint-angle feedback alone guarantee that a floating robot balances?
+
+The experiment applies the same PD gains to all twelve torque-controlled joints. A selected joint can receive a target offset from the home pose:
+
+$$
+\tau_i^{\mathrm{requested}}=K_p(q_i^\star-q_i)-K_d v_i.
+$$
+
+$$
+\tau_i=\operatorname{clip}(\tau_i^{\mathrm{requested}},\tau_i^{\min},\tau_i^{\max}).
+$$
+
+The six floating-base velocity coordinates are unactuated. This is a joint-regulation experiment, not a locomotion or whole-body balance controller. The plots distinguish requested torque from applied actuator torque after limits.
+
+<iframe class="lecture-experiment" src="../../experiments/go2/?lesson=control" title="Go2 joint PD feedback experiment with live state and torque plots" loading="lazy" height="1050"></iframe>
+
+[Open the feedback experiment in a full page](../../experiments/go2/?lesson=control). Keep the initial height and disturbance schedule fixed when comparing gains. Save Run A, reset, and change one parameter. Inspect saturation and base motion as well as joint tracking. Download the CSV and settings to retain the experiment; plots retain the last fifteen simulated seconds. The browser uses MuJoCo 4.0.0, while the current Python practices use 3.13.0.
+
 ## The experimental contract
 
 Fix the model, initial-state distribution, controller update interval, physics timestep, termination rules, and evaluation seeds. Run a baseline with the same information and force limits. Split tuning trials from final evaluation trials. Save the configuration and software version with the output, so an attractive trajectory can be reproduced.
 
-The first practice inspects a simple MuJoCo model, advances it without a viewer, and verifies the dynamics force balance. Later practices compare controllers under the same protocol. The external courses provide broader examples of this modeling-to-control workflow [@cmu-control] [@mit-underactuated].
+The first practice inspects Menagerie’s UR5e, G1, and Go2 models, views them before calculation, and checks kinematics, energy, contact, and dynamics force balance. [Lecture 01](../../modules/01-modeling/notes.md) supplies the modeling theory before this practice. Later practices compare controllers under the same protocol. The external courses provide broader examples of this modeling-to-control workflow [@cmu-control] [@mit-underactuated].
 
 ## Classroom exercise
 

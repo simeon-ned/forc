@@ -4,6 +4,7 @@ const markdownItAnchor = require("markdown-it-anchor");
 /** @param {import("@11ty/eleventy").UserConfig} eleventyConfig */
 module.exports = function (eleventyConfig) {
   const curriculum = require("./lib/setup.cjs")(eleventyConfig);
+  require("./lib/experiments.cjs")(eleventyConfig);
   eleventyConfig.setServerPassthroughCopyBehavior("passthrough");
 
   // Project Pages: https://simeon-ned.github.io/forc/
@@ -23,6 +24,7 @@ module.exports = function (eleventyConfig) {
   eleventyConfig.setLibrary("md", {render: curriculum.render});
 
   eleventyConfig.addPassthroughCopy({ "src/css": "css" });
+  eleventyConfig.addPassthroughCopy({ "src/js": "js" });
   eleventyConfig.addPassthroughCopy({ demos: "demos" });
   eleventyConfig.addPassthroughCopy({ public: "." });
 

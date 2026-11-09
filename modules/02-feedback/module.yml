@@ -1,9 +1,10 @@
-id: "01-feedback"
-number: 1
+id: "02-feedback"
+aliases: ["01-feedback"]
+number: 2
 title: "Feedback, state, and control objectives"
 week: 1
 duration: 90
-practice: "p01-simulation"
-prerequisites: "Linear algebra, ODEs, and earlier lectures in this sequence."
+practice: "p02-manipulator"
+prerequisites: "Lecture 01: modeling, state-space descriptions, and the MuJoCo force convention."
 outcomes: ["Distinguish a plant, simulator, controller, and estimator.","Formulate a measurable regulation or tracking objective.","Explain why simulation success alone is insufficient."]
 references: ["cmu-control","mit-underactuated","mujoco-computation"]

@@ -1,0 +1,105 @@
+{
+  "id": "unitree_go2",
+  "label": "Unitree Go2",
+  "revision": "98a70c569c4c1b6da467a20012f766ee1f8dc521",
+  "baseUrl": "https://raw.githubusercontent.com/google-deepmind/mujoco_menagerie/98a70c569c4c1b6da467a20012f766ee1f8dc521/unitree_go2/",
+  "entry": "scene.xml",
+  "licenseUrl": "https://raw.githubusercontent.com/google-deepmind/mujoco_menagerie/98a70c569c4c1b6da467a20012f766ee1f8dc521/unitree_go2/LICENSE",
+  "files": [
+    {
+      "path": "scene.xml",
+      "bytes": 816,
+      "sha256": "b56123ea2bf09070bf4054f0be9aa418e49041ddddce44dbbf7ab35e8b732641"
+    },
+    {
+      "path": "go2.xml",
+      "bytes": 11678,
+      "sha256": "50adb09a4365293e2acdaf2010ae35a82b0f09fea18ae51806fef91e310ed04a"
+    },
+    {
+      "path": "LICENSE",
+      "bytes": 1537,
+      "sha256": "7e2dfda59b98e38d123f539b59ecb637ffd8908d19e09f7765884a309f010d40"
+    },
+    {
+      "path": "assets/base_0.obj",
+      "bytes": 1330465,
+      "sha256": "8cdc53719002a5ee737d867904e534a6d6fa930b616bdcc1b3131e577d4e46c0"
+    },
+    {
+      "path": "assets/base_1.obj",
+      "bytes": 811791,
+      "sha256": "39d2f4724ff64dd5a0640c308fd98902a2946660a8d033ec8dbf368fd5af0dd6"
+    },
+    {
+      "path": "assets/base_2.obj",
+      "bytes": 294090,
+      "sha256": "29cae463f95d678e4ede863c36c9b19b0d356b8340412add10670d70bdcc3095"
+    },
+    {
+      "path": "assets/base_3.obj",
+      "bytes": 379093,
+      "sha256": "f51ba43bf300e68957a0c1aa83eaf3e4926f4ac7e64a0d6c33ae5d21fcbcf5f6"
+    },
+    {
+      "path": "assets/base_4.obj",
+      "bytes": 7776234,
+      "sha256": "49ddec0129546e5dd2075d5beacf7f207baa2860aeff7626818e64d2efbf3821"
+    },
+    {
+      "path": "assets/hip_0.obj",
+      "bytes": 2863864,
+      "sha256": "cc29932ab4d251ce3f72389ec4c1f757e44eee138b87e772b648c2bc76b506cd"
+    },
+    {
+      "path": "assets/hip_1.obj",
+      "bytes": 2767918,
+      "sha256": "3fd5bd9b2ef6abe622c0739d3c67eaa1679b19b47132951972c4892a779ea7cf"
+    },
+    {
+      "path": "assets/thigh_0.obj",
+      "bytes": 2841868,
+      "sha256": "bb3edfe6a7b04f4f4dff1ce7b05d426ddce941e276cc6372fb542055893c71ec"
+    },
+    {
+      "path": "assets/thigh_1.obj",
+      "bytes": 1491320,
+      "sha256": "3a631822f9f7d2114b1b79dcdff5abf95103630abb7d91d1f3b8b18117132ed2"
+    },
+    {
+      "path": "assets/thigh_mirror_0.obj",
+      "bytes": 2817674,
+      "sha256": "07abaedce761f1dd48647384ac14ba1959276bc78d5a2a62051e8f1c6093933b"
+    },
+    {
+      "path": "assets/thigh_mirror_1.obj",
+      "bytes": 1482261,
+      "sha256": "db984a3e983eabbc9b38183427cca9ab0bb3bdb049f9eab030e06edda36579d6"
+    },
+    {
+      "path": "assets/calf_0.obj",
+      "bytes": 877174,
+      "sha256": "4a818cd563c5b7e2a271504442d05fd777d38cbaa028d4a10ad29c9f87bb355e"
+    },
+    {
+      "path": "assets/calf_1.obj",
+      "bytes": 326865,
+      "sha256": "51950c3a153ae3208592df86ea11c9d6756f8f645ebca5caf6910c61aeb03817"
+    },
+    {
+      "path": "assets/calf_mirror_0.obj",
+      "bytes": 876538,
+      "sha256": "6dc0406207a1c08a5953fd5962aca1a270fd06593d30d100205e05c1b32d4af2"
+    },
+    {
+      "path": "assets/calf_mirror_1.obj",
+      "bytes": 327261,
+      "sha256": "f84f5af90b914633165beb3a5493ee499169144c5797dcf04c6eb5842f74b31a"
+    },
+    {
+      "path": "assets/foot.obj",
+      "bytes": 1144729,
+      "sha256": "df9e78a7c0110d02557439010f2a5f11f0ec4fd907b32704145dbd6aa7affc0b"
+    }
+  ]
+}

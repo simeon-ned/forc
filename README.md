@@ -1,6 +1,6 @@
 # Fundamentals of Robot Control (FORC)
 
-Independent course repository: 12 lecture units, Reveal.js slides, Eleventy notes, seven practice briefs, Python reference experiments, and assessments.
+Independent course repository: 12 lecture units, web lecture pages, Reveal.js slides, seven practice briefs, Python reference experiments, and assessments.
 
 ## Start
 
@@ -12,7 +12,7 @@ npm --prefix site ci
 COURSE_PATH_PREFIX= npm --prefix site run dev
 ~~~
 
-Open http://localhost:8080/. See [TEACHING_GUIDE.md](TEACHING_GUIDE.md) for the teaching rhythm and release checklist.
+Open [lecture 01 in your browser](http://localhost:8080/notes/01-modeling/) or the [course homepage](http://localhost:8080/). See [TEACHING_GUIDE.md](TEACHING_GUIDE.md) for the teaching rhythm and release checklist.
 
 For a smaller install, use `uv sync --locked --extra p01` (or `p02` through `p07`). The [practice setup guide](practices/README.md) includes conda, the tutorial, and the devcontainer.
 
