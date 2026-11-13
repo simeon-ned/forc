@@ -26,7 +26,7 @@ A learned policy trained in simulation may exploit unrealistic dynamics or obser
 
 ## Practice and exercise
 
-Practice 5 trains a small polynomial policy to imitate a saturated feedback expert. It then compares expert-distribution test error with closed-loop costs on broader initial conditions. The next lecture adds expert labels on student-visited states.
+Practice 6 trains a small polynomial policy to imitate a saturated feedback expert. It then compares expert-distribution test error with closed-loop costs on broader initial conditions. The next lecture adds expert labels on student-visited states.
 
 **Question:** Should a policy with lower validation MSE always have lower rollout cost? **Answer:** no. The errors may occur at different states, and some states are far more consequential to the future trajectory. Closed-loop evaluation measures the effects that the supervised objective only approximates.
 

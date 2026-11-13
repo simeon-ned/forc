@@ -17,7 +17,7 @@ This distinction matters in controller reports: infeasibility can mean the state
 
 For small linear examples, eliminate the predicted states by repeated substitution and optimize only the control sequence. A general constrained solver can demonstrate the idea, though specialized QP solvers are preferable for larger real-time systems. Shift the previous solution to warm-start the next solve. Report solve-time distributions rather than only an average.
 
-The practice solves a constrained vertical-flight problem. Position and velocity form a double-integrator state around hover. Input is acceleration relative to gravity, with bounds derived from thrust and mass. This is explicitly a one-axis quadrotor model. The full attitude/thrust model from Practice 3 becomes the take-home extension.
+The practice solves a constrained vertical-flight problem. Position and velocity form a double-integrator state around hover. Input is acceleration relative to gravity, with bounds derived from thrust and mass. This is explicitly a one-axis quadrotor model. The full attitude/thrust model from Practice 4 becomes the take-home extension.
 
 ## Feasibility and safety
 

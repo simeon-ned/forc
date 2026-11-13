@@ -9,30 +9,30 @@ Start a project from a known working robot baseline, then investigate one bounde
 Run from the repository root. See the [shared setup guide](../README.md) for uv, conda, rendering, and installing all practices.
 
 ~~~bash
-uv sync --locked --extra p07
-uv run --locked --extra p07 python practices/p07-project/run.py
+uv sync --locked --extra p08
+uv run --locked --extra p08 python practices/p08-project/run.py
 ~~~
 
 With the course conda environment activated:
 
 ~~~bash
-python scripts/setup_conda.py p07
-python practices/p07-project/run.py
+python scripts/setup_conda.py p08
+python practices/p08-project/run.py
 ~~~
 
-The program writes configuration, MuJoCo version, and metrics to outputs/p07-project/metrics.json. Experiments with a time history also write trajectory.csv. These are generated results and are not source material.
+The program writes configuration, MuJoCo version, and metrics to outputs/p08-project/metrics.json. Experiments with a time history also write trajectory.csv. These are generated results and are not source material.
 
 Use a separate configuration and output directory for each variation:
 
 ~~~bash
-uv run --locked --extra p07 python practices/p07-project/run.py --config practices/p07-project/config.yml --output outputs/p07-project/baseline
+uv run --locked --extra p08 python practices/p08-project/run.py --config practices/p08-project/config.yml --output outputs/p08-project/baseline
 ~~~
 
 Keep the original configuration as the baseline. Record all changes in your report; avoid changing several physical and numerical parameters at once.
 
 ## Tasks
 
-1. Run this harness to reproduce the cart-pole and quadrotor LQR baseline from Practice 3.
+1. Run this harness to reproduce the cart-pole and quadrotor LQR baseline from Practice 4.
 2. Choose one task and define success, failure, actuator limits, and evaluation conditions before modification.
 3. Implement one controller change and one ablation. Keep paired test cases.
 4. Submit the final project brief's report, commands, configuration, metrics, and a short demonstration.

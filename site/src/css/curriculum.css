@@ -66,3 +66,8 @@ a:focus-visible,summary:focus-visible{outline:2px solid var(--accent);outline-of
 
 .lecture-experiment{display:block;width:100%;border:1px solid var(--line);border-radius:6px;margin:1.4rem 0;background:#fbfcfe}
 @media print{.lecture-experiment{display:none}}
+
+/* Control-basics diagrams and complete, runnable notebook cells. */
+.practice-body img{display:block;max-width:100%;height:auto;margin:1.5rem auto}
+.practice-body pre{font-size:14px;line-height:1.65}
+@media(max-width:680px){.practice-body pre{padding:12px}}

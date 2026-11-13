@@ -25,14 +25,15 @@ notebooks = [
     "forc[sim]",
 ]
 p01 = ["forc[notebooks]"]
-p02 = ["forc[notebooks]"]
-p03 = ["forc[sim,control]"]
-p04 = ["forc[control]"]
-p05 = []
+p02 = ["forc[notebooks,control]"]
+p03 = ["forc[notebooks]"]
+p04 = ["forc[sim,control]"]
+p05 = ["forc[control]"]
 p06 = []
-p07 = ["forc[sim,control]"]
-all = ["forc[p01,p02,p03,p04,p05,p06,p07]"]
-# Optional extensions, not required by the seven current practices.
+p07 = []
+p08 = ["forc[sim,control]"]
+all = ["forc[p01,p02,p03,p04,p05,p06,p07,p08]"]
+# Optional extensions, not required by the eight current practices.
 mjx = ["mujoco-mjx==3.13.0", "jax>=0.4.35"]
 comparison = ["pin>=3.3"]
 

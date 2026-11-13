@@ -43,7 +43,7 @@ mujoco.mj_differentiatePos(model, dq, 1.0, q_reference, data.qpos)
 error = np.concatenate([dq, data.qvel - v_reference])
 ~~~
 
-For direct actuators without activation, the local dynamics state has 2 nv coordinates. With activation, it has 2 nv + na. [mjd_transitionFD](https://mujoco.readthedocs.io/en/stable/APIreference/APIfunctions.html#mjd-transitionfd) uses these tangent dimensions. The practice 02 linearization example uses an implicit integrator; this derivative API does not support RK4 in the referenced version.
+For direct actuators without activation, the local dynamics state has 2 nv coordinates. With activation, it has 2 nv + na. [mjd_transitionFD](https://mujoco.readthedocs.io/en/stable/APIreference/APIfunctions.html#mjd-transitionfd) uses these tangent dimensions. The practice 03 linearization example uses an implicit integrator; this derivative API does not support RK4 in the referenced version.
 
 ## Function connections
 

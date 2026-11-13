@@ -1,0 +1,8 @@
+id: "p07-reinforcement-learning"
+title: "7. Tabular reinforcement learning"
+week: 6
+duration: 120
+references: ["cmu-control","mit-underactuated"]
+entrypoint: "run.py"
+config: "config.yml"
+aliases: ["p06-reinforcement-learning"]

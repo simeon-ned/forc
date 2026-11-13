@@ -9,23 +9,23 @@ Connect actuator models and task-space kinematics to joint-space feedback, inver
 Run from the repository root. See the [shared setup guide](../README.md) for uv, conda, rendering, and installing all practices.
 
 ~~~bash
-uv sync --locked --extra p02
-uv run --locked --extra p02 python practices/p02-manipulator/run.py
+uv sync --locked --extra p03
+uv run --locked --extra p03 python practices/p03-manipulator/run.py
 ~~~
 
 With the course conda environment activated:
 
 ~~~bash
-python scripts/setup_conda.py p02
-python practices/p02-manipulator/run.py
+python scripts/setup_conda.py p03
+python practices/p03-manipulator/run.py
 ~~~
 
-The program writes configuration, MuJoCo version, and metrics to outputs/p02-manipulator/metrics.json. Experiments with a time history also write trajectory.csv. These are generated results and are not source material.
+The program writes configuration, MuJoCo version, and metrics to outputs/p03-manipulator/metrics.json. Experiments with a time history also write trajectory.csv. These are generated results and are not source material.
 
 Use a separate configuration and output directory for each variation:
 
 ~~~bash
-uv run --locked --extra p02 python practices/p02-manipulator/run.py --config practices/p02-manipulator/config.yml --output outputs/p02-manipulator/baseline
+uv run --locked --extra p03 python practices/p03-manipulator/run.py --config practices/p03-manipulator/config.yml --output outputs/p03-manipulator/baseline
 ~~~
 
 Keep the original configuration as the baseline. Record all changes in your report; avoid changing several physical and numerical parameters at once.
@@ -35,18 +35,18 @@ Keep the original configuration as the baseline. Record all changes in your repo
 [Open the standalone UR5e notebook](control_and_linearization.ipynb). It loads its own Menagerie robot and can run in a fresh kernel without executing p01 first.
 
 ```bash
-uv run --locked --extra p02 jupyter lab practices/p02-manipulator/control_and_linearization.ipynb
+uv run --locked --extra p03 jupyter lab practices/p03-manipulator/control_and_linearization.ipynb
 ```
 
-For conda, after `python scripts/setup_conda.py p02`:
+For conda, after `python scripts/setup_conda.py p03`:
 
 ```bash
-python -m jupyterlab practices/p02-manipulator/control_and_linearization.ipynb
+python -m jupyterlab practices/p03-manipulator/control_and_linearization.ipynb
 ```
 
 The notebook covers actuator force laws, direct-joint actuation maps, internal position servos, external PD torque control, gravity sensitivities, and discrete-time UR5e linearization. It checks the local model against an actual perturbed simulation step. All robot data comes from Menagerie; the notebook contains no simplified pendulum model.
 
-The `p02` install profile includes Jupyter, plotting/video tools, and Menagerie. The existing `run.py` reference complements the notebook with its controller/IK comparisons.
+The `p03` install profile includes Jupyter, plotting/video tools, and Menagerie. The existing `run.py` reference complements the notebook with its controller/IK comparisons.
 
 ## Tasks
 

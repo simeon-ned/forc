@@ -1,7 +1,8 @@
-id: "p02-manipulator"
-title: "2. Manipulator control and linearization"
+id: "p03-manipulator"
+title: "3. Manipulator control and linearization"
 week: 2
 duration: 120
 references: ["mit-pick","mit-multibody","mujoco-api"]
 entrypoint: "run.py"
 config: "config.yml"
+aliases: ["p02-manipulator"]

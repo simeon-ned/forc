@@ -959,17 +959,27 @@ p02 = [
     { name = "mediapy" },
     { name = "mujoco" },
     { name = "mujoco-menagerie" },
+    { name = "scipy", version = "1.17.1", source = { registry = "https://pypi.org/simple" }, marker = "python_full_version < '3.12'" },
+    { name = "scipy", version = "1.18.1", source = { registry = "https://pypi.org/simple" }, marker = "python_full_version >= '3.12'" },
 ]
 p03 = [
+    { name = "ipykernel" },
+    { name = "jupyterlab" },
+    { name = "matplotlib" },
+    { name = "mediapy" },
+    { name = "mujoco" },
+    { name = "mujoco-menagerie" },
+]
+p04 = [
     { name = "mujoco" },
     { name = "scipy", version = "1.17.1", source = { registry = "https://pypi.org/simple" }, marker = "python_full_version < '3.12'" },
     { name = "scipy", version = "1.18.1", source = { registry = "https://pypi.org/simple" }, marker = "python_full_version >= '3.12'" },
 ]
-p04 = [
+p05 = [
     { name = "scipy", version = "1.17.1", source = { registry = "https://pypi.org/simple" }, marker = "python_full_version < '3.12'" },
     { name = "scipy", version = "1.18.1", source = { registry = "https://pypi.org/simple" }, marker = "python_full_version >= '3.12'" },
 ]
-p07 = [
+p08 = [
     { name = "mujoco" },
     { name = "scipy", version = "1.17.1", source = { registry = "https://pypi.org/simple" }, marker = "python_full_version < '3.12'" },
     { name = "scipy", version = "1.18.1", source = { registry = "https://pypi.org/simple" }, marker = "python_full_version >= '3.12'" },
@@ -985,13 +995,14 @@ dev = [
 
 [package.metadata]
 requires-dist = [
-    { name = "forc", extras = ["control"], marker = "extra == 'p04'" },
+    { name = "forc", extras = ["control"], marker = "extra == 'p05'" },
     { name = "forc", extras = ["notebooks"], marker = "extra == 'p01'" },
-    { name = "forc", extras = ["notebooks"], marker = "extra == 'p02'" },
-    { name = "forc", extras = ["p01", "p02", "p03", "p04", "p05", "p06", "p07"], marker = "extra == 'all'" },
+    { name = "forc", extras = ["notebooks"], marker = "extra == 'p03'" },
+    { name = "forc", extras = ["notebooks", "control"], marker = "extra == 'p02'" },
+    { name = "forc", extras = ["p01", "p02", "p03", "p04", "p05", "p06", "p07", "p08"], marker = "extra == 'all'" },
     { name = "forc", extras = ["sim"], marker = "extra == 'notebooks'" },
-    { name = "forc", extras = ["sim", "control"], marker = "extra == 'p03'" },
-    { name = "forc", extras = ["sim", "control"], marker = "extra == 'p07'" },
+    { name = "forc", extras = ["sim", "control"], marker = "extra == 'p04'" },
+    { name = "forc", extras = ["sim", "control"], marker = "extra == 'p08'" },
     { name = "ipykernel", marker = "extra == 'notebooks'", specifier = ">=6" },
     { name = "jax", marker = "extra == 'mjx'", specifier = ">=0.4.35" },
     { name = "jupyterlab", marker = "extra == 'notebooks'", specifier = ">=4" },
@@ -1005,7 +1016,7 @@ requires-dist = [
     { name = "pyyaml", specifier = ">=6.0,<7" },
     { name = "scipy", marker = "extra == 'control'", specifier = ">=1.14,<2" },
 ]
-provides-extras = ["sim", "control", "notebooks", "p01", "p02", "p03", "p04", "p05", "p06", "p07", "all", "mjx", "comparison"]
+provides-extras = ["sim", "control", "notebooks", "p01", "p02", "p03", "p04", "p05", "p06", "p07", "p08", "all", "mjx", "comparison"]
 
 [package.metadata.requires-dev]
 dev = [{ name = "pytest", specifier = ">=8,<10" }]

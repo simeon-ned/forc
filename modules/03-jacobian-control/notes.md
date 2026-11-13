@@ -31,6 +31,6 @@ Orientation errors belong in a three-dimensional tangent space. Subtracting four
 
 ## Practice and discussion
 
-Practice 2 first moves the arm kinematically, then uses dynamics-aware torque control. Compare the final task error and maximum joint speed for several damping values. Read the manipulation notes for extensions to differential IK with constraints [@mit-pick].
+Practice 3 first moves the arm kinematically, then uses dynamics-aware torque control. Compare the final task error and maximum joint speed for several damping values. Read the manipulation notes for extensions to differential IK with constraints [@mit-pick].
 
 **Check:** If $J_p$ is $3\times7$, how many tool-position constraints can it satisfy independently? At most three, and fewer at a singular configuration. The remaining velocity directions need an additional selection rule.

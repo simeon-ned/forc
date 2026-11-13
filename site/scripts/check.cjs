@@ -5,17 +5,20 @@ const pages=[
  "experiments/go2/index.html","index.html","notation/index.html","setup/index.html","syllabus/index.html",
  "sources/index.html","references/index.html","cite/index.html","assessments/index.html",
  ...c.modules.flatMap(m=>["notes/"+m.id+"/index.html","lectures/"+m.id+"/index.html"]),
+ ...c.practiceRedirects.map(r=>r.from.slice(1)+"index.html"),
  ...c.lectureRedirects.map(r=>r.from.slice(1)+"index.html"),
  ...c.practices.map(p=>"practices/"+p.id+"/index.html"),
  ...c.assessments.map(a=>"assessments/"+a.id+"/index.html")
 ];
 let errors=[];
+if(c.practices.length!==8 || c.practices.some((p,i)=>Number(p.id.slice(1,3))!==i+1))errors.push("Practice numbering must run from 01 to 08");
+if(c.practices[1].id!=="p02-control-basics" || c.practices[2].id!=="p03-manipulator")errors.push("Control basics must precede manipulator control");
 if(c.modules.some((m,i)=>m.number!==i+1))errors.push("Lecture numbering must be consecutive and unique");
 if(c.modules[0].id!=="01-modeling")errors.push("Modeling must be the first lecture");
-for(const r of c.lectureRedirects) {
+for(const r of [...c.lectureRedirects, ...c.practiceRedirects]) {
  const file=path.join(root,r.from,"index.html");
  if(!fs.existsSync(file)||!fs.readFileSync(file,"utf8").includes('href="'+c.prefix+r.to+'"'))
-  errors.push("Missing lecture redirect: "+r.from);
+  errors.push("Missing redirect: "+r.from);
 }
 for(const m of c.modules) {
  const deck=fs.readFileSync(path.join(root,"lectures",m.id,"index.html"),"utf8");

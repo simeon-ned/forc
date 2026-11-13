@@ -10,6 +10,8 @@ module.exports = function(config) {
   config.addGlobalData("lessons", () => c.modules);
   config.addGlobalData("lectureRedirects", () => c.lectureRedirects);
   config.addGlobalData("coursePractices", () => c.practices);
+  config.addGlobalData("coursePracticePages", () => c.practices.filter(p => !p.custom_page));
+  config.addGlobalData("practiceRedirects", () => c.practiceRedirects);
   config.addGlobalData("assessments", () => c.assessments);
   config.addWatchTarget("../assessments");
   config.addGlobalData("references", () => Object.entries(c.refs).map(([id,r])=>({id,...r})));
@@ -27,7 +29,10 @@ module.exports = function(config) {
   }
   config.addPassthroughCopy({"../practices/p01-simulation/tutorial.ipynb":"practices/p01-simulation/tutorial.ipynb"});
   config.addPassthroughCopy({"../practices/p01-simulation/run.py":"practices/p01-simulation/run.py"});
-  config.addPassthroughCopy({"../practices/p02-manipulator/control_and_linearization.ipynb":"practices/p02-manipulator/control_and_linearization.ipynb"});
+  config.addPassthroughCopy({"../practices/p03-manipulator/*.ipynb":"practices/p03-manipulator"});
+  config.addPassthroughCopy({"../practices/p02-control-basics/tutorial.ipynb":"practices/p02-control-basics/tutorial.ipynb"});
+  // Preserve the former notebook download URL as well as the practice page.
+  config.addPassthroughCopy({"../practices/p03-manipulator/control_and_linearization.ipynb":"practices/p02-manipulator/control_and_linearization.ipynb"});
   config.addPassthroughCopy({"../course.yml":"downloads/course.yml"});
   config.addPassthroughCopy({"../assessments":"downloads/assessments"});
   for (const item of ["../modules","../practices","../course.yml","../references"]) config.addWatchTarget(item);

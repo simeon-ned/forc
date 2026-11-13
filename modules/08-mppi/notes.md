@@ -28,6 +28,6 @@ Batching compatible rollouts with MJX is an optional acceleration route [@mujoco
 
 ## Practice and exercise
 
-Practice 4 compares constrained MPC, clipped LQR, and weighted shooting on the same vertical-flight task. Record seed sensitivity as well as tracking and violations. Increase sample count while holding the control period fixed and measure deadline overruns.
+Practice 5 compares constrained MPC, clipped LQR, and weighted shooting on the same vertical-flight task. Record seed sensitivity as well as tracking and violations. Increase sample count while holding the control period fixed and measure deadline overruns.
 
 **Check:** If every candidate has nearly identical cost, what is the update? Approximately the average perturbation, often near zero for symmetric noise. This can mean a flat local objective, too little exploration, or a cost bug. Inspect trajectories before merely lowering the temperature.

@@ -23,4 +23,4 @@ Explain the physical model and controller interfaces. State which decisions are 
 - 20%: interpretation, limitations, and failure analysis.
 - 10%: clear presentation and reusable repository organization.
 
-A sophisticated method is not automatically a stronger project. A small experiment with correct conventions and a defensible conclusion can earn full credit. The Practice 7 harness is only a starting baseline and does not supply the assessed contribution.
+A sophisticated method is not automatically a stronger project. A small experiment with correct conventions and a defensible conclusion can earn full credit. The Practice 8 harness is only a starting baseline and does not supply the assessed contribution.

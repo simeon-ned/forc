@@ -32,6 +32,6 @@ After mj_forward, retrieve c from qfrc_bias and the passive force from qfrc_pass
 
 ## Exercise and practice
 
-Practice 2 compares PD, bias-compensated PD, and computed torque on the same two-link arm. Plot error and saturation, then reduce the motor limit.
+Practice 3 compares PD, bias-compensated PD, and computed torque on the same two-link arm. Plot error and saturation, then reduce the motor limit.
 
 **Check:** Why can adding exact gravity compensation worsen an experiment? Possible causes include a wrong sign, wrong frame, double-counted compensation, stale bias data, or actuator saturation. Compensation also consumes some of the available motor force. Diagnose these before changing the feedback gains.

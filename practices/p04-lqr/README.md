@@ -9,23 +9,23 @@ Build the same local stabilization pipeline for a hinge model and a quaternion m
 Run from the repository root. See the [shared setup guide](../README.md) for uv, conda, rendering, and installing all practices.
 
 ~~~bash
-uv sync --locked --extra p03
-uv run --locked --extra p03 python practices/p03-lqr/run.py
+uv sync --locked --extra p04
+uv run --locked --extra p04 python practices/p04-lqr/run.py
 ~~~
 
 With the course conda environment activated:
 
 ~~~bash
-python scripts/setup_conda.py p03
-python practices/p03-lqr/run.py
+python scripts/setup_conda.py p04
+python practices/p04-lqr/run.py
 ~~~
 
-The program writes configuration, MuJoCo version, and metrics to outputs/p03-lqr/metrics.json. Experiments with a time history also write trajectory.csv. These are generated results and are not source material.
+The program writes configuration, MuJoCo version, and metrics to outputs/p04-lqr/metrics.json. Experiments with a time history also write trajectory.csv. These are generated results and are not source material.
 
 Use a separate configuration and output directory for each variation:
 
 ~~~bash
-uv run --locked --extra p03 python practices/p03-lqr/run.py --config practices/p03-lqr/config.yml --output outputs/p03-lqr/baseline
+uv run --locked --extra p04 python practices/p04-lqr/run.py --config practices/p04-lqr/config.yml --output outputs/p04-lqr/baseline
 ~~~
 
 Keep the original configuration as the baseline. Record all changes in your report; avoid changing several physical and numerical parameters at once.

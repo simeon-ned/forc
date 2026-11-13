@@ -9,23 +9,23 @@ Separate supervised prediction quality from closed-loop behavior under distribut
 Run from the repository root. See the [shared setup guide](../README.md) for uv, conda, rendering, and installing all practices.
 
 ~~~bash
-uv sync --locked --extra p05
-uv run --locked --extra p05 python practices/p05-imitation/run.py
+uv sync --locked --extra p06
+uv run --locked --extra p06 python practices/p06-imitation/run.py
 ~~~
 
 With the course conda environment activated:
 
 ~~~bash
-python scripts/setup_conda.py p05
-python practices/p05-imitation/run.py
+python scripts/setup_conda.py p06
+python practices/p06-imitation/run.py
 ~~~
 
-The program writes configuration, available MuJoCo version (null when not installed), and metrics to outputs/p05-imitation/metrics.json. Experiments with a time history also write trajectory.csv. These are generated results and are not source material.
+The program writes configuration, available MuJoCo version (null when not installed), and metrics to outputs/p06-imitation/metrics.json. Experiments with a time history also write trajectory.csv. These are generated results and are not source material.
 
 Use a separate configuration and output directory for each variation:
 
 ~~~bash
-uv run --locked --extra p05 python practices/p05-imitation/run.py --config practices/p05-imitation/config.yml --output outputs/p05-imitation/baseline
+uv run --locked --extra p06 python practices/p06-imitation/run.py --config practices/p06-imitation/config.yml --output outputs/p06-imitation/baseline
 ~~~
 
 Keep the original configuration as the baseline. Record all changes in your report; avoid changing several physical and numerical parameters at once.

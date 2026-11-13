@@ -52,3 +52,8 @@ hw/mujoco_template/logs/
 site/.lab-build/
 site/test-results/
 site/playwright-report/
+
+# Practice 02 generates media inside notebook outputs, never as course assets.
+/practices/p02-control-basics/videos/
+/practices/p02-control-basics/*.mp4
+/practices/p02-control-basics/images/*-poster.png

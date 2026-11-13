@@ -1,7 +1,8 @@
-id: "p04-predictive-control"
-title: "4. MPC and weighted stochastic shooting"
+id: "p05-predictive-control"
+title: "5. MPC and weighted stochastic shooting"
 week: 4
 duration: 120
 references: ["mit-trajopt","cmu-index","mujoco-mjx"]
 entrypoint: "run.py"
 config: "config.yml"
+aliases: ["p04-predictive-control"]

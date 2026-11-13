@@ -4,7 +4,7 @@ title: Practice schedule and earlier notebooks
 permalink: /practices/
 ---
 
-The current teaching edition has seven practice briefs with complete Python reference experiments, YAML configurations, and submission guidance. The first labs are formative; the later weeks support the take-homes and project.
+The current teaching edition has eight practices with runnable Python notebooks or reference experiments and submission guidance. The first labs are formative; the later weeks support the take-homes and project.
 
 ~~~bash
 uv sync --locked --extra all
@@ -12,9 +12,10 @@ uv run --locked --extra all python scripts/run_practices.py
 ~~~
 
 {% for p in coursePractices %}
-<h2 id="week-{{ loop.index }}">Week {{ loop.index }}: {{ p.title }}</h2>
+<h2 id="{{ p.id }}">{{ p.title }}</h2>
+<p>Week {{ p.week }} · {{ p.duration }} minutes</p>
 
-[Open practice]({{ p.url | url }}). The corresponding source is practices/{{ p.id }}/. Each entrypoint records its configuration and metrics under outputs/.
+[Open practice]({{ p.url | url }}). The corresponding source is practices/{{ p.id }}/. {% if p.entrypoint == "tutorial.ipynb" %}The notebook contains the implementation, parameters, and inline results.{% else %}The reference program records its configuration and metrics under outputs/.{% endif %}
 
 {% endfor %}
 
@@ -24,4 +25,4 @@ uv run --locked --extra all python scripts/run_practices.py
 
 ## Earlier notebooks
 
-The older UR5e, IIWA, and Go1 notebooks remain in the repository. They are historical supplements and may use different dependencies or conventions. The current p01- through p07- practices and the MuJoCo notation contract define this edition's tested baseline.
+The older UR5e, IIWA, and Go1 notebooks remain in the repository. They are historical supplements and may use different dependencies or conventions. The current p01- through p08- practices and the MuJoCo notation contract define this edition's tested baseline.

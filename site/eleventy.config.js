@@ -5,7 +5,9 @@ const markdownItAnchor = require("markdown-it-anchor");
 module.exports = function (eleventyConfig) {
   const curriculum = require("./lib/setup.cjs")(eleventyConfig);
   require("./lib/experiments.cjs")(eleventyConfig);
-  eleventyConfig.setServerPassthroughCopyBehavior("passthrough");
+  // Lecture/practice assets live outside site/. Copy them into the output:
+  // the dev server rejects emulated aliases outside its project directory.
+  eleventyConfig.setServerPassthroughCopyBehavior("copy");
 
   // Project Pages: https://simeon-ned.github.io/forc/
   // Local without prefix: COURSE_PATH_PREFIX= npm run dev

@@ -1,6 +1,6 @@
 # Teaching edition 0.2.0
 
-This independent repository contains 12 original lecture units, seven practice briefs, executable reference experiments, and assessments. Current content lives in modules/, practices/p*/, src/forc/, and site/. Earlier material remains available as an archive and may use older conventions.
+This independent repository contains 12 original lecture units, eight practice briefs, executable reference experiments, and assessments. Current content lives in modules/, practices/p*/, src/forc/, and site/. Earlier material remains available as an archive and may use older conventions.
 
 ## Suggested teaching rhythm
 
@@ -43,3 +43,7 @@ npm --prefix site run check
 ~~~
 
 Optional backend checks are documented separately and must be reported honestly when unavailable.
+
+## Control-basics practice
+
+Practice 02 bridges simulation and manipulator control. Its self-contained `tutorial.ipynb` is the single lesson source: the website renders its Markdown/code cells and embedded diagrams directly. Model definitions and all helper functions appear in the notebook; plots and inline MuJoCo videos are generated only when it runs. Keep committed outputs empty. The shared `scripts/run_practices.py --practice p02` checker executes the actual notebook cells with `VISUALIZE = False`, and the physics tests use those same definitions. Sections 1–5 form the core; nonlinear systems and cart-pole form a guided follow-up. Practice IDs and install profiles run from p01 to p08; former practice URLs redirect to their new numbers.

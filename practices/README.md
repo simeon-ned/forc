@@ -14,26 +14,27 @@ uv run --locked --extra all jupyter lab practices/p01-simulation/tutorial.ipynb
 
 uv creates `.venv` and obtains Python 3.12 if necessary. No environment activation is needed. In VS Code, select `.venv` as the Python interpreter and notebook kernel.
 
-For just one practice, choose its short ID (`p01` through `p07`):
+For just one practice, choose its short ID (`p01` through `p08`):
 
 ```bash
-uv sync --locked --extra p04
-uv run --locked --extra p04 python practices/p04-predictive-control/run.py
+uv sync --locked --extra p05
+uv run --locked --extra p05 python practices/p05-predictive-control/run.py
 ```
 
-Keep the same `--extra` on `uv run`: uv synchronizes the environment when running commands. Switching profiles removes packages not required by the new selection. To keep several practices installed, combine flags, for example `--extra p01 --extra p04`, or use `--extra all` throughout.
+Keep the same `--extra` on `uv run`: uv synchronizes the environment when running commands. Switching profiles removes packages not required by the new selection. To keep several practices installed, combine flags, for example `--extra p01 --extra p05`, or use `--extra all` throughout.
 
 The profiles follow the code's actual dependencies:
 
 - `p01` — [models and simulation](p01-simulation/README.md): MuJoCo, Jupyter, plotting/video tools, and Menagerie (UR5e, G1, Go2).
-- `p02` — [manipulator control](p02-manipulator/README.md): MuJoCo, Jupyter, plotting/video tools, and Menagerie for the independent UR5e control/linearization notebook.
-- `p03` — [LQR](p03-lqr/README.md): MuJoCo and SciPy.
-- `p04` — [predictive control](p04-predictive-control/README.md): SciPy; no physics engine required.
-- `p05` — [imitation learning](p05-imitation/README.md): NumPy and YAML only.
-- `p06` — [reinforcement learning](p06-reinforcement-learning/README.md): NumPy and YAML only.
-- `p07` — [project reference](p07-project/README.md): MuJoCo and SciPy.
+- `p02` — [control basics](p02-control-basics/README.md): MuJoCo, SciPy, Jupyter, and plotting/video tools.
+- `p03` — [manipulator control](p03-manipulator/README.md): MuJoCo, Jupyter, plotting/video tools, and Menagerie for the independent UR5e control/linearization notebook.
+- `p04` — [LQR](p04-lqr/README.md): MuJoCo and SciPy.
+- `p05` — [predictive control](p05-predictive-control/README.md): SciPy; no physics engine required.
+- `p06` — [imitation learning](p06-imitation/README.md): NumPy and YAML only.
+- `p07` — [reinforcement learning](p07-reinforcement-learning/README.md): NumPy and YAML only.
+- `p08` — [project reference](p08-project/README.md): MuJoCo and SciPy.
 
-Every profile includes the local editable `forc` package, NumPy, and PyYAML. The `all` profile combines all seven, including the tutorial. The learning reference experiments use NumPy; PyTorch and GPU libraries are not needed. Install `--extra sim` for only the headless simulation stack, or add `--extra notebooks` to another profile for Jupyter and plotting. Optional `mjx` and `comparison` extras remain available for extensions; they are not required by the current sessions.
+Every profile includes the local editable `forc` package, NumPy, and PyYAML. The `all` profile combines all eight, including the tutorial. The learning reference experiments use NumPy; PyTorch and GPU libraries are not needed. Install `--extra sim` for only the headless simulation stack, or add `--extra notebooks` to another profile for Jupyter and plotting. Optional `mjx` and `comparison` extras remain available for extensions; they are not required by the current sessions.
 
 ## Quick start with conda
 
@@ -50,15 +51,15 @@ python -m jupyterlab practices/p01-simulation/tutorial.ipynb
 For one practice, replace the installation and run commands:
 
 ```bash
-python scripts/setup_conda.py p04
-python practices/p04-predictive-control/run.py
+python scripts/setup_conda.py p05
+python practices/p05-predictive-control/run.py
 ```
 
 Conda supplies Python, uv, and FFmpeg. The helper exports the selected profile from `uv.lock` and installs those exact Python package versions into the **active conda environment**, including the editable course package. It does not create `.venv` or remove conda-managed packages. Use `python` and `python -m jupyterlab` in this workflow; plain `uv run` would select the separate project environment.
 
 Select the `forc` conda interpreter in your editor. If using a Jupyter server outside this environment, first register a kernel with `python -m ipykernel install --user --name forc --display-name "Python (FORC)"`, then select it. Skip registration when launching Jupyter from the environment itself.
 
-Repeating `setup_conda.py` installs the requested locked versions, retaining unrelated packages. For a truly minimal profile after experimenting with other packages, create a new environment with `conda env create --name forc-p04 --file environment.yml`, activate it, and run `python scripts/setup_conda.py p04`. To update conda's interpreter/system tools later, recreate the environment from the YAML before rerunning the helper. The conda YAML pins tool versions; `uv.lock` pins Python packages, not platform-specific conda builds.
+Repeating `setup_conda.py` installs the requested locked versions, retaining unrelated packages. For a truly minimal profile after experimenting with other packages, create a new environment with `conda env create --name forc-p05 --file environment.yml`, activate it, and run `python scripts/setup_conda.py p05`. To update conda's interpreter/system tools later, recreate the environment from the YAML before rerunning the helper. The conda YAML pins tool versions; `uv.lock` pins Python packages, not platform-specific conda builds.
 
 ## Interactive viewer
 
@@ -66,7 +67,7 @@ Run `uv run --locked --extra p01 python practices/p01-simulation/run.py` on a de
 
 ## Rendering and robot downloads
 
-The finite reference checks work on CPU without a display or GPU. P01’s `run.py` opens an interactive desktop viewer; its separate `check.py` is the headless reference used by the automated runners. The p01 and p02 notebooks need graphics and video encoding. The tutorial’s UR5e, G1, and Go2 XML and meshes download on first use and stay in Menagerie's per-user cache, outside this repository. Prepare for an offline class with:
+The finite reference checks work on CPU without a display or GPU. P01’s `run.py` opens an interactive desktop viewer; its separate `check.py` is the headless reference used by the automated runners. The p01, p02, and p03 notebooks need graphics and video encoding. The tutorial’s UR5e, G1, and Go2 XML and meshes download on first use and stay in Menagerie's per-user cache, outside this repository. Prepare for an offline class with:
 
 ```bash
 # uv environment
@@ -100,8 +101,8 @@ uv run --locked --extra all python scripts/run_practices.py
 uv run --locked --extra all python scripts/check_practice_envs.py
 ```
 
-The last command installs and runs each practice in a separate temporary environment, checks dependency consistency, and confirms that the lightweight profiles do not pull in unnecessary engines. CI runs the same checks. To test only one profile, append `--profile p04`. For conda development, use `python scripts/setup_conda.py all --dev` followed by `python -m pytest`.
+The last command installs and runs each practice in a separate temporary environment, checks dependency consistency, and confirms that the lightweight profiles do not pull in unnecessary engines. CI runs the same checks. To test only one profile, append `--profile p05`. For conda development, use `python scripts/setup_conda.py all --dev` followed by `python -m pytest`.
 
-Generated results go in `outputs/`. Preserve each experiment's configuration and use a separate output directory for each comparison.
+Reference-program results go in `outputs/`. Practice 02 generates results inline in its self-contained notebook; edit the parameters in its cells and clear saved outputs before committing. Its numeric checks run with `python scripts/run_practices.py --practice p02`.
 
-Robot modeling is part of the [p01 MuJoCo tutorial](p01-simulation/tutorial.ipynb): configurations, floating bases, body and COM kinematics, force balance, energy, actuation, contacts, and model editing all use MuJoCo and NumPy. Control and numerical linearization are in the separate [p02 notebook](p02-manipulator/control_and_linearization.ipynb). The `p01` profile includes all required dependencies.
+Robot modeling is part of the [p01 MuJoCo tutorial](p01-simulation/tutorial.ipynb): configurations, floating bases, body and COM kinematics, force balance, energy, actuation, contacts, and model editing all use MuJoCo and NumPy. Control and numerical linearization are in the separate [p03 notebook](p03-manipulator/control_and_linearization.ipynb). The `p01` profile includes all required dependencies.

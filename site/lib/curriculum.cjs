@@ -65,20 +65,55 @@ const lectureRedirects = modules.flatMap(m => (m.aliases || []).flatMap(alias =>
 ]));
 // Practice READMEs are also read directly in the repository. Map their shared
 // setup links to the site route while keeping notebook downloads relative.
-function renderPractice(source) {
-  return render(source).replace(/href="\.\.\/README\.md(?:#([^"]+))?"/g, (_, fragment) => {
+function renderPractice(source, practiceId) {
+  return render(source)
+    .replace(/<p>(<img src="data:image\/svg\+xml;base64,[^"]+"[^>]*>)<\/p>/g,
+      (_, img) => `<figure class="lecture-figure">${img}</figure>`)
+    .replace(/(<h[23] id=")([^"]+)"/g, (_, start, id) =>
+      start + decodeURIComponent(id).replace(/[.,:–]/g, '') + '"')
+    .replace(/href="\.\.\/(p[0-9]{2}-[a-z0-9-]+)\/README\.md"/g,
+      (_, id) => 'href="' + url('/practices/' + id + '/') + '"')
+    .replace(/href="\.\.\/README\.md(?:#([^"]+))?"/g, (_, fragment) => {
     const anchor = fragment === "rendering-and-robot-downloads" ? "#rendering-and-verification" : "";
     return 'href="' + url("/setup/") + anchor + '"';
   });
 }
+// Notebook lessons are the source of truth. Render source cells and attached
+// diagrams directly; computed outputs are deliberately excluded from the site.
+function notebookSource(directory, entrypoint) {
+  if (!entrypoint?.endsWith('.ipynb')) return '';
+  const notebook = JSON.parse(read('practices/' + directory + '/' + entrypoint));
+  return notebook.cells.slice(1).map(cell => {
+    let source = Array.isArray(cell.source) ? cell.source.join('') : cell.source;
+    if (cell.cell_type === 'code') return '\n```python\n' + source + '\n```\n';
+    if (cell.cell_type !== 'markdown') return '';
+    for (const [name, data] of Object.entries(cell.attachments || {})) {
+      const svg = data['image/svg+xml'];
+      if (svg) source = source.replace(/!\[([^\]]*)\]\(attachment:([^)]+)\)/g, (match, alt, filename) => {
+        if (filename !== name) return match;
+        // markdown-it intentionally rejects SVG data URLs in Markdown links.
+        // Emit an inert <img> for this trusted notebook attachment instead.
+        return '<figure class="lecture-figure"><img src="data:image/svg+xml;base64,' +
+          md.utils.escapeHtml(svg) + '" alt="' + md.utils.escapeHtml(alt) + '"></figure>';
+      });
+    }
+    return source;
+  }).join('\n\n');
+}
 const practices = fs.readdirSync(path.join(root,"practices"), {withFileTypes:true})
  .filter(e => e.isDirectory() && fs.existsSync(path.join(root,"practices",e.name,"practice.yml")))
- .map(e => ({...yaml.load(read("practices/"+e.name+"/practice.yml")),
-   body:renderPractice(read("practices/"+e.name+"/README.md")), url:"/practices/"+e.name+"/"}));
+ .map(e => {
+   const metadata = yaml.load(read("practices/" + e.name + "/practice.yml"));
+   return {...metadata,
+     body:renderPractice(read("practices/" + e.name + "/README.md") + '\n\n' + notebookSource(e.name, metadata.entrypoint), e.name),
+     url:"/practices/" + e.name + "/"};
+ }).sort((a,b) => a.id.localeCompare(b.id));
+const practiceRedirects = practices.flatMap(p => (p.aliases || []).map(alias =>
+  ({from:'/practices/' + alias + '/', to:p.url, title:p.title})));
 const assessments = yaml.load(read("assessments/assessments.yml")).map(a => ({...a,body:render(read("assessments/"+a.id+".md"))}));
 if (modules.length !== course.lectures) throw new Error("Lecture count differs from course.yml");
 for (const m of modules) {
   if (!practices.some(p=>p.id===m.practice)) throw new Error("Missing practice for " + m.id);
   if (!m.outcomes.length || m.slides.length < 4) throw new Error("Incomplete module " + m.id);
 }
-module.exports = {course,prefix,refs,modules,lectureRedirects,practices,assessments,render};
+module.exports = {course,prefix,refs,modules,lectureRedirects,practiceRedirects,practices,assessments,render};

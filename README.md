@@ -1,6 +1,6 @@
 # Fundamentals of Robot Control (FORC)
 
-Independent course repository: 12 lecture units, web lecture pages, Reveal.js slides, seven practice briefs, Python reference experiments, and assessments.
+Independent course repository: 12 lecture units, web lecture pages, Reveal.js slides, eight practice briefs, Python reference experiments, and assessments.
 
 ## Start
 
@@ -14,12 +14,12 @@ COURSE_PATH_PREFIX= npm --prefix site run dev
 
 Open [lecture 01 in your browser](http://localhost:8080/notes/01-modeling/) or the [course homepage](http://localhost:8080/). See [TEACHING_GUIDE.md](TEACHING_GUIDE.md) for the teaching rhythm and release checklist.
 
-For a smaller install, use `uv sync --locked --extra p01` (or `p02` through `p07`). The [practice setup guide](practices/README.md) includes conda, the tutorial, and the devcontainer.
+For a smaller install, use `uv sync --locked --extra p01` (or `p02` through `p08`). The [practice setup guide](practices/README.md) includes conda, the tutorial, and the devcontainer.
 
 ## Current material
 
 - [modules/](modules/): module.yml, notes.md, and slides.md per lecture.
-- [practices/](practices/): current labs use p01- through p07- directory names, each with YAML metadata/config and a runnable entrypoint.
+- [practices/](practices/): current labs use p01- through p08- directory names, each with YAML metadata and a runnable notebook or reference program.
 - [src/forc/](src/forc/): local Python models, numerical utilities, and reference experiments.
 - [assessments/](assessments/): two take-homes and the project, with rubrics.
 - [course.yml](course.yml), [references](references/references.yml), and [CITATION.cff](CITATION.cff): metadata and attribution.

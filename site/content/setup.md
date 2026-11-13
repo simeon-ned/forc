@@ -6,7 +6,7 @@ permalink: /setup/
 
 ## Python with uv
 
-Run from the repository root with Python 3.12 (`.python-version`). Install [uv](https://docs.astral.sh/uv/getting-started/installation/), then choose all seven current practices:
+Run from the repository root with Python 3.12 (`.python-version`). Install [uv](https://docs.astral.sh/uv/getting-started/installation/), then choose all eight current practices:
 
 ~~~bash
 uv sync --locked --extra all
@@ -17,11 +17,11 @@ uv run --locked --extra all jupyter lab practices/p01-simulation/tutorial.ipynb
 For only one practice, use its short ID on both commands:
 
 ~~~bash
-uv sync --locked --extra p04
-uv run --locked --extra p04 python practices/p04-predictive-control/run.py
+uv sync --locked --extra p05
+uv run --locked --extra p05 python practices/p05-predictive-control/run.py
 ~~~
 
-Profiles `p01` through `p07` install only their required features. Combine multiple `--extra` flags to keep several selected. The p01 and p02 profiles include their notebooks and Menagerie; p04–p06 do not require MuJoCo. uv manages `.venv`; select it in your editor. Keep the profile on `uv run`, which also synchronizes dependencies.
+Profiles `p01` through `p08` install only their required features. Combine multiple `--extra` flags to keep several selected. The p01 and p03 profiles include their notebooks and Menagerie; p02 adds SciPy for control basics; p05–p07 do not require MuJoCo. uv manages `.venv`; select it in your editor. Keep the profile on `uv run`, which also synchronizes dependencies.
 
 ## Python with conda
 
@@ -39,7 +39,7 @@ The repository's `practices/README.md` covers editor kernels, offline Menagerie 
 
 ## Rendering and verification
 
-The automated reference checks are headless CPU experiments. P01’s `run.py` is an interactive desktop viewer; `check.py` provides its finite headless checks. Run `uv run --locked --extra p01 python practices/p01-simulation/run.py` to open the viewer (use `mjpython` on macOS), and stop it with Ctrl+C or by closing the window. The p01 and p02 notebooks additionally need OpenGL and FFmpeg; install FFmpeg with your OS package manager when using uv. Conda and the devcontainer include it. On headless Linux, set `MUJOCO_GL=osmesa` with Mesa installed, or `MUJOCO_GL=egl` with a working EGL driver, before starting the kernel. Menagerie downloads UR5e, G1, and Go2 on first use and caches them locally.
+The automated reference checks are headless CPU experiments. P01’s `run.py` is an interactive desktop viewer; `check.py` provides its finite headless checks. Run `uv run --locked --extra p01 python practices/p01-simulation/run.py` to open the viewer (use `mjpython` on macOS), and stop it with Ctrl+C or by closing the window. The p01, p02, and p03 notebooks additionally need OpenGL and FFmpeg; install FFmpeg with your OS package manager when using uv. Conda and the devcontainer include it. On headless Linux, set `MUJOCO_GL=osmesa` with Mesa installed, or `MUJOCO_GL=egl` with a working EGL driver, before starting the kernel. Menagerie downloads UR5e, G1, and Go2 on first use and caches them locally.
 
 ~~~bash
 uv run --locked --extra p01 mujoco-menagerie prefetch universal_robots_ur5e unitree_g1 unitree_go2
@@ -47,7 +47,7 @@ uv run --locked --extra all --group dev pytest
 uv run --locked --extra all python scripts/check_practice_envs.py
 ~~~
 
-`pyproject.toml` defines profiles and `uv.lock` pins Python packages. Update the lock only when changing dependencies intentionally. Generated metrics and traces go under `outputs/`. Keep each comparison's YAML configuration and output directory separate. Optional `mjx` and `comparison` extras are available for extensions; they are not part of `all`.
+`pyproject.toml` defines profiles and `uv.lock` pins Python packages. Update the lock only when changing dependencies intentionally. Reference programs save metrics and traces under `outputs/`. Practice 02 keeps its parameters, calculations, and inline results in one notebook. Clear its saved outputs before committing. For programs with YAML configurations, keep each comparison's configuration and output directory separate. Optional `mjx` and `comparison` extras are available for extensions; they are not part of `all`.
 
 ## Notes and slides
 
@@ -70,6 +70,6 @@ The [slide deck]({{ '/lectures/01-modeling/' | url }}) is also a web page. Use t
 
 ## Editing and release
 
-Changing notes, slides, or YAML rebuilds the local site. Restart the server after changing the hosting path prefix. Run tests and the site link check before release. This edition is a teaching draft; publication requires instructor review and an explicit deployment step. No DOI has been assigned.
+Changing notes, notebooks, slides, or YAML rebuilds the local site. Restart the server after changing the hosting path prefix. Run tests and the site link check before release. This edition is a teaching draft; publication requires instructor review and an explicit deployment step. No DOI has been assigned.
 
 See [the course]({{ '/' | url }}), [notation]({{ '/notation/' | url }}), and [source map]({{ '/sources/' | url }}).

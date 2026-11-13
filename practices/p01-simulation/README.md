@@ -2,7 +2,7 @@
 
 Learn robot models and MuJoCo basics using Menagerie’s UR5e, Unitree G1 humanoid, and Unitree Go2 quadruped: state, kinematics, dynamics, energy, floating bases, contacts, and simulation.
 
-**Time:** about 120 minutes for the core path. Use the detailed kinematics and energy checks as guided extensions. Feedback control and linearization continue in [practice 02](../p02-manipulator/control_and_linearization.ipynb).
+**Time:** about 120 minutes for the core path. Use the detailed kinematics and energy checks as guided extensions. Control fundamentals continue in [practice 02](../p02-control-basics/README.md), followed by manipulator control and linearization in [practice 03](../p03-manipulator/control_and_linearization.ipynb).
 
 ## Lecture before this practice
 

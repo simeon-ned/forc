@@ -20,7 +20,7 @@ For $x_{k+1}=x_k+u_k$ with $Q=R=1$, the Riccati equation reduces to $P^2-P-1=0$.
 
 ## Cart-pole and quadrotor
 
-Practice 3 linearizes a cart-pole at its upright equilibrium and a full free-joint quadrotor at hover. Both use the same feedback pipeline. Quadrotor orientation error uses MuJoCo's quaternion convention and tangent difference. Thrust limits introduce nonlinear behavior that LQR does not enforce during design. Large initial tilts require a different reference or nonlinear planning.
+Practice 4 linearizes a cart-pole at its upright equilibrium and a full free-joint quadrotor at hover. Both use the same feedback pipeline. Quadrotor orientation error uses MuJoCo's quaternion convention and tangent difference. Thrust limits introduce nonlinear behavior that LQR does not enforce during design. Large initial tilts require a different reference or nonlinear planning.
 
 ## Beyond equilibrium
 
